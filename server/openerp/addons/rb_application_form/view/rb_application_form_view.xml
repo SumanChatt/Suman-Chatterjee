@@ -1,0 +1,161 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        
+        <!-- Form View of the application-->
+        <record model="ir.ui.view" id="rb_application_form_form">
+            <field name="name">Application Form</field>
+            <field name="model">rb.application.form</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Application Form View" version="7.0">
+                    <sheet>
+                        <label for="lead_id" class="oe_edit_only"/>
+                            <h1><field name="lead_id" on_change="get_lead_details(lead_id)"/></h1>
+                                <notebook position="inside" colspan="100">
+                                    <page string="General" position="inside">
+                                        <group>
+                                            <group>
+                                                <field name="customer_name" required="1"/> 
+                                                <field name="create_uid" readonly="1"/>
+                                                <field name="mobile_number" required="1"/> 
+                                                <field name="dob" />
+                                                <field name="id_number"/>
+                                               	<field name="application_serial"/>
+                                                <field name="gender"/>
+                                                <field name="email_address"/>                                 
+                                                <field name="highest_education"/>
+                                                <field name="location" required="1"/>
+                                                <field name="district"/>
+                                            </group>
+                                            <group> 
+                                                <field name="company_name"/> 
+                                                <field name="industry" />
+                                                <field name="monthly_income"/>
+                                                <field name="position"/>
+                                                <field name="working_period"/>
+                                                <field name="product" required="1"/>
+                                                <field name="sub_product" required="1"/>
+                                                <field name="amount"/>
+                                                <field name="living_type"/>
+                                                <field name="living_time"/>
+                                                <field name="occupation"/>
+                                            </group>
+                                        </group>
+                                    </page>
+                                    <!-- <page string="Organization" position="inside">
+                                        <group>
+                                            <group>
+                                                <field name="company_name"/> 
+                                                <field name="industry" />
+                                                <field name="monthly_income"/>
+                                                <field name="position"/>
+                                                <field name="working_period"/>
+                                            </group>
+                                            <group>                                  
+                                                <field name="product"/>
+                                                <field name="amount"/>
+                                                <field name="living_type"/>
+                                                <field name="living_time"/>
+                                                <field name="occupation"/>
+                                            </group>
+                                        </group>
+                                    </page>
+                                    <page string="Personal Info" position="inside">
+                                        <group>
+                                            <group>
+                                                <field name="married_status"/> 
+                                                <field name="spouse_name" />
+                                                <field name="spouse_email"/>
+                                                <field name="spouse_mobile"/>
+                                                <field name="children_information"/>
+                                            </group>
+                                            <group>                                  
+                                                <field name="name_reference1"/>
+                                                <field name="email_reference1"/>
+                                                <field name="mobile_reference1"/>
+                                                <field name="name_reference2"/>
+                                                <field name="email_reference2"/>
+                                                <field name="mobile_reference2"/>
+                                            </group>
+                                        </group>
+                                    </page> -->
+                                    <page string="Lead Details" position="inside">
+                                        <group>
+                                            <group>
+                                                <field name="campaign_team" required="1"/> 
+                                                <field name="sales_team" on_change="get_tl_name(sales_team)" required="1" />
+                                                <field name="tl_name"/>
+                                                <field name="tsr_name"/>
+                                                <field name="vfsr_fsr_name"/>
+                                                <field name="disposition_code" required="1"/>
+                                                <field name="subdisposition_code" required="1"/>
+                                                <field name="date_of_application"/>
+                                            </group>
+                                        </group>
+                                    </page>
+                                    <page string="Status History" position="inside">                       
+                                        <field name="status_history"/>
+                                    </page>
+                                </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Tree View of the application-->
+        <record model="ir.ui.view" id="rb_application_form_tree">
+            <field name="name">Application Form</field>
+            <field name="model">rb.application.form</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Application Form View">
+                	<field name="id"/>
+                    <field name="create_uid"/>
+                	<field name="create_date"/>
+                    <field name="customer_name"/>
+                    <field name="mobile_number"/>
+                    <field name="campaign_team"/>
+                    <field name="sales_team"/>         
+                    <field name="gender"/>
+                    <field name="dob" />
+                    <field name="location"/>
+                    <field name="monthly_income"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="rb_application_form_action" model="ir.actions.act_window">
+            <field name="name">Application for all</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rb.application.form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--History table for application form-->
+        <!--Tree view-->
+        <record model="ir.ui.view" id="rb_application_form_history_tree">
+            <field name="name">rb.application.form.history.tree</field>
+            <field name="model">rb.application.form.history</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Application History">
+                    <field name="user_name"/>
+                    <field name="lead_id"/>
+                    <field name="disposition_code"/>
+                    <field name="subdisposition_code"/>
+                    <field name="campaign_team"/>
+                    <field name="sales_team"/>                       
+                </tree>
+            </field>
+        </record>       
+
+
+        <!--Manues-->
+        <menuitem id="application_main" name="Application Form" sequence="2"/>
+        <menuitem id="application_menu" name="Applications" parent="application_main" sequence="1"/>
+        <menuitem id="application_action" name="Application" parent="application_menu" action="rb_application_form_action" sequence="1"/>
+
+    </data>
+</openerp>

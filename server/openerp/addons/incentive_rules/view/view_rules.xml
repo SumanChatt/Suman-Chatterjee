@@ -1,0 +1,91 @@
+<openerp>
+<data>
+<record model="ir.ui.view" id="incentive_rules_view_form">
+<field name="name">Incentive Rules</field>
+<field name="model">incentive_rules</field>
+<field name="type">form</field>
+<field name="arch" type="xml">
+	<form string="Rules" version="7.0" >
+		<sheet>
+		<group>	   				
+			<group>
+				<h1><field name="slab_name" placeholder="Please enter the Slab name"/></h1>
+			</group>
+			<group>
+			</group>
+		</group>
+		<group>
+			<group>
+				<field name="slab_no" />
+				<field name="slab_name" />
+				<field name="level_no" />
+				<field name="Month" />
+				<field name="Year" />
+				<field name="location" />
+				<field name="project" />
+				<field name="role" />
+				<field name="team" />
+			</group>
+			<group>
+				<field name="contest" />
+				<field name="product" />
+				<field name="product_rule" />
+				<field name="mob_rule" />
+				<field name="scale_start" />
+				<field name="scale_end" />
+				<field name="slab_type" />
+				<field name="inctv_with_ins" />
+				<field name="inctv_wo_ins" />
+			</group>
+		</group>
+		</sheet>									
+	</form>
+</field>
+</record>
+<!--Tree View -->
+<record model="ir.ui.view" id="incentive_rules_view_tree">   					
+   <field name="name">Incentive Rules</field>  
+   <field name="model">incentive_rules</field>  
+   <field name="type">tree</field>
+   <field name="arch" type="xml">
+		<tree string="Incentive Rules" >
+			<field name="slab_no" />
+			<field name="slab_name" />
+			<field name="level_no" />
+			<field name="Month" />
+			<field name="Year" />
+			<field name="location" />
+			<field name="project" />
+			<field name="role" />
+			<field name="team" />
+			<field name="contest" />
+			<field name="product" />
+			<field name="product_rule" />
+			<field name="mob_rule" />
+			<field name="scale_start" />
+			<field name="scale_end" />
+			<field name="slab_type" />
+			<field name="inctv_with_ins" />
+			<field name="inctv_wo_ins" />
+		</tree>
+	</field>
+</record>
+						
+		<!-- ================================== Menu Defination ================================== -->
+
+
+<record model="ir.actions.act_window" id="incentive_rules_view_action">
+	<field name="name">Updated Sale Data Action</field>
+	<field name="type">ir.actions.act_window</field>
+	<field name="res_model">incentive_rules</field>
+	<field name="view_type">form</field>
+	<field name="view_mode">tree,form</field>
+</record>
+
+		<!-- ================================== Menu Entry ================================== -->
+
+<menuitem id="rules" parent="rb_sale_data_main.rb_sale_data_sub" action="incentive_rules_view_action" name="Rules"/>
+						
+		
+</data>
+</openerp>

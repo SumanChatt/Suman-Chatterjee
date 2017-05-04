@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="rb_hr_labor_contract_from" model="ir.ui.view">
+            <field name="name">Labor Contract Entry</field>
+            <field name="model">rb.hr.labour.contract</field>
+            <field name="arch" type="xml">
+                <form string="Labor Contract" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="employer" />
+                                <field name="employer_designation" />
+                                <field name="employer_nationality" />
+                             </group>
+
+                             <group>
+                                <field name="employee" />
+                                <field name="employee_nationality" />
+                                <field name="employee_designation" />
+                                <field name="employee_dob" />
+                            </group>
+
+                            <group>
+                                <field name="employee_place_of_birth" />
+                                <field name="employee_address" />
+                                <field name="employee_idc_no" />
+                                <field name="employee_idc_issue" />
+                            </group>
+
+                            <group>
+                                <field name="employee_idc_issue_plc" />
+                                <field name="contract_period" />
+                                <field name="contract_from_date" />
+                                <field name="contract_to_date" />
+                            </group>
+                            <group>
+                                <field name="employee_wage" />
+                                <field name="payment_type" />
+                                <field name="sign_in_day" />
+                                <field name="sign_employer" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+
+        <record id="rb_hr_labor_contract_tree" model="ir.ui.view">
+            <field name="name">Labor Contract List</field>
+            <field name="model">rb.hr.labour.contract</field>
+            <field name="arch" type="xml">
+                <tree string="Contract List">
+                    <field name="name"/>
+                    <field name="employer" />
+                    <field name="employee" />
+                    <field name="sign_in_day" />
+                    <field name="sign_employer" />
+                </tree>
+            </field>
+        </record>
+
+
+
+        <record id="rb_hr_labor_termination_from" model="ir.ui.view">
+            <field name="name">Labor Termination</field>
+            <field name="model">rb.hr.labor.termination</field>
+            <field name="arch" type="xml">
+                <form string="Labor Termination Entry" version="7.0">
+                    <sheet>
+                        <group>
+
+                            <field name="name"/>
+                            <field name = "signed_on"/>
+                            <group>
+                                <field name="dated"/>
+                                <field name="terminate_employee_name"/>
+                                <field name="terminate_employee_des"/>
+                                <field name="contract_terminate_day"/>
+                            </group>
+
+                            <group>
+                                <field name="payments_till"/>
+                                <field name="alternate_payments_till"/>
+                                <field name="handing_over"/>
+                                <field name="employer"/>
+                                <field name="employee"/>
+
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record id="rb_hr_labor_termination_tree" model="ir.ui.view">
+            <field name="name">Labor Termination List</field>
+            <field name="model">rb.hr.labor.termination</field>
+            <field name="arch" type="xml">
+                <tree string="Labor Termination">
+                    <field name="name"/>
+                    <field name="dated"/>
+                    <field name="payments_till"/>
+                    <field name="employer"/>
+                    <field name="employee"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+
+
+
+
+        <record id="rb_hr_offer_letter_form" model="ir.ui.view">
+            <field name="name">Offer Letter</field>
+            <field name="model">rb.hr.offer.letter</field>
+            <field name="arch" type="xml">
+                <form string="Offer Letter Entry" version="7.0">
+                    <sheet>
+                        <group>
+
+                                <field name ="name" />
+
+
+                            <group>
+                                <field name ="date" />
+                                <field name ="employee_name" />
+                                <field name ="position" />
+                            </group>
+
+                            <group>
+                                <field name ="start_date" />
+                                <field name ="compensation" />
+                                <field name ="employer_sign" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record id="rb_hr_offer_letter_tree" model="ir.ui.view">
+            <field name="name">Offer Letter List</field>
+            <field name="model">rb.hr.offer.letter</field>
+            <field name="arch" type="xml">
+                <tree string="Offer Letter">
+                    <field name="name"/>
+                    <field name="employee_name"/>
+                    <field name="position"/>
+                    <field name="start_date"/>
+                    <field name="compensation"/>
+                    <field name="employer_sign"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+        <record id="rb_hr_sales_offer_letter_form" model="ir.ui.view">
+            <field name="name">Sales Offer Letter</field>
+            <field name="model">rb.offer.sales.letter</field>
+            <field name="arch" type="xml">
+                <form string="Offer Letter Entry" version="7.0">
+                    <sheet>
+                        <group>
+
+                                <field name ="name" />
+
+
+                            <group>
+                                <field name ="cmnd" />
+                                <field name ="employee" />
+                                <field name ="location" />
+                                <field name ="project" />
+                            </group>
+
+                            <group>
+				<field name = "contract" />
+                                <field name ="dmgmt" />
+                                <field name ="start_day" />
+                                <field name ="trial_work_from" />
+                                <field name ="trial_work_to" />
+				<field name = "amount_vnd"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record id="rb_hr_offer_letter_sales_tree" model="ir.ui.view">
+            <field name="name">Sales Offer Letter List </field>
+            <field name="model">rb.offer.sales.letter</field>
+            <field name="arch" type="xml">
+                <tree string="Offer Letter Sales">
+                    <field name="name"/>
+                    <field name="cmnd"/>
+                    <field name="employee"/>
+                    <field name="project"/>
+                    <field name="trial_work_from"/>
+                    <field name="trial_work_to"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <record id="rb_hr_cb_agency_contract_from" model="ir.ui.view">
+            <field name="name">Citibank Agency Contract</field>
+            <field name="model">rb.hr.agency.contract.cb</field>
+            <field name="arch" type="xml">
+                <form string="Agency Contract Entry" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="contract_est_date"/>
+                                <field name="employee_name"/>
+                                <field name="employee_dob"/>
+                                <field name="issue_place"/>
+                            </group>
+                            <group>
+                                <field name="id_card"/>
+                                <field name="issued_on"/>
+                                <field name="employee_address"/>
+                                <field name="agreement_vnd"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="rb_hr_cb_agency_contract_tree" model="ir.ui.view">
+            <field name="name">Citibank Agency Contract List</field>
+            <field name="model">rb.hr.agency.contract.cb</field>
+            <field name="arch" type="xml">
+                <tree string="Agency Contract View">
+                    <field name="name"/>
+                    <field name="contract_est_date"/>
+                    <field name="employee_name"/>
+                    <field name="agreement_vnd"/>
+                    <field name="issued_on"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="rb_hr_promotion_from" model="ir.ui.view">
+            <field name="name">Employee Promotion</field>
+            <field name="model">rb.hr.promotion.letter</field>
+            <field name="arch" type="xml">
+                <form string="Promotion Letter" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="dated"/>
+                                <field name="employee"/>
+                            </group>
+                            <group>
+                                <field name="position"/>
+                                <field name="position_now"/>
+                                <field name="effective_date"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="rb_hr_promotion_tree" model="ir.ui.view">
+            <field name="name">Employee Promotion List</field>
+            <field name="model">rb.hr.promotion.letter</field>
+            <field name="arch" type="xml">
+                <tree string="Promotion Letter">
+                    <field name="name"/>
+                    <field name="employee"/>
+                    <field name="position"/>
+                    <field name="position_now"/>
+                    <field name="effective_date"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+
+       <record id="rb_promotion_letter_action" model="ir.actions.act_window">
+           <field name="name">RB Promotion Letter</field>
+           <field name="type">ir.actions.act_window</field>
+           <field name="res_model">rb.hr.promotion.letter</field>
+           <field name="view_mode">tree,form</field>
+           <field name="help" type="html">
+             <p class="oe_view_nocontent_create">
+               <!-- Add Text Here -->
+             </p><p>
+               <!-- More details about what a user can do with this object will be OK -->
+             </p>
+           </field>
+       </record>
+
+
+
+
+
+
+
+
+
+        <record id="rb_agency_contract_cb_action" model="ir.actions.act_window">
+            <field name="name">Agency Contract</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rb.hr.agency.contract.cb</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+
+
+
+
+
+
+        <record id="rb_offer_letter_action" model="ir.actions.act_window">
+            <field name="name">Offer Letter</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rb.hr.offer.letter</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+
+
+
+
+
+
+
+        <record id="rb_offer_letter_sales_action" model="ir.actions.act_window">
+            <field name="name">Sales Offer Letter</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rb.offer.sales.letter</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Create New
+              </p><p>
+
+              </p>
+            </field>
+        </record>
+
+
+
+
+
+
+        <record id="rb_hr_labor_contract_action" model="ir.actions.act_window">
+            <field name="name">Labor Contract</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rb.hr.labour.contract</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+
+
+        <record id="rb_hr_labor_termination_action" model="ir.actions.act_window">
+            <field name="name">Labor Termination</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rb.hr.labor.termination</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+
+
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="rb_hr_letter_print" name="HR Letter" parent="hr.menu_hr_root" sequence="900"/>
+            <!-- This Menu Item must have a parent and an action -->
+            <menuitem id="rb_hr_labor_cont_print" name="Labor contract" parent="rb_hr_letter_print" action="rb_hr_labor_contract_action" sequence="1"/>
+            <!-- This Menu Item must have a parent and an action -->
+            <menuitem id="rb_hr_labor_terminate_print" name="Labor Contract Termination" parent="rb_hr_letter_print" action="rb_hr_labor_termination_action" sequence="2"/>
+            <!-- This Menu Item must have a parent and an action -->
+            <menuitem id="rb_hr_offer_letter_print" name="Offer Letter(Support)" parent="rb_hr_letter_print" action="rb_offer_letter_action" sequence="3"/>
+
+            <!-- This Menu Item must have a parent and an action -->
+            <menuitem id="rb_hr_offer_letter_sales_print" name="Offer Letter(Sales)" parent="rb_hr_letter_print" action="rb_offer_letter_sales_action" sequence="4"/>
+
+            <!-- This Menu Item must have a parent and an action -->
+            <menuitem id="rb_agency_contract_action_cb_print" name="Agency Contract(Citibank)" parent="rb_hr_letter_print" action="rb_agency_contract_cb_action" sequence="5"/>
+            <!-- This Menu Item must have a parent and an action -->
+            <menuitem id="rb_promotion_letter_print" name="Promotion Letter" parent="rb_hr_letter_print" action="rb_promotion_letter_action" sequence="6"/>
+
+
+
+
+    </data>
+</openerp>
+
+

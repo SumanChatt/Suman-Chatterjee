@@ -1,0 +1,3337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+
+
+
+
+
+	<!-- Create a custom Group  -->
+	<data noupdate="0">
+		
+	    <record id="group_tsr" model="res.groups">
+			<field name="name">TSR</field>
+			
+		</record>
+		<!-- Model Rule Own Leads Only  -->
+		<record model="ir.rule" id="tsr_leads_only">
+			<field name="name">Tsr Leads Only</field>
+			<field name="model_id" ref="model_rb_crm_lead"/>
+			<field name="domain_force">[('sales_team_r','=',user.id)]</field>
+			<!--<field name="perm_read" eval="True"/>
+			<field name="perm_write" eval="True"/>
+			<field name="perm_unlink" eval="True"/>
+			<field name="perm_create" eval="True"/>!-->
+			<field name="groups" eval="[(4, ref('group_tsr'))]"/>
+		</record>
+		
+		
+
+		<record model="ir.rule" id="tsr_funnel_only">
+			<field name="name">Tsr Funnel Only</field>
+			<field name="model_id" ref="model_rb_tsr_funnel"/>
+			<field name="domain_force">[('tsr','=',user.id)]</field>
+			<!--<field name="perm_read" eval="True"/>
+			<field name="perm_write" eval="True"/>
+			<field name="perm_unlink" eval="True"/>
+			<field name="perm_create" eval="True"/>!-->
+			<field name="groups" eval="[(4, ref('group_tsr'))]"/>
+		</record>
+
+		<record model="ir.rule" id="tsr_funnel_yesterday_only">
+			<field name="name">Tsr YesterDay Funnel Only</field>
+			<field name="model_id" ref="model_rb_tsr_yesterday_funnel"/>
+			<field name="domain_force">[('tsr','=',user.id)]</field>
+			<!--<field name="perm_read" eval="True"/>
+			<field name="perm_write" eval="True"/>
+			<field name="perm_unlink" eval="True"/>
+			<field name="perm_create" eval="True"/>!-->
+			<field name="groups" eval="[(4, ref('group_tsr'))]"/>
+		</record>
+
+
+		
+		
+		<record model="ir.rule" id="tsr_team_only">
+			<field name="name">TSR Team Only</field>
+			<field name="model_id" ref="model_rb_sales_team"/>
+			<field name="domain_force">[('team_member','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_tsr'))]"/>
+		</record>
+		
+		<record model="ir.rule" id="tsr_campaign_only">
+			<field name="name">TSR Campaign Only</field>
+			<field name="model_id" ref="model_rb_campaign_crm"/>
+			<field name="domain_force">[('campaign_relation.team_member','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_tsr'))]"/>
+		</record>
+		
+		
+		<record id="group_of_fpc" model="res.groups">
+			<field name="name">FPC Users</field>
+		</record>
+		<record model="ir.rule" id="Fpc_grp_leads_only">
+			<field name="name">FPC Group Leads Only</field>
+			<field name="model_id" ref="model_rb_crm_lead"/>
+			<field name="domain_force">[('fpc_user','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_of_fpc'))]"/>
+		</record>
+		
+		
+		
+		
+		
+		
+	    
+		<record id="group_data_entry" model="res.groups">
+			<field name="name">Data Entry</field>
+			
+		</record>
+		
+		
+		<record model="ir.rule" id="data_entry_team_only">
+			<field name="name">Data Entry Team Only</field>
+			<field name="model_id" ref="model_rb_sales_team"/>
+			<field name="domain_force">[('data_entry_group','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_data_entry'))]"/>
+		</record>
+		
+		<record model="ir.rule" id="data_entry_campaign_only">
+			<field name="name">Data Entry Campaign Only</field>
+			<field name="model_id" ref="model_rb_campaign_crm"/>
+			<field name="domain_force">[('campaign_relation.data_entry_group','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_data_entry'))]"/>
+		</record>
+		
+		
+		
+		
+		
+	    <record id="group_qa" model="res.groups">
+			<field name="name">QA</field>
+			
+		</record>
+		
+		
+		<record model="ir.rule" id="Qa_leads_only">
+			<field name="name">QA Leads Only</field>
+			<field name="model_id" ref="model_rb_crm_lead"/>
+			<field name="domain_force">[('quality_asur.quality_asur','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_qa'))]"/>
+		</record>
+		
+		
+		
+		<record model="ir.rule" id="qa_team_only">
+			<field name="name">QA Team Only</field>
+			<field name="model_id" ref="model_rb_sales_team"/>
+			<field name="domain_force">[('quality_asur_group.quality_asur','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_qa'))]"/>
+		</record>
+		
+		<record model="ir.rule" id="qa_campaign_only">
+			<field name="name">QA Campaign Only</field>
+			<field name="model_id" ref="model_rb_campaign_crm"/>
+			<field name="domain_force">[('campaign_relation.quality_asur_group.quality_asur','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_qa'))]"/>
+		</record>
+		
+		
+		<record id="group_qa_doc" model="res.groups">
+			<field name="name">QA Doc</field>
+			
+		</record>
+		
+		
+		<record model="ir.rule" id="Qa_doc_leads_only">
+			<field name="name">QA Doc Leads Only</field>
+			<field name="model_id" ref="model_rb_crm_lead"/>
+			<field name="domain_force">[('quality_doc_group.quality_asur_doc','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_qa_doc'))]"/>
+		</record>
+		
+		
+		
+		<record model="ir.rule" id="qa__doc_team_only">
+			<field name="name">Doc QA Team Only</field>
+			<field name="model_id" ref="model_rb_sales_team"/>
+			<field name="domain_force">[('quality_doc_group.quality_asur_doc','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_qa_doc'))]"/>
+		</record>
+		
+		<record model="ir.rule" id="qa__doc_campaign_only">
+			<field name="name">Doc QA Campaign Only</field>
+			<field name="model_id" ref="model_rb_campaign_crm"/>
+			<field name="domain_force">[('campaign_relation.quality_doc_group.quality_asur_doc','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_qa_doc'))]"/>
+		</record>
+		
+		
+		
+		<record id="group_tl" model="res.groups">
+			<field name="name">TL</field>
+		</record>
+		<record model="ir.rule" id="Tl_leads_only">
+			<field name="name">TL Leads Only</field>
+			<field name="model_id" ref="model_rb_crm_lead"/>
+			<field name="domain_force">[('team_lead.tl_team','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_tl'))]"/>
+		</record>
+		
+		<record model="ir.rule" id="Tl_team_only">
+			<field name="name">TL Team Only</field>
+			<field name="model_id" ref="model_rb_sales_team"/>
+			<field name="domain_force">[('team_lead_group.tl_team','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_tl'))]"/>
+		</record>
+		
+		<record model="ir.rule" id="Tl_campaign_only">
+			<field name="name">TL Campaign Only</field>
+			<field name="model_id" ref="model_rb_campaign_crm"/>
+			<field name="domain_force">[('campaign_relation.team_lead_group.tl_team','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_tl'))]"/>
+		</record>
+		
+		
+		<record id="group_sm" model="res.groups">
+			<field name="name">PM</field>
+		</record>
+		<record model="ir.rule" id="SM_leads_only">
+			<field name="name">PM Leads Only</field>
+			<field name="model_id" ref="model_rb_crm_lead"/>
+			<field name="domain_force">[('sales_mngr.sm_team','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_sm'))]"/>
+		</record>
+		<record model="ir.rule" id="Sm_team_only">
+			<field name="name">PM Team Only</field>
+			<field name="model_id" ref="model_rb_sales_team"/>
+			<field name="domain_force">[('sales_mgr_group.sm_team','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_sm'))]"/>
+		</record>
+		
+		<record model="ir.rule" id="Sm_campaign_only">
+			<field name="name">SM Campaign Only</field>
+			<field name="model_id" ref="model_rb_campaign_crm"/>
+			<field name="domain_force">[('campaign_relation.sales_mgr_group.sm_team','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_sm'))]"/>
+		</record>
+		
+		
+		<record id="group_sa" model="res.groups">
+			<field name="name">SA</field>
+		</record>
+		<record model="ir.rule" id="Sa_leads_only">
+			<field name="name">SA Leads Only</field>
+			<field name="model_id" ref="model_rb_crm_lead"/>
+			
+			<field name="domain_force">[('sales_admin.sa_team','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_sa'))]"/>
+		</record>
+		
+		<record model="ir.rule" id="Sa_team_only">
+			<field name="name">Sa Team Only</field>
+			<field name="model_id" ref="model_rb_sales_team"/>
+			<field name="domain_force">[('sales_admin_group.sa_team','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_sa'))]"/>
+		</record>
+		
+		<record model="ir.rule" id="Sa_campaign_only">
+			<field name="name">SA Campaign Only</field>
+			<field name="model_id" ref="model_rb_campaign_crm"/>
+			<field name="domain_force">[('campaign_relation.sales_admin_group.sa_team','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_sa'))]"/>
+		</record>
+		
+		
+		<record id="group_fpc" model="res.groups">
+			<field name="name">FPC DE</field>
+		</record>
+		<record model="ir.rule" id="Fpc_leads_only">
+			<field name="name">FPC</field>
+			<field name="model_id" ref="model_rb_crm_lead"/>
+			<field name="domain_force">[('financial_p_conlt.fpc_team','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_fpc'))]"/>
+		</record>
+		
+		<record model="ir.rule" id="fpc_team_only">
+			<field name="name">FPC</field>
+			<field name="model_id" ref="model_rb_sales_team"/>
+			<field name="domain_force">[('financial_conlt_group.fpc_team','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_fpc'))]"/>
+		</record>
+		
+		<record model="ir.rule" id="fpc_doc_campaign_only">
+			<field name="name">FPC</field>
+			<field name="model_id" ref="model_rb_campaign_crm"/>
+			<field name="domain_force">[('campaign_relation.financial_conlt_group.fpc_team','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_fpc'))]"/>
+		</record>
+		
+		
+		
+
+		<record model="ir.rule" id="tsr_delinquency_leads_only">
+			<field name="name">Tsr Delinquency Leads Only</field>
+			<field name="model_id" ref="model_rb_crm_delinquency_lead"/>
+			<field name="domain_force">[('sales_team_r','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_tsr'))]"/>
+		</record>
+		
+		<record model="ir.rule" id="Fpc_grp_delinquency_leads_only">
+			<field name="name">FPC Group Delinquency Leads Only</field>
+			<field name="model_id" ref="model_rb_crm_delinquency_lead"/>
+			<field name="domain_force">[('fpc_user','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_of_fpc'))]"/>
+		</record>
+		
+		<record model="ir.rule" id="Qa_delinquency_leads_only">
+			<field name="name">QA Delinquency Leads Only</field>
+			<field name="model_id" ref="model_rb_crm_delinquency_lead"/>
+			<field name="domain_force">[('quality_asur.quality_asur','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_qa'))]"/>
+		</record>
+		
+		<record model="ir.rule" id="Qa_doc_delinquency_leads_only">
+			<field name="name">QA Doc Delinquency Leads Only</field>
+			<field name="model_id" ref="model_rb_crm_delinquency_lead"/>
+			<field name="domain_force">[('quality_doc_group.quality_asur_doc','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_qa_doc'))]"/>
+		</record>
+		
+		<record model="ir.rule" id="Tl_delinquency_leads_only">
+			<field name="name">TL Delinquency Leads Only</field>
+			<field name="model_id" ref="model_rb_crm_delinquency_lead"/>
+			<field name="domain_force">[('team_lead.tl_team','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_tl'))]"/>
+		</record>
+		
+		<record model="ir.rule" id="SM_delinquency_leads_only">
+			<field name="name">PM Delinquency Leads Only</field>
+			<field name="model_id" ref="model_rb_crm_delinquency_lead"/>
+			<field name="domain_force">[('sales_mngr.sm_team','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_sm'))]"/>
+		</record>
+		
+		<record model="ir.rule" id="Sa_delinquency_leads_only">
+			<field name="name">SA Delinquency Leads Only</field>
+			<field name="model_id" ref="model_rb_crm_delinquency_lead"/>
+			
+			<field name="domain_force">[('sales_admin.sa_team','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_sa'))]"/>
+		</record>
+		
+		
+		<record model="ir.rule" id="Fpc_delinquency_leads_only">
+			<field name="name">FPC Delinquency</field>
+			<field name="model_id" ref="model_rb_crm_delinquency_lead"/>
+			<field name="domain_force">[('financial_p_conlt.fpc_team','=',user.id)]</field>
+			<field name="groups" eval="[(4, ref('group_fpc'))]"/>
+		</record>
+
+
+
+
+
+
+
+		
+	
+		
+		
+		
+
+	</data>	
+	
+	<data>
+		
+	
+
+		<!--campaign tree view-->
+		
+		 <record model="ir.ui.view" id="rainbow_crm_tree">
+                        <field name="name">rb.campaign.crm.tree</field>
+                        <field name="model">rb.campaign.crm</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="Campaign">
+                                        <field name="name"/>
+										<field name="description"/>
+										 <field name="start_date"/>
+										  <field name="active"/>
+                                </tree>
+                        </field>
+                </record>
+	
+		<!--Campaign main form view-->
+       
+		 <record model="ir.ui.view" id="rainbow_crm_form">
+                        <field name="name">rb.campaign.crm.form</field>
+                        <field name="model">rb.campaign.crm</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="Campaign">
+                                       <field name="name"/>
+									   <field name="description"/>
+									   <field name="start_date"/>
+									   <field name="end_date"/>
+									   <field name="active"/>
+										
+										
+                                </form>
+                        </field>
+                </record>
+        
+		
+		<!--Campaign  action menue-->
+        
+		 <record model="ir.actions.act_window" id="rainbow_crm_window">
+                        <field name="name">Campaign</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.campaign.crm</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+         </record>
+		 
+		 
+		 
+	
+
+		
+		
+		
+		<!--Agent menu-->
+		<record id="asterisk_res_users_internal_number" model="ir.ui.view">
+    		<field name="name">asterisk.res.users.telephony_tab</field>
+    		<field name="model">res.users</field>
+    		<field name="inherit_id" ref="base.view_users_form"/>
+    		<field name="arch" type="xml">
+			<xpath expr="/form/sheet/notebook/page/group/group/field[@name='lang']" position="after">
+					<field name="joining_date" />
+					<field name="employee_code" />
+					<field name="national_id" />
+					<field name="resigned_date" />
+					<field name="mobile" />
+			</xpath>
+        		<notebook>
+            		<page string="Other Settings" position="inside">
+                		<group name="standard_params" string="Standard parameters">
+							<field name="server_name"/>
+                    		<field name="internal_number"/>
+							<field name="sales_team"/>
+							<!--<field name="password"/>-->
+                		</group>
+                		
+            		</page>
+        		</notebook>
+    		</field>
+		</record>
+		<record id="res_users_tree_view" model="ir.ui.view">
+    		<field name="name">res.users.tree.view</field>
+    		<field name="model">res.users</field>
+    		<field name="inherit_id" ref="base.view_users_tree"/>
+    		<field name="arch" type="xml">
+				<field name="name" position="before">
+						<field name="id"/>
+				</field>
+        		<field name="lang" position="replace">
+						<field name="internal_number"/>
+				</field>
+				<field name="internal_number" position="after">
+					
+						<field name="groups_id"/>
+						<field name="sales_team"/>
+						<field name="server_name"/>
+						
+				</field>
+    		</field>
+		</record>
+		
+		<record id="inherit_view_res_users_filter" model="ir.ui.view">
+            <field name="name">Users</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_search" />
+            <field name="arch" type="xml">
+				<field name="company_ids" position="after">
+					
+						<field name="id" />
+						
+						<field name="internal_number" filter_domain="[('internal_number','like',self)]" />
+						
+						<field name="sales_team" filter_domain="[('sales_team.name','like',self)]"/>
+						<field name="groups_id" filter_domain="[('groups_id','like',self)]"/>
+						
+				</field>
+                                                  
+            </field>
+        </record>
+		
+		
+		
+<!--		
+		<record id="asterisk_res_users_team_member" model="ir.ui.view">
+    		<field name="name">asterisk.res.users.team_member_tab</field>
+    		<field name="model">res.users</field>
+    		<field name="inherit_id" ref="base.view_users_form"/>
+    		<field name="arch" type="xml">
+        		<notebook>
+            		<page string="Team Selection" position="inside">
+                		<group name="standard_params" string="Standard parameters">
+							
+							
+							<field name="qa_team"/>
+							
+                		</group>
+                		
+            		</page>
+        		</notebook>
+    		</field>
+		</record>
+	-->	
+		
+		
+		<!--disposition tree view-->
+		
+		 <record model="ir.ui.view" id="crm_model_disposition_tree">
+                        <field name="name">rb.crm.disposition.tree</field>
+                        <field name="model">rb.crm.disposition</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="Disposition Codes">
+                                        <field name="name"/>
+										<field name="short_code"/>
+                                        <field name="dis_type"/>
+                                </tree>
+                        </field>
+                </record>
+	
+		<!--disposition form view-->
+       
+		 <record model="ir.ui.view" id="crm_model_disposition_form">
+                        <field name="name">rb.crm.disposition.form</field>
+                        <field name="model">rb.crm.disposition</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="Disposition Codes">
+                                        <field name="name"/>
+										<field name="short_code"/>
+                                        <field name="dis_type"/>
+                                </form>
+                        </field>
+                </record>
+        
+		
+		<!--disposition action menue-->
+        
+		 <record model="ir.actions.act_window" id="crm_model_disposition_window">
+                        <field name="name">Disposition</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.crm.disposition</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+                </record>
+	
+		 <!--sub disposition tree view-->
+
+                 <record model="ir.ui.view" id="crm_model_subdisposition_tree">
+                        <field name="name">rb.crm.sub.disposition.tree</field>
+                        <field name="model">rb.crm.sub.disposition</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="Sub Disposition Codes">
+                                      
+                                        <field name="name"/>
+										<field name="short_code"/>
+                                        <field name="rank"/>
+										<field name="disposition_status"/>
+										<field name="description"/>
+										<field name="forwardable"/>
+                                </tree>
+                        </field>
+                </record>
+
+		 <!--sub disposition form view-->
+
+                 <record model="ir.ui.view" id="crm_model_subdisposition_form">
+                        <field name="name">rb.crm.sub.disposition.form</field>
+                        <field name="model">rb.crm.sub.disposition</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="Sub Disposition Codes">
+										
+                                        <field name="name"/>
+										<field name="short_code"/>
+                                        <field name="rank"/>
+										<field name="disposition_status"/>
+										<field name="description"/>
+										<field name="forwardable"/>
+                                </form>
+                        </field>
+                </record>
+
+
+
+
+                 <!--CRM SAVE CALL DETAILS-->
+
+                 <record model="ir.ui.view" id="crm_save_calldetails_tree">
+                        <field name="name">crm.save.calldetails.tree</field>
+                        <field name="model">crm.save.calldetails</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="Save Call Details">
+										
+                                        <field name="s_call_time"/>
+                                        <field name="differ_time"/>
+										<field name="s_endcall_time"/>
+                                        <field name="s_disposition_id"/>
+										<field name="s_subdisposition_id"/>
+										<field name="mobile"/>
+										<field name="record_url" widget="url"/>
+                                </tree>
+                        </field>
+                </record>
+
+		 <!--CRM SAVE CALL DETAILS-->
+
+                 <record model="ir.ui.view" id="crm_save_calldetails_form">
+                        <field name="name">crm.save.calldetails.form</field>
+                        <field name="model">crm.save.calldetails</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="Save Call Details" >
+										<field name="s_call_time"/>
+										<field name="differ_time"/>
+										<field name="s_endcall_time"/>
+                                        <field name="s_disposition_id"/>
+										<field name="s_subdisposition_id"/>
+										<field name="mobile"/>
+										<field name="record_url" widget="url"/>
+                                </form>
+                        </field>
+                </record>
+
+		 <!--Stage Change Tree View-->
+
+                 <record model="ir.ui.view" id="rb_crm_stage_history_form">
+                        <field name="name">rb.crm.stage.history.form</field>
+                        <field name="model">rb.crm.stage.history</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="Stage Change Details" >
+										<field name="previous_stage"/>
+										<field name="current_stage"/>
+										<field name="create_date"/>
+										
+                                </tree>
+                        </field>
+                </record>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!--sub disposition action menue-->
+
+                 <record model="ir.actions.act_window" id="crm_model_subdisposition_window">
+                        <field name="name">Sub Disposition</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.crm.sub.disposition</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+                </record>
+				<!--Custom Call Server Module View-->
+				 
+				 
+				  <!--Call Server Module Form View-->
+				  
+				  <record model="ir.ui.view" id="crm_call_server_form">
+			               <field name="name">rb.crm.call.server.form</field>
+			               <field name="model">rb.crm.call.server</field>
+						   <field name="type">form</field>
+						   <field name="arch" type="xml">
+									<form string="Call Server">
+										<field name="name" />
+										<field name="ip_address" />
+										<field name="server_user_id"/>
+										<field name="server_user_pswd"/>
+										<field name="api_url"/>
+										<field name="api_url_realease"/>
+										
+										<field name="active_stat"/>
+									</form>
+							</field>
+				   </record>
+				  
+				  
+				  
+				  
+				  <!-- Customer Detailed Informations -->
+		
+		
+		
+		
+		
+		
+		
+		<record model="ir.ui.view" id="customer_profiling_form_form">
+                        <field name="name">customer.profiling.form.form</field>
+                        <field name="model">customer.profiling.form</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml" >
+                                <form string="Customer Profiling" version="7.0" >
+                                     
+									 <group string="Personal Information">
+										<group>
+											<field name="name"/>
+											<field name="first"/>
+											<field name="middle"/>
+											<field name="surname"/>
+											<field name="salutation"/>
+											<field name="gender"/>
+											<field name="status"/>
+											<field name="children"/>
+											<field name="type"/>
+											<field name="nid"/>
+											
+										</group>
+										<group>
+											<field name="company"/>
+											<field name="shortname"/>
+											<field name="busregn"/>
+											<field name="type2"/>
+											<field name="location"/>
+											<field name="designation"/>
+											<field name="mobile"/>
+											<field name="spousename"/>
+											<field name="spouce_mobile"/>
+										</group>
+									</group>
+									
+									<group string="Address">
+										<group string="Work Details" >
+											<field name="addr1"/>
+											<field name="addr2"/>
+											<field name="ward"/>
+											<field name="district"/>
+											<field name="city"/>
+											<field name="addr_phone"/>
+											<field name="extn"/>
+											<field name="email"/>
+										</group>
+										<group string="Home Details" >
+											<field name="addr1ext"/>
+											<field name="addr2ext"/>
+											<field name="cityext"/>
+											<field name="wardext"/>
+											<field name="districtext"/>
+											<field name="addr_phoneext"/>
+											<field name="emailext"/>
+										</group>
+									</group>
+									<group string="Fianancial Information">
+										<group string="Income">
+											<field name="grossincomepa"/>
+											<field name="variableincome"/>
+											<field name="otherincome"/>
+											
+												<field name="otherincome_1"/>
+												<field name="otherincome_2"/>
+												<field name="otherincome_3"/>
+											
+											<field name="monthlyexpense"/>
+											<field name="houseasset"/>
+											<field name="scooterasset"/>
+											<field name="carasset"/>
+										</group>
+										<group string="Asset">
+											<field name="investedasset"/>
+											<field name="equityasset"/>
+											<field name="inslife"/>
+											<field name="inscar"/>
+											<field name="instw"/>
+											<field name="inshealth"/>
+											<field name="insproperty"/>
+										</group>
+										
+											<field name="relations2cpd" />
+										
+									</group>
+									
+									<group string="Reference">
+										<field name="relations2ref" />
+									</group>
+									
+									<group string="Other Informations">
+										<field name="othr_bank" />
+										<field name="othr_cr_card" />
+										<field name="othr_home" />
+										<field name="othr_loan" />
+										<field name="othr_auto" />
+										<field name="othr_personal" />
+										<field name="othr_shopping" />
+										<field name="othr_local" />
+										<field name="othr_fav_rest" />
+										<field name="othr_travel1" />
+										<field name="othr_travel2" />
+										<field name="data" />
+										<!--<field name="rela_to_crm_lead" invisible="1"/>-->
+									</group>
+										
+										
+                                </form>
+                        </field>
+                </record>
+        
+		
+		
+		
+		<!--<record model="ir.ui.view" id="customer_profiling_form_tree">
+                        <field name="name">customer.profiling.form.tree</field>
+                        <field name="model">customer.profiling.form</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="Customer Profiling">
+                                        <field name=""/>
+										<field name=""/>
+										<field name=""/>
+                                </tree>
+                        </field>
+                </record>-->
+		
+		
+		
+	<record model="ir.ui.view" id="customer_profiling_dependents_form">
+                        <field name="name">customer.profiling.dependents.form</field>
+                        <field name="model">customer.profiling.dependents</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="Dependents">
+                                        <field name="name"/>
+										<field name="relation"/>
+                                        <field name="gender"/>
+										<field name="age"/>
+										<field name="dep_ref2cst_prof_form" invisible="1"/>
+                                </form>
+                        </field>
+    </record>	
+		
+		
+	<record model="ir.ui.view" id="customer_profiling_reference_form">
+                        <field name="name">customer.profiling.reference.form</field>
+                        <field name="model">customer.profiling.reference</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="Reference">
+                                        <field name="name"/>
+										<field name="type"/>
+                                        <field name="mobile"/>
+										<field name="ref_ref2cst_prof_form" invisible="1"/>
+                                </form>
+                        </field>
+    </record>		
+		
+		
+		
+		
+		<!-- Customer Detailed Informations-->		
+				  
+				  
+				  
+				  
+				  <!--Call Server Module Tree View-->
+				  
+				  <record model="ir.ui.view" id="crm_call_server_tree">
+			               <field name="name">rb.crm.call.server.tree</field>
+			               <field name="model">rb.crm.call.server</field>
+						   <field name="type">tree</field>
+						   <field name="arch" type="xml">
+									<tree string="Call Server">
+									    <field name="name" />
+										<field name="ip_address" />
+										<field name="server_user_id"/>
+										<field name="server_user_pswd"/>
+										<field name="api_url"/>
+										<field name="api_url_realease"/>
+										
+										<field name="active_stat"/>
+									</tree>
+							</field>
+				   </record>
+				  
+				  
+				  
+				  <!--Call Server Action Module  -->
+				  
+				  <record model="ir.actions.act_window" id="crm_call_server_window">
+							<field name="name">Call Server</field>
+							<field name="type">ir.actions.act_window</field>
+							<field name="res_model">rb.crm.call.server</field>
+							<field name="view_type">form</field>
+							<field name="view_mode">tree,form</field>
+				  </record>	
+		
+		
+		<!--Call Server menu-->
+	
+		<menuitem id="crm_call_server_window_menue" parent="base.menu_custom" name="Call Server" action="crm_call_server_window"/>		
+		
+
+ <!--Disposition History DETAILS-->
+
+                 <record model="ir.ui.view" id="rb_crm_disposition_history_tree">
+                        <field name="name">rb.crm.disposition.history.tree</field>
+                        <field name="model">rb.crm.disposition.history</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="Disposition History">
+                                      
+                                        <field name="user_name"/>
+                                        <field name="disposition_code"/>
+										<field name="subdisposition_code"/>
+                                        <field name="remarks"/>
+										<field name="submition_date"/>  
+										
+                                </tree>
+                        </field>
+                </record>		
+	
+		
+		
+		
+		<!--Sales Team tree view-->
+		
+		 <record model="ir.ui.view" id="sales_team_tree">
+                        <field name="name">rb.sales.team.tree</field>
+                        <field name="model">rb.sales.team</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="Sales Team">
+                                        <field name="name"/>
+										<field name="description"/>
+										<field name="active"/>
+                                </tree>
+                        </field>
+                </record>
+	
+		<!--Sales Team form view-->
+       
+		 <record model="ir.ui.view" id="sales_team_form">
+                        <field name="name">rb.sales.team.form</field>
+                        <field name="model">rb.sales.team</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="Sales Team">
+						<notebook position="inside" colspan="2"> 
+							<page string="Create Your Team" position="inside"> 		
+								<group>
+									<group>
+										<field name="name"/>
+										<field name="description"/>
+										<field name="campaign_name_id"/>
+										<field name="active"/>
+									</group>
+									<group>		
+										<field name="quality_asur_group"/>
+										<field name="team_lead_group"/>
+										<field name="sales_admin_group"/>
+										<field name="quality_doc_group"/>
+										<field name="financial_conlt_group"/>
+										<field name="sales_mgr_group"/>
+										
+									</group>
+								</group>
+							</page>
+							<page string="Select TSR">	
+										<field name="team_member"/>
+                                        
+
+							</page>
+							<page string="Select FPC">	
+										<field name="fpc_member"/>
+
+							</page>
+						</notebook>			
+                                </form>
+                        </field>
+                </record>
+        
+		
+		<!--Sales Team  action menu-->
+        
+		 <record model="ir.actions.act_window" id="sales_team_window">
+                        <field name="name">Sales Team</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.sales.team</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+         </record>
+	
+	
+		<!--QA Team tree view-->
+		
+		 <record model="ir.ui.view" id="rb_qa_team_tree">
+                        <field name="name">rb.qa.team.tree</field>
+                        <field name="model">rb.qa.team</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="QA Team">
+                                        <field name="name"/>
+										<field name="description"/>
+										<field name="quality_asur"/>
+                                </tree>
+                        </field>
+                </record>
+	
+		<!--QA Team form view-->
+       
+		 <record model="ir.ui.view" id="rb_qa_team_form">
+                        <field name="name">rb.qa.team.form</field>
+                        <field name="model">rb.qa.team</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="QA Team">
+										<field name="name"/>
+										<field name="description"/>
+										<field name="quality_asur"/>
+                                </form>
+                        </field>
+                </record>
+
+		<!--QA Team  action menu-->
+        
+		 <record model="ir.actions.act_window" id="rb_qa_team_window">
+                        <field name="name">QA Team</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.qa.team</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+         </record>
+		 
+		 
+		 
+		 <!--QA Doc Team tree view-->
+		
+		 <record model="ir.ui.view" id="rb_qa_doc_team_tree">
+                        <field name="name">rb.doc.qa.team.tree</field>
+                        <field name="model">rb.doc.qa.team</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="QA Doc Team">
+                                        <field name="name"/>
+										<field name="description"/>
+										<field name="quality_asur_doc"/>
+                                </tree>
+                        </field>
+                </record>
+	
+		<!--QA Doc Team form view-->
+       
+		 <record model="ir.ui.view" id="rb_qa_doc_team_form">
+                        <field name="name">rb.doc.qa.team.form</field>
+                        <field name="model">rb.doc.qa.team</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="QA Doc Team">
+										<field name="name"/>
+										<field name="description"/>
+										<field name="quality_asur_doc"/>
+                                </form>
+                        </field>
+                </record>
+
+		<!--QA Team  action menu-->
+        
+		 <record model="ir.actions.act_window" id="rb_doc_qa_team_window">
+                        <field name="name">QA Doc Team</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.doc.qa.team</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+         </record>
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 	<!--TL Team tree view-->
+		
+		 <record model="ir.ui.view" id="rb_tl_team_tree">
+                        <field name="name">rb.tl.team.tree</field>
+                        <field name="model">rb.tl.team</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="TL Group">
+                                        <field name="name"/>
+										<field name="description"/>
+										<field name="tl_team"/>
+                                </tree>
+                        </field>
+                </record>
+	
+		<!--TL Team form view-->
+       
+		 <record model="ir.ui.view" id="rb_tl_team_form">
+                        <field name="name">rb.tl.team.form</field>
+                        <field name="model">rb.tl.team</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="TL Group">
+										<field name="name"/>
+										<field name="description"/>
+										<field name="tl_team"/>
+                                </form>
+                        </field>
+                </record>
+
+		<!--TL Team  action menu-->
+        
+		 <record model="ir.actions.act_window" id="rb_tl_team_window">
+                        <field name="name">TL Team</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.tl.team</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+         </record>
+		 
+		 
+		 	 
+		 	<!--SM Team tree view-->
+		
+		 <record model="ir.ui.view" id="rb_sm_team_tree">
+                        <field name="name">rb.sm.team.tree</field>
+                        <field name="model">rb.sm.team</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="SM Group">
+                                        <field name="name"/>
+										<field name="description"/>
+										<field name="sm_team"/>
+                                </tree>
+                        </field>
+                </record>
+	
+		<!--SM Team form view-->
+       
+		 <record model="ir.ui.view" id="rb_sm_team_form">
+                        <field name="name">rb.sm.team.form</field>
+                        <field name="model">rb.sm.team</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="SM Group">
+										<field name="name"/>
+										<field name="description"/>
+										<field name="sm_team"/>
+                                </form>
+                        </field>
+                </record>
+
+		<!--SM Team  action menu-->
+        
+		 <record model="ir.actions.act_window" id="rb_sm_team_window">
+                        <field name="name">SM Team</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.sm.team</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+         </record>
+		 
+		 
+		 
+		 
+		 
+		  	<!--SA Team tree view-->
+		
+		 <record model="ir.ui.view" id="rb_sa_team_tree">
+                        <field name="name">rb.sa.team.tree</field>
+                        <field name="model">rb.sa.team</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="SA Group">
+                                        <field name="name"/>
+										<field name="description"/>
+										<field name="sa_team"/>
+                                </tree>
+                        </field>
+                </record>
+	
+		<!--SA Team form view-->
+       
+		 <record model="ir.ui.view" id="rb_sa_team_form">
+                        <field name="name">rb.sa.team.form</field>
+                        <field name="model">rb.sa.team</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="SA Group">
+										<field name="name"/>
+										<field name="description"/>
+										<field name="sa_team"/>
+                                </form>
+                        </field>
+                </record>
+
+		<!--SA Team  action menu-->
+        
+		 <record model="ir.actions.act_window" id="rb_sa_team_window">
+                        <field name="name">SA Team</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.sa.team</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+         </record>
+		
+		
+			<!--QA Team tree view-->
+		
+		 <record model="ir.ui.view" id="rb_fpc_team_tree">
+                        <field name="name">rb.fpc.team.tree</field>
+                        <field name="model">rb.fpc.team</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="FPC Team">
+                                        <field name="name"/>
+										<field name="description"/>
+										<field name="fpc_team"/>
+                                </tree>
+                        </field>
+                </record>
+	
+		<!--QA Team form view-->
+       
+		 <record model="ir.ui.view" id="rb_fpc_team_form">
+                        <field name="name">rb.fpc.team.form</field>
+                        <field name="model">rb.fpc.team</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="FPC Team">
+										<field name="name"/>
+										<field name="description"/>
+										<field name="fpc_team"/>
+                                </form>
+                        </field>
+                </record>
+				
+				
+		<!--Call Back Summary-->
+		
+		 <record model="ir.ui.view" id="rb_crm_callback_stage_tree">
+                        <field name="name">rb.crm.callback.stage.tree</field>
+                        <field name="model">rb.crm.callback.stage</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="Call Back Reason">
+                                        <field name="send_user_name" />
+										<field name="callback_reason"/>
+										<field name="callback_send_date"/>
+										<!--<field name="feedback"/>
+										<field name="feedback_send_date"/>-->
+                                </tree>
+                        </field>
+                </record>
+	
+		<!--QA Team form view-->
+       
+		 <record model="ir.ui.view" id="rb_crm_callback_stage_form">
+                        <field name="name">rb.crm.callback.stage.form</field>
+                        <field name="model">rb.crm.callback.stage</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="Call Back Reason">
+										<field name="send_user_name" readonly="1"/>
+										<field name="callback_reason"/>
+										<field name="callback_send_date"/>
+										<!--<field name="feedback"/>
+										<field name="feedback_send_date"/>-->
+										
+									<button name="submit_to" string="Submit" type="object"  context = "{'callback_reason':callback_reason}"/>
+                                </form>
+                        </field>
+                </record>		
+				
+				
+		<!--Customer Product Tree View -->
+		
+		 <record model="ir.ui.view" id="rb_crm_callback_stage_tree">
+                        <field name="name">rb.crm.customer.product.tree</field>
+                        <field name="model">rb.crm.customer.product</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="Product Selection">
+                                        <field name="select_product" />
+										<field name="product_ammount"/>
+										<field name="product_term"/>
+										<!--<field name="feedback"/>
+										<field name="feedback_send_date"/>-->
+                                </tree>
+                        </field>
+                </record>		
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+		<!--FPC Team  action menu-->
+        
+		 <record model="ir.actions.act_window" id="rb_fpc_team_window">
+                        <field name="name">FPC Team</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.fpc.team</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+         </record>
+		
+		
+		<!--Lead Search View-->
+		
+		<record model="ir.ui.view" id="rb_crm_lead_search">
+		<field name="name">rb.crm.lead.search</field>
+		<field name="model">rb.crm.lead</field>
+		<field name="arch" type="xml">
+			<search string="Lead Search">
+				<field name="id" />
+				<field name="id_card_no" />
+				<field name="state" filter_domain="[('state_change','ilike',self)]"/>
+				<field name="callback_date" filter_domain="[('callback_date','>=',self)]" />
+				<field name="submition_date" filter_domain="[('submition_date','=',self)]" />
+				<field name="appo_date" filter_domain="[('appo_date','>=',self)]"/>
+				<field name="contact_persion" filter_domain="[('contact_persion','ilike',self)]"/>
+				<field name="mobile" filter_domain="[('mobile','ilike',self)]"/>
+				<group expand="0" string="Group By...">
+					<filter string="Campaign" domain="[]" context="{'group_by':'campaign_team'}"/>
+					<filter string="state" domain="[]" context="{'group_by':'state_change'}"/>
+					<filter string="Sales Team" domain="[]" context="{'group_by':'sale_team_name'}"/>
+					<filter string="Disposition" domain="[]" context="{'group_by':'disposition_status'}"/>
+					<filter string="Group By Month" domain="[]" context="{'group_by':'submition_date'}"/>
+					<filter string="Group TSR" domain="[]" context="{'group_by':'sales_team_r'}"/>
+					<filter string="Group FSC" domain="[]" context="{'group_by':'fpc_user'}"/>
+				</group>
+				
+				<filter name="today-TSR-Call" string="Today TSR Called" domain="[('relation2savecall.s_call_time','>=',context_today().strftime('%%Y-%%m-%%d 00:00:00'))]"/>
+				
+				
+				<filter name="today-TSR-QA" string="Today TSR to QA" domain="[('relation2statechange.concatination_field','=',(str(context_today().strftime('%%Y-%%m-%%d 00:00:00'))+'qa'))]"/>
+				<filter name="today-QA-FPC" string="Today QA to FPC" domain="[('relation2statechange.concatination_field','=',(str(context_today().strftime('%%Y-%%m-%%d 00:00:00'))+'fpc'))]"/>
+				<filter name="today-FPC-DQA" string="Today FPC to Doc-QA" domain="[('relation2statechange.concatination_field','=',(str(context_today().strftime('%%Y-%%m-%%d 00:00:00'))+'qa doc'))]"/>
+				<filter name="today-DQA-SA" string="Today Doc-QA to SA" domain="[('relation2statechange.concatination_field','=',(str(context_today().strftime('%%Y-%%m-%%d 00:00:00'))+'sa'))]"/>
+				<filter name="today-Customer" string="Today's Customer Leads" domain="[('relation2statechange.concatination_field','=',(str(context_today().strftime('%%Y-%%m-%%d 00:00:00'))+'customer'))]"/>
+				<filter name="today-Reject" string="Today's Rejected Leads" domain="[('relation2statechange.concatination_field','=',(str(context_today().strftime('%%Y-%%m-%%d 00:00:00'))+'Reject'))]"/>
+				<filter name="today-QA-TSR" string="Today QA to TSR" domain="[('relation2statechange.concatination_field','=',(str(context_today().strftime('%%Y-%%m-%%d 00:00:00'))+'tsr'))]"/>
+				
+				
+				
+				<filter string="Customer Lead Status" domain="[('state_change','=','customer')]"  icon="terp-project"/>
+				<filter string="New Lead" domain="[('disposition_status','=','New Lead')]"  icon="terp-project" groups="rainbow_crm.group_tsr"/>
+				<filter string="Not Interested" domain="[('disposition_status','=','Not Interested')]"  icon="terp-project" groups="rainbow_crm.group_tsr"/>
+				<filter string="Not Connected" domain="[('disposition_status','=','Not Connected')]"  icon="terp-project" groups="rainbow_crm.group_tsr"/>
+				<filter string="Busy" domain="[('subdisposition_status','=','Phone Busy')]"  icon="terp-project" groups="rainbow_crm.group_tsr"/>
+				<filter string="Not Eligible" domain="[('disposition_status','=','Not Eligible')]"  icon="terp-project" groups="rainbow_crm.group_tsr"/>
+				<filter string="Interested" domain="[('disposition_status','=','Interested')]"  icon="terp-project" groups="rainbow_crm.group_tsr"/>
+				<filter string="Pending" domain="[('disposition_status','=','Pending')]"  icon="terp-project" groups="rainbow_crm.group_fpc"/>
+				<filter string="Appointment" domain="[('disposition_status','=','Appointment')]"  icon="terp-project" groups="rainbow_crm.group_qa"/>
+				<filter string="Met - Collected" domain="[('disposition_status','=','Met - Collected')]"  icon="terp-project" groups="rainbow_crm.group_fpc"/>
+				<filter string="Met - Refuse" domain="[('disposition_status','=','Met - Refuse')]"  icon="terp-project" groups="rainbow_crm.group_fpc"/>
+				<filter string="Application status" domain="[('disposition_status','=','Application status')]"  icon="terp-project" groups="rainbow_crm.group_fpc"/>
+				<filter string="Loan/Card Status" domain="[('disposition_status','=','Loan/Card Status')]"  icon="terp-project" groups="rainbow_crm.group_sa"/>
+				<filter string="Insurance Status" domain="[('disposition_status','=','Insurance Status')]"  icon="terp-project" groups="rainbow_crm.group_sa"/>
+				<filter string="Not Met" domain="[('disposition_status','=','Not Met')]"  icon="terp-project" groups="rainbow_crm.group_fpc"/>
+				<filter string="Application" domain="[('disposition_status','=','Application')]"  icon="terp-project" groups="rainbow_crm.group_qa_doc"/>
+			</search>
+		</field>
+		</record>
+		
+		
+		
+		
+		<!--Lead Tree view-->
+		
+		 <record model="ir.ui.view" id="rb_crm_lead_tree">
+                        <field name="name">rb.crm.lead.tree</field>
+                        <field name="model">rb.crm.lead</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+						
+                                <tree string="Lead" colors="blue:state_change =='sa';green:state_change == 'customer';black:state_change == 'tsr';gray:state_change == 'qa doc';red:state_change == 'Reject';darkred:state_change=='qa';DarkGoldenRod:state_change=='fpc'">
+										<field name="id"/>
+										<field name="contact_persion" />
+										<!--<field name="name"/>-->
+										<field name="city_id" />
+                                        <field name="create_date"/>
+										<field name="appo_date"/>
+										<field name="remarks"/>
+										<field name="mobile"/>
+										<field name="campaign_team"/>
+										<field name="sale_team_name"/>
+										<field name="sales_team_r"/>
+										<field name="disposition_status"/>
+										<field name="subdisposition_status"/>
+										<field name="state_change"  />
+										<field name="submition_date"  />
+										<field name="fpc_user" domain="[('fpc_team','=',financial_p_conlt)]"/>
+                                </tree>
+                        </field>
+                </record>
+	
+	
+		<!--Lead form view-->
+       
+		 <record model="ir.ui.view" id="rb_crm_lead_form">
+                        <field name="name">rb.crm.lead.form</field>
+                        <field name="model">rb.crm.lead</field>
+                        <field name="type">form</field>
+						
+                        <field name="arch" type="xml">
+                                <form string="Lead"  version="7.0">
+									
+								    <header>
+											<button name="approved_func" string="Approved" type="object" class="oe_highlight" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','qa'),('state','!=','draft')]}" groups="rainbow_crm.group_qa"/>
+											<button name="send_back_func" string="Send Back" type="object" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','qa'),('state','!=','draft')]}" groups="rainbow_crm.group_qa"/>
+											<!--<button name="reject_func" string="Reject" type="object" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','qa'),('state','!=','draft')]}" groups="rainbow_crm.group_qa"/>-->
+											<button name="convert_qa" string="Convert To QA" type="object" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','tsr'),('state','!=','draft')]}" groups="rainbow_crm.group_tsr"/>
+											<button name="approved_func_fpc" string="Send to QA(DOC)" type="object" class="oe_highlight" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','fpc'),('state','!=','draft')]}" groups="rainbow_crm.group_fpc"/>
+											<button name="approved_func_QADoc" string="Send to SA" type="object" class="oe_highlight" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','qa doc'),('state','!=','draft')]}" groups="rainbow_crm.group_qa_doc"/>
+											<button name="reject_func_QADoc" string="Reject" type="object" class="oe_highlight" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':[('state_change','!=','qa doc')]}" groups="rainbow_crm.group_qa_doc"/>
+											<button name="send_back_QADoc" string="Send Back to FPC" type="object" class="oe_highlight" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','qa doc'),('state','!=','draft')]}" groups="rainbow_crm.group_qa_doc"/>
+											<button name="approved_func_sa" string="Convert To Customer" type="object" class="oe_highlight" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','sa'),('state','!=','draft')]}" groups="rainbow_crm.group_sa"/>
+											<button name="reject_func_tl" string="Reject" type="object"  attrs="{'invisible':['|',('state_change','!=','sa'),('state','!=','draft')]}" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" groups="rainbow_crm.group_sa"/>
+											
+											<button name="callback_tsr" string="Call Back To TSR" type="object" class="oe_highlight"  context="{'id':id,'send_user_id':uid}" attrs="{'invisible':['|',('callback_state','=','followup'),('state_change','=','Reject')]}" groups="rainbow_crm.group_qa,rainbow_crm.group_fpc,rainbow_crm.group_qa_doc,rainbow_crm.group_sa"/>
+											<button name="feedback_send" string="Feedback Send" type="object" groups="rainbow_crm.group_tsr" attrs="{'invisible':[('callback_state','=','close')]}"/>
+											
+									</header>
+									<sheet>
+									
+										<label for="name" class="oe_edit_only"/>
+											
+											<h1><field name="name" placeholder="Describe the lead..."/></h1>
+										<field name="lead_ref_stat" invisible="1"/>
+											
+										<notebook position="inside" colspan="100"> 
+										    <page string="General" position="inside"> 
+												<group>
+													<div>
+														<group>
+															<field name="id"/>
+															
+															<field name="title" placeholder="Title" domain="[('domain', '=', 'contact')]" class="oe_inline" options='{"no_open": True}'/>
+															<label for="contact_persion"/>
+																<div>
+					
+																		<field name="contact_persion" class="oe_inline" required="1"/>
+																		
+																</div>
+															
+															<field name="state_change" invisible="1"/>
+															
+															<field name="state" invisible="1"/>
+															<field name="callback_state" invisible="1"/>
+															
+															
+															
+															<label for="street" string="Address"/>
+																	<div>
+																			<field name="street" placeholder="Street..."/>
+																			<field name="street2" placeholder="Ward"/>
+																			<field name="x_district" placeholder="District" attrs="{'required':[('disposition_status','=',3)]}"/>
+																		<div class="address_format">
+																			<field name="city_id" placeholder="City" style="width: 40%%" attrs="{'required':[('disposition_status','=',3)]}"/>
+																			<field name="state_id"  options='{"no_open": True}' placeholder="State" style="width: 24%%"/>
+																			<field name="zip" placeholder="ZIP" style="width: 34%%"/>
+																		</div>
+																			<field name="country_id" placeholder="Country" options='{"no_open": True}'/>
+																			
+																	</div>
+															<field name="birth_date" on_change="calculate_age(birth_date)"  attrs="{'required':[('state_change','=','qa doc')]}"/>
+															<field name="age" />
+															<!--<field name="email_id" /> -->
+															<field name="gender"/>
+															<field name="monthly_income" />	
+															<field name="id_card_no"  attrs="{'required':[('state_change','=','qa doc')]}"/>
+															<field name="channel"  attrs="{'required':['|',('state_change','=','fpc'),'|',('state_change','=','qa doc')]}"/>	
+														</group>	
+													</div>
+													<div>
+														<group>
+															<field name="batch_code" />	
+															<field name="campaign_team" domain="['|',('campaign_relation.team_member','=',sales_team_r),'|',('campaign_relation.financial_conlt_group.fpc_team','=',uid),'|',('campaign_relation.fpc_member','=',fpc_user),('campaign_relation.quality_doc_group.quality_asur_doc','=',uid)]" attrs="{'readonly': [('id','!=', False)]}"/>
+															<field name="sale_team_name" on_change="onchange_getage_qa(sale_team_name)" domain="['|',('team_member','=',sales_team_r),'|',('financial_conlt_group.fpc_team','=',uid),'|',('fpc_member','=',fpc_user),('quality_doc_group.quality_asur_doc','=',uid)]"/>
+															<group colspan="2" col="8">
+																	
+																	<field name="mobile" widget="mobile" colspan="7"  attrs="{'required':[('state_change','=','qa doc')]}" />
+																	<button name="custom_export" string="Dial" type="object" context="{'mobilex':mobile,'id':id,'disposition_status':disposition_status}" attrs="{'invisible':['|',('state','!=','draft'),('mobile','=',False)]}" groups="rainbow_crm.group_tsr"/>
+																	
+																	<field name="phone" widget="phone" colspan="7" />
+																	<button name="custom_export" string="Dial" type="object" context="{'mobilex':phone,'id':id,'disposition_status':disposition_status}" attrs="{'invisible':['|',('state','!=','draft'),('phone','=',False)]}" groups="rainbow_crm.group_tsr"/>
+																	<field name="home_phone" widget="home_phone" colspan="7" />
+																	<button name="custom_export" string="Dial" type="object" context="{'mobilex':home_phone,'id':id,'disposition_status':disposition_status}" attrs="{'invisible':['|',('state','!=','draft'),('home_phone','=',False)]}" groups="rainbow_crm.group_tsr"/>
+																	<button name="end_call" string="HangUp" type="object" class="oe_highlight" context="{'mobilex':phone,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'id':id}" attrs="{'invisible':[('state','!=','Hangup')]}" groups="rainbow_crm.group_tsr"/>
+															</group>
+																													
+															
+																<field name="disposition_status" domain="['|',('dis_type','=',state_change),('dis_type','=',gate)]" required="1" on_change="disposition_onchange()"/>
+															
+															
+															<field name="subdisposition_status" required="1"  on_change="fun_disposition(disposition_status,state_change,gate)" context="{'id':id}"/>
+															<field name="remarks" />
+															<field name="callback_date" />
+															<field name="appo_date" />
+															<field name="gate" invisible="1"/>
+															
+															
+															<field name="sales_team_r" attrs="{'readonly':['|',('state_change','=','tsr'),'|',('state_change','=','qa'),('state_change','=','sa')]}" required = "1"/>
+															
+															<field name="fpc_user" />
+															
+														</group>		
+													</div>
+												</group>
+												<group  string="FPC Visit Information" expand="1">
+												<separator/>
+												<field name="rela2fpcvisit" attrs="{'readonly':['|',('state_change','=','tsr'),('state_change','=','qa')]}" >
+													<tree string="Add Visit Details" editable="bottom" version="7.0" class="my_class">
+														<!--<field name="name"/>-->
+														<field name="visit_date"/>
+														<field name="visit_location"/>
+														<field name="disposition_status" domain="[('dis_type','=','fpc')]" required="1" />
+														<field name="subdisposition_status" required="1"  context="{'id':id}"/>
+														<field name="description"/>
+														<field name="next_date"/>
+														<field name="next_action"/>
+														<field name="related_lead" invisible="1"/>
+													</tree>
+												</field>	
+												</group>
+											</page>	
+											<page string="Personal" position="right">
+							
+							
+												<group>
+													<div>
+														<group>
+															<field name="company_name" />
+															<field name="voter_id" />
+															<field name="passport_id" />
+															<field name="pan_no" />
+															<field name="email_id" />
+															<field name="residence_type" />
+															<field name="occupation" />
+															
+															<field name="annual_income" />
+															<field name="exprience" />
+															<field name="permanent_add" />
+															<field name="billing_add" />
+															<field name="x_industry"/>	
+														</group>
+													</div>
+													<div>
+														<group>
+															<field name="company_street" />
+															<field name="type_company" />
+															<field name="designation" />
+															<field name="employee_type" />
+															<field name="taxable" />
+															<field name="pay_slip" />
+															<field name="marital_status" />
+															<field name="no_of_family" />
+															<field name="no_of_employeed" />
+															<field name="no_of_child" />
+															<field name="education_institution" />
+															<field name="degree" />
+														</group>
+													</div>
+												</group>
+							
+								
+											</page>
+											<page string="Product" position="right">
+											<group>	
+												<!--<field name="product_name" />
+												<field name="product_term" />-->
+												<field name="relation2product" >
+													<tree string="Add Product" editable="bottom" >
+												
+														<field name="select_product"/>
+														<field name="product_term" />
+														<field name="product_ammount" />
+													</tree>
+												</field>
+												<!--<field name="app_id" />-->
+												<field name="rela2application" >
+													<tree string="Add Application Id" editable="bottom">
+												
+														<field name="application_id"  />
+														<field name="product_code" />
+														<field name="product_name" />
+														<field name="request_amount"  />
+														<field name="tsa_code" />
+														<field name="tsa_name" />
+														<field name="last_date" />
+														<field name="last_status" />
+														<field name="date_of_app_creation" />
+													</tree>
+												</field>		
+												<field name="rela2citiapplication"  />
+											</group>	
+							
+								
+											</page>
+											
+											<page string="History" position="right">
+											<group>	
+												<field name="relation2savecall" readonly="1"/>
+												<field name="relation2disposition" readonly="1"/>
+												<field name="relation2statechange" readonly="1">
+													<tree string="Add Product" editable="bottom">
+														<field name="previous_stage"/>
+														<field name="current_stage"/>
+														<field name="create_date"/>
+														<field name="concatination_field" invisible = "1"/>
+													</tree>
+												</field>	
+												<field name="rela2callback_stages" readonly="1"/>
+												
+											</group>	
+							
+								
+											</page>
+
+
+											<page string="Lead scoring"  position="right">
+											
+
+											<group >
+												<field name="time_of_scoring" attrs="{'readonly':[('state_change','!=','qa')]}"/>
+												<field name="score_income" attrs="{'readonly':[('state_change','!=','qa')]}"/>
+												<field name="score_age" attrs="{'readonly':[('state_change','!=','qa')]}"/>
+												<field name="score_occupation"  attrs="{'readonly':[('state_change','!=','qa')]}"/>
+												<field name="score_interest_level" attrs="{'readonly':[('state_change','!=','qa')]}" />
+												<field name="score_appoint_quality" attrs="{'readonly':[('state_change','!=','qa')]}" />
+												<field name="score_product" attrs="{'readonly':[('state_change','!=','qa')]}"/>
+												<field name="score_call_length" attrs="{'readonly':[('state_change','!=','qa')]}"/>
+												<field name="score_income_range" attrs="{'readonly':[('state_change','!=','qa')]}"/>
+												<field name="result" attrs="{'readonly':[('state_change','!=','qa')]}"/>
+												<field name="score_note" attrs="{'readonly':[('state_change','!=','qa')]}"/>
+												<field name="total" attrs="{'readonly':[('state_change','!=','qa')]}"/>
+											</group>
+
+											
+								
+											</page>
+											
+											
+
+											
+											<page string="Doc Check List" groups="rainbow_crm.group_qa_doc" position="right">
+											<group string="1. Identity Proof">	
+												
+												<field name="select_cust_type" />
+												<field name="nid" attrs="{'invisible':['|',('select_cust_type','=',False),('select_cust_type','=','2')]}"/>
+												<field name="psprt" attrs="{'invisible':[('select_cust_type','=',False)]}" />
+												<field name="frb" attrs="{'invisible':['|',('select_cust_type','=',False),('select_cust_type','=','2')]}" />
+												<field name="rc" attrs="{'invisible':['|',('select_cust_type','=',False),('select_cust_type','=','1')]}" />
+												<field name="wp" attrs="{'invisible':['|',('select_cust_type','=',False),('select_cust_type','=','1')]}" />
+												<field name="hcl" attrs="{'invisible':['|',('select_cust_type','=',False),('select_cust_type','=','1')]}" />
+												<field name="dlc" attrs="{'invisible':['|',('select_cust_type','=',False),('select_cust_type','=','1')]}" />
+												<field name="ilc" attrs="{'invisible':['|',('select_cust_type','=',False),('select_cust_type','=','1')]}" />
+												<field name='others' attrs="{'invisible':[('select_cust_type','=',False)]}"/>
+											</group>
+
+											<group string="2. Residence Proof">
+												<field name="frb" />
+												<field name="kt3" />
+												<field name="mrvb" />
+												<field name="mrvb_selection" attrs="{'invisible':[('mrvb','=',False)]}" />
+												<field name="mrvb_others" attrs="{'invisible':['|',('mrvb_selection','!=','4'),('mrvb','=',False)]}" />
+												<field name="hod" />
+												<field name="omrbs" />
+												<field name="lcscra" />
+												<field name="mrrc" />
+												<field name="sfbsscra" />
+												<field name="otr" />
+											</group>
+
+											<group string="3. Income Proof">
+												<field name="select_income_type"/>
+												<field name="xobs" attrs="{'invisible':['|',('select_income_type','=',False),('select_income_type','=','2')]}"  />
+												<field name="xps" attrs="{'invisible':['|',('select_income_type','=',False),('select_income_type','=','2')]}" />
+												<field name="xlc" attrs="{'invisible':['|',('select_income_type','=',False),('select_income_type','=','2')]}" />
+												<field name="xes" attrs="{'invisible':['|',('select_income_type','=',False),('select_income_type','=','2')]}" />
+												<field name="xccl" attrs="{'invisible':['|',('select_income_type','=',False),('select_income_type','=','2')]}" />
+												<field name="xnc" attrs="{'invisible':['|',('select_income_type','=',False),('select_income_type','=','2')]}" />
+												<field name="xsc" attrs="{'invisible':['|',('select_income_type','=',False),('select_income_type','=','2')]}" />
+												<field name="xbrc" attrs="{'invisible':['|',('select_income_type','=',False),('select_income_type','=','1')]}" />
+												<field name="xafs" attrs="{'invisible':['|',('select_income_type','=',False),('select_income_type','=','1')]}" />
+												<field name="xlmti" attrs="{'invisible':['|',('select_income_type','=',False),('select_income_type','=','1')]}" />
+												<field name="xlmbs" attrs="{'invisible':['|',('select_income_type','=',False),('select_income_type','=','1')]}" />
+												<field name="xothers" attrs="{'invisible':[('select_income_type','=',False)]}" />
+
+											</group>
+											
+											<group string="4. Product Application and Account Opening Form">
+												<field name="ycpaaaof" />
+												<field name="ydm" attrs="{'invisible':[('ycpaaaof','=',False)]}"   />
+												<field name="yc" attrs="{'invisible':[('ycpaaaof','=',False)]}"  />
+											</group>
+
+
+							
+								
+											</page>
+
+
+                                                                                        <page string="Customer Details" position="right">
+											
+												<field name="rela2customer_profiling" /> 
+											
+											</page>
+											
+											
+											<page string="Calling Questions"  position="right">
+											
+											<group colspan="1" col="2" string="Call">
+												<field name="cstep_is_call_connected"/>
+											</group>
+											<group colspan="1" col="2" string="Connected">  
+												
+												<field name="cstep_speaking2name" />
+												<field name="cstep_know_your_name" attrs="{'invisible':[('cstep_speaking2name','=','2')]}"/>
+												
+											</group>
+											<group colspan="1" col="2" string="Call Back">  	
+												<field name="cstep_precious_time"  />
+												<field name="cstep_call_back_day" />
+												<field name="cstep_reason_rejection" />
+												<field name="cstep_telephone_number"  />
+											</group>	
+											<group colspan="1" col="2" string="PRE-ELIGIBILITY">
+												<field name="preeligibility_few_qustion" />	
+												<field name="cstep_date_of_birth" />
+												<field name="preeligibility_salaried" />
+												<field name="cstep_which_company" />
+												<field name="preeligibility_degination" />
+												<field name="cstep_location_stay" />
+												<field name="cstep_income" />
+												<field name="cstep_reason_not_proceeding" />
+												<field name="cstep_eligible" />
+											</group>
+											<group colspan="1" col="2" string="ELIGIBILITY">		
+												<field name="eligibility_interested" />
+												<field name="eligibility_not_suitable" />
+												<field name="cstep_is_married" />
+												<field name="eligibility_eligibility"  />
+											</group>	
+											<group colspan="1" col="2" string="REFERENCE">		
+												<field name="cstep_sure_have_friends" />
+												<field name="cstep_friends" />
+												<field name="cstep_contact_detail_friends" />
+											</group>	
+											<group colspan="1" col="2" string="APPOINTMENT">	
+												<field name="cstep_is_schedule" />
+												
+												<field name="cstep_id_proof" />
+											
+												<field name="cstep_call_back_no_reason" />
+												
+												<!--<field name="cstep_travel_flights"  />-->
+											</group>	
+											<group colspan="1" col="2" string="Other">	
+												
+												<field name="cstep_address2visit" />
+												<field name="cstep_date_fix_appointment" />
+												
+												
+												<field name="cstep_labour" />
+												<field name="cstep_bank_account" />
+												<field name="cstep_pay_receipt"  />
+												<field name="cstep_family_registration"  />
+												<field name="cstep_spouse_details" />
+												<field name="cstep_name_spouse" />
+												
+												
+												<field name="state_id" />
+												<field name="lead_id" />
+												<field name="opp_id" />
+												<field name="date_convert_opp" />
+												<field name="last_user_modify_lead"  />
+												<field name="last_date_modify_lead"  />
+												<field name="last_user_modify_opp" />
+												<field name="last_date_modify_opp" />
+												<field name="post_paid" />
+												<field name="permanent_street" />
+												<field name="permanent_phone" />
+												
+												
+												<field name="apply_for" />
+												<field name="financial_status" />
+												<field name="time_travel_abroad" />
+												<field name="monthly_mobile_bill" />
+												
+												<field name="bank_account" />
+												
+											</group>
+											
+											
+											
+											<group colspan="2" col="1">
+												<field name="cstep_call_back_date" />
+												<field name="cstep_ask_appropriate_time_to_call" />
+												<field name="cstep_ask2choose" />
+												<field name="cstep_often_dine_out_someone"  />
+												
+												
+												<field name="lead_referral" />
+											</group>
+												
+											</page>
+											<page string="Group"  position="right">
+											
+
+											<group >
+											
+															<field name="quality_asur" />
+															<field name="team_lead" />
+															<field name="quality_doc_group" />
+															<field name="sales_admin" />
+															<field name="financial_p_conlt" />
+															<field name="sales_mngr" />
+											
+											
+											
+											
+												
+											</group>
+
+											
+								
+											</page>
+											
+											
+											 	
+										</notebook>  	
+										<notebook  colspan="2">
+											<page string="Internal Notes">
+												<field name="description" />
+											</page>
+										</notebook>
+									</sheet>	
+                                </form>
+                        </field>
+                </record>
+				
+				
+				
+		<!--Allocation View -->
+		<!--Tree View -->
+		 <record model="ir.ui.view" id="rb_crm_lead_tree1">
+                        <field name="name">rb.crm.lead.tree</field>
+                        <field name="model">rb.crm.lead</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+						
+                                <tree string="Lead" colors="blue:state_change =='sa';green:state_change == 'customer';black:state_change == 'tsr';gray:state_change == 'qa doc';red:state_change == 'Reject';darkred:state_change=='qa';DarkGoldenRod:state_change=='fpc'">
+										<field name="id"/>
+										<field name="contact_persion" />
+										<field name="city_id" />
+                                        <field name="create_date" />
+										<field name="appo_date"/>
+										<field name="mobile"/>
+										<field name="campaign_team"/>
+										<field name="sale_team_name"/>
+										<field name="sales_team_r"/>
+										<field name="disposition_status"/>
+										<field name="subdisposition_status"/>
+										<field name="state_change"  />
+										<field name="submition_date"  />
+										<field name="fpc_user" domain="[('fpc_team','=',financial_p_conlt)]"/>
+                                </tree>
+                        </field>
+                </record>
+	
+	
+	
+	<!--Form view for allocation-->
+			
+		 <record model="ir.ui.view" id="rb_crm_lead_form1">
+                        <field name="name">rb.crm.lead.form</field>
+                        <field name="model">rb.crm.lead</field>
+                        <field name="type">form</field>
+						
+                        <field name="arch" type="xml">
+                                <form string="Lead"  version="7.0">
+									
+								 
+									<sheet>
+									
+										<label for="name" class="oe_edit_only"/>
+											
+											<h1><field name="name" placeholder="Describe the lead..." readonly="1"/></h1>
+										<field name="lead_ref_stat" invisible="1"/>
+											
+										<notebook position="inside" colspan="100"> 
+										    <page string="General" position="inside"> 
+												<group>
+													<div>
+														<group>
+															<field name="id"/>
+															
+															<field name="title" placeholder="Title" domain="[('domain', '=', 'contact')]" class="oe_inline" options='{"no_open": True}' readonly="1"/>
+															<label for="contact_persion"/>
+																<div>
+					
+																		<field name="contact_persion" class="oe_inline" required="1" readonly="1"/>
+																		
+																</div>
+															
+															<field name="state_change" invisible="1"/>
+															
+															<field name="state" invisible="1"/>
+															<field name="callback_state" invisible="1"/>
+															
+															
+															
+															<label for="street" string="Address"/>
+																	<div>
+																			<field name="street" placeholder="Street..." readonly="1"/>
+																			<field name="street2" placeholder="Ward" readonly="1"/>
+																			<field name="x_district" placeholder="District" attrs="{'required':[('disposition_status','=',3)]}" readonly="1"/>
+																		<div class="address_format">
+																			<field name="city_id" placeholder="City" style="width: 40%%" attrs="{'required':[('disposition_status','=',3)]}" readonly="1"/>
+																			<field name="state_id"  options='{"no_open": True}' placeholder="State" style="width: 24%%" readonly="1"/>
+																			<field name="zip" placeholder="ZIP" style="width: 34%%" readonly="1"/>
+																		</div>
+																			<field name="country_id" placeholder="Country" options='{"no_open": True}' readonly="1"/>
+																			
+																	</div>
+															<field name="birth_date" on_change="calculate_age(birth_date)"  attrs="{'required':[('state_change','=','qa doc')]}" readonly="1"/>
+															<field name="age" readonly="1"/>
+															<!--<field name="email_id" /> -->
+															<field name="gender" readonly="1"/>
+															<field name="monthly_income" readonly="1"/>	
+															<field name="id_card_no"  attrs="{'required':[('state_change','=','qa doc')]}" readonly="1"/>
+															<field name="channel"  attrs="{'required':['|',('state_change','=','fpc'),'|',('state_change','=','qa doc')]}" readonly="1"/>	
+														</group>	
+													</div>
+													<div>
+														<group>
+															<field name="batch_code" readonly="1"/>	
+															<field name="campaign_team" domain="['|',('campaign_relation.team_member','=',sales_team_r),'|',('campaign_relation.financial_conlt_group.fpc_team','=',uid),'|',('campaign_relation.fpc_member','=',fpc_user),('campaign_relation.quality_doc_group.quality_asur_doc','=',uid)]" readonly="1"/>
+															<field name="sale_team_name" on_change="onchange_getage_qa(sale_team_name)" domain="['|',('team_member','=',sales_team_r),'|',('financial_conlt_group.fpc_team','=',uid),'|',('fpc_member','=',fpc_user),('quality_doc_group.quality_asur_doc','=',uid)]" readonly="1"/>
+															<group colspan="2" col="8">
+																	
+																	<field name="mobile" widget="mobile" colspan="7"  attrs="{'required':[('state_change','=','qa doc')]}" readonly="1"/>
+																	<button name="custom_export" string="Dial" type="object" context="{'mobilex':mobile,'id':id,'disposition_status':disposition_status}" attrs="{'invisible':['|',('state','!=','draft'),('mobile','=',False)]}" groups="rainbow_crm.group_tsr"/>
+																	
+																	<field name="phone" widget="phone" colspan="7" readonly="1"/>
+																	<button name="custom_export" string="Dial" type="object" context="{'mobilex':phone,'id':id,'disposition_status':disposition_status}" attrs="{'invisible':['|',('state','!=','draft'),('phone','=',False)]}" groups="rainbow_crm.group_tsr"/>
+																	<field name="home_phone" widget="home_phone" colspan="7" readonly="1"/>
+																	<button name="custom_export" string="Dial" type="object" context="{'mobilex':home_phone,'id':id,'disposition_status':disposition_status}" attrs="{'invisible':['|',('state','!=','draft'),('home_phone','=',False)]}" groups="rainbow_crm.group_tsr"/>
+																	<button name="end_call" string="HangUp" type="object" class="oe_highlight" context="{'mobilex':phone,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'id':id}" attrs="{'invisible':[('state','!=','Hangup')]}" groups="rainbow_crm.group_tsr"/>
+															</group>
+																													
+															
+																<field name="disposition_status" domain="['|',('dis_type','=',state_change),('dis_type','=',gate)]" required="1" on_change="disposition_onchange()" readonly="1"/>
+															
+															
+															<field name="subdisposition_status" required="1"  on_change="fun_disposition(disposition_status,state_change,gate)" context="{'id':id}" readonly="1"/>
+															<field name="remarks" readonly="1"/>
+															<field name="callback_date" readonly="1"/>
+															<field name="appo_date" readonly="1"/>
+															<field name="gate" invisible="1"/>
+															
+															
+															<field name="sales_team_r" attrs="{'readonly':['|',('state_change','=','tsr'),'|',('state_change','=','qa'),('state_change','=','sa')]}" required = "1" readonly="1"/>
+															
+															<field name="fpc_user" />
+															
+														</group>		
+													</div>
+												</group>
+												<group  string="FPC Visit Information" expand="1">
+												<separator/>
+												<field name="rela2fpcvisit" attrs="{'readonly':['|',('state_change','=','tsr'),('state_change','=','qa')]}" >
+													<tree string="Add Visit Details" editable="bottom" version="7.0" class="my_class">
+														<!--<field name="name"/>-->
+														<field name="visit_date"/>
+														<field name="visit_location"/>
+														<field name="disposition_status" domain="[('dis_type','=','fpc')]" required="1" />
+														<field name="subdisposition_status" required="1"  context="{'id':id}"/>
+														<field name="description"/>
+														<field name="next_date"/>
+														<field name="next_action"/>
+														<field name="related_lead" invisible="1"/>
+													</tree>
+												</field>	
+												</group>
+											</page>	
+											
+											
+											 	
+										</notebook>  	
+										<notebook  colspan="2">
+											<page string="Internal Notes">
+												<field name="description" />
+											</page>
+										</notebook>
+									</sheet>	
+                                </form>
+                        </field>
+                </record>
+        
+		<!--All Customer View-->
+		
+		
+		<!--Lead Tree view-->
+		
+
+	    <record model="ir.ui.view" id="rb_customer_sale_tree">
+                        <field name="name">rb.customer.sale.tree</field>
+                        <field name="model">rb.customer.sale</field>
+                        <field name="type">tree</field>
+						
+                        <field name="arch" type="xml">
+							<tree string="Lead">
+										<field name="name"/>
+                                        <field name="details"/>
+										<field name="customer_id"/>
+							</tree>
+						</field>
+        </record>		
+				
+	
+		<!--Customer form view-->
+       
+		 <record model="ir.ui.view" id="rb_customer_sale_form">
+                        <field name="name">rb.customer.sale.form</field>
+                        <field name="model">rb.customer.sale</field>
+                        <field name="type">form</field>
+						
+                        <field name="arch" type="xml">
+							 <form string="Contract Validate" >
+								<field name="name"/>
+                                <field name="details"/>
+							 </form>
+						</field>
+                </record>
+		
+		
+		<!-- Sa Approve Form -->
+		<record model="ir.ui.view" id="rb_crm_sa_approve_form">    <!--Custom id -->
+			               <field name="name">rb.crm.sa.approve.form</field>   <!--Custom Name -->
+			               <field name="model">rb.crm.sa.approve</field>  <!-- _name from py File -->
+						   <field name="type">form</field>
+						   <field name="arch" type="xml">
+									<form string="Upload Approve CSV">
+										<field name="upload_date" readonly="1"/>
+										<field name="modify_date" />
+										<field name="data" />
+										<field name="no_of_lead_modify" />
+										<field name="description" />
+										<!--<button string="Disposition Update" name="sa_bulk_dispo_update" type="object" default_focus="1" class="oe_highlight" context="{'id':id}"/>-->
+										
+										<button string="Upload Application" name="application_upload" type="object" default_focus="1" class="oe_highlight" context="{'id':id}"/>
+										
+										
+									</form>
+							</field>
+		</record>
+
+		<record model="ir.ui.view" id="rb_crm_sa_approve_tree">    <!--Custom id -->
+			               <field name="name">rb.crm.sa.approve.tree</field>   <!--Custom Name -->
+			               <field name="model">rb.crm.sa.approve</field>  <!-- _name from py File -->
+						   <field name="type">tree</field>
+						   <field name="arch" type="xml">
+									<tree string="Upload Approve CSV">
+										<field name="upload_date" />
+										<field name="modify_date" />
+										<field name="data" />
+										<field name="no_of_lead_modify" />
+										<field name="description" />
+									</tree>
+							</field>
+		</record>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- ================================== Field View ================================== -->
+		
+		
+		
+		
+		
+				<!-- Upload Window Action -->
+		<record model="ir.actions.act_window" id="rb_crm_sa_approve_window">
+							<field name="name">Upload CSV</field>
+							<field name="type">ir.actions.act_window</field>
+							<field name="res_model">rb.crm.sa.approve</field>
+							<field name="view_type">form</field>
+							<field name="view_mode">tree,form</field>
+		</record>
+		
+		
+		
+		
+		
+		
+		
+		
+
+    	<!-- Product Type -->
+		<record model="ir.ui.view" id="product_catagories_form">    <!--Custom id -->
+			               <field name="name">product.catagories.form</field>   <!--Custom Name -->
+			               <field name="model">product.catagories</field>  <!-- _name from py File -->
+						   <field name="type">form</field>
+						   <field name="arch" type="xml">
+									<form string="Register Product Categorises">
+										<field name="name" />
+										<field name="filter_for_yn_1" />
+										<field name="filter_for_yn_2" />
+										<field name="product_description" />
+									</form>
+							</field>
+		</record>
+
+        <record model="ir.ui.view" id="product_catagories_tree">    <!--Custom id -->
+			               <field name="name">product.catagories.tree</field>   <!--Custom Name -->
+			               <field name="model">product.catagories</field>  <!-- _name from py File -->
+						   <field name="type">tree</field>
+						   <field name="arch" type="xml">
+									<tree string="Register Product Categories">
+										<field name="name" />
+										<field name="filter_for_yn_1" />
+										<field name="filter_for_yn_2" />
+										<field name="product_description" />
+									</tree>
+							</field>
+		</record>
+
+		<!-- Product Entry -->
+		<record model="ir.ui.view" id="new_product_registration_form">    <!--Custom id -->
+			               <field name="name">new.product.registration.form</field>   <!--Custom Name -->
+			               <field name="model">new.product.registration</field>  <!-- _name from py File -->
+						   <field name="type">form</field>
+						   <field name="arch" type="xml">
+									<form string="Register Product Categories">
+										<field name="name" />
+										<field name="product_type" />
+										<!--
+										<field name="product_fixorperse" />
+										<field name="product_persamt" />
+										<field name="product_taxable" />
+										<field name="product_service_tax" attrs="{'readonly':['|',('product_taxable','=',False),('product_taxable','=','2')]}" />
+										-->
+										<field name="product_notes" />
+									</form>
+							</field>
+		</record>
+
+		<record model="ir.ui.view" id="new_product_registration_tree">    <!--Custom id -->
+			               <field name="name">new.product.registration.tree</field>   <!--Custom Name -->
+			               <field name="model">new.product.registration</field>  <!-- _name from py File -->
+						   <field name="type">tree</field>
+						   <field name="arch" type="xml">
+									<tree string="Register Product Categories">
+										<field name="name" />
+										<field name="product_type" />
+										<!--
+										<field name="product_fixorperse" />
+										<field name="product_persamt" />
+										<field name="product_taxable" />
+										<field name="product_service_tax" />
+										-->
+										<field name="product_notes" />
+									</tree>
+							</field>
+		</record>
+
+
+		<!-- Customer Registration -->
+		<record model="ir.ui.view" id="customer_registration_form">    <!--Custom id -->
+			               <field name="name">customer.registration.form</field>   <!--Custom Name -->
+			               <field name="model">customer.registration</field>  <!-- _name from py File -->
+						   <field name="type">form</field>
+						   <field name="arch" type="xml">
+									<form string=" Customer name Entry">
+										<field name="name" />
+										<field name="customer_description" />
+										
+									</form>
+							</field>
+		</record>
+
+
+		<record model="ir.ui.view" id="customer_registration_tree">    <!--Custom id -->
+			               <field name="name">customer.registration.tree</field>   <!--Custom Name -->
+			               <field name="model">customer.registration</field>  <!-- _name from py File -->
+						   <field name="type">tree</field>
+						   <field name="arch" type="xml">
+									<tree string=" Customer name Entry">
+										<field name="name" />
+										<field name="customer_description" />
+										
+									</tree>
+							</field>
+		</record>
+
+
+		
+		<!-- Data sampling -->
+		<record model="ir.ui.view" id="rb_lead_sampling_form">    <!--Custom id -->
+			               <field name="name">rb.lead.sampling.form</field>   <!--Custom Name -->
+			               <field name="model">rb.lead.sampling</field>  <!-- _name from py File -->
+						   <field name="type">form</field>
+						   <field name="arch" type="xml">
+									<form string="Sampling Data">
+										<field name="name" />
+										
+										<field name="location" />
+										<field name="type_source" />
+										<field name="expected_data" />
+										<field name="expected_percentage_high_networth" />
+										<field name="expected_percentage_affluent" />
+										<field name="expected_percentage_upper_mass" />
+										<field name="expected_percentage_lower_mass" />
+										<field name="address" />
+										<field name="data" />
+									</form>
+							</field>
+		</record>
+
+
+		<record model="ir.ui.view" id="rb_lead_sampling_tree">    <!--Custom id -->
+			               <field name="name">rb.lead.sampling.tree</field>   <!--Custom Name -->
+			               <field name="model">rb.lead.sampling</field>  <!-- _name from py File -->
+						   <field name="type">tree</field>
+						   <field name="arch" type="xml">
+									<tree string="Sampling Data">
+										<field name="name" />
+										<field name="type_source" />
+										<field name="expected_data" />	
+									</tree>
+							</field>
+		</record>
+		
+		
+		<!--Batch Tree view-->
+		
+
+	    <record model="ir.ui.view" id="rb_crm_batch_code_tree">
+                        <field name="name">rb.crm.batch.code.tree</field>
+                        <field name="model">rb.crm.batch.code</field>
+                        <field name="type">tree</field>
+						
+                        <field name="arch" type="xml">
+							<tree string="Lead">
+										<field name="name"/>
+										<field name="batch_no"/>
+                                        <field name="vendore"/>
+										<field name="db_cost"/>
+										<field name="database_name"/>
+										
+							</tree>
+						</field>
+        </record>		
+				
+	
+		<!--Batch form view-->
+       
+		 <record model="ir.ui.view" id="rb_crm_batch_code_form">
+                        <field name="name">rb.crm.batch.code.form</field>
+                        <field name="model">rb.crm.batch.code</field>
+                        <field name="type">form</field>
+						
+                        <field name="arch" type="xml">
+							 <form string="Batch" >
+										<field name="name"/>
+										<field name="batch_no"/>
+                                        <field name="vendore"/>
+										<field name="db_cost"/>
+										<field name="database_name"/>
+										<field name="qty"/>
+										<field name="db_date"/>
+										<field name="description"/>
+							 </form>
+						</field>
+                </record>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- Citi Application Upload -->
+		<record model="ir.ui.view" id="rb_lead_citi_application_form">    <!--Custom id -->
+			               <field name="name">rb.lead.citi.application.form</field>   <!--Custom Name -->
+			               <field name="model">rb.lead.citi.application</field>  <!-- _name from py File -->
+						   <field name="type">form</field>
+						   <field name="arch" type="xml">
+									<form string="Upload Citi Application">
+										<field name="date_submited_qa"/>
+										<field name="date_submited_citi" />
+										
+										
+										
+									</form>
+							</field>
+		</record>
+
+		<record model="ir.ui.view" id="rb_lead_citi_application_tree">    <!--Custom id -->
+			               <field name="name">rb.lead.citi.application.tree</field>   <!--Custom Name -->
+			               <field name="model">rb.lead.citi.application</field>  <!-- _name from py File -->
+						   <field name="type">tree</field>
+						   <field name="arch" type="xml">
+									<tree string="Upload  Citi Application">
+										<field name="date_submited_qa"/>
+										<field name="date_submited_citi" />
+										<field name="customer_id"/>
+										<field name="customer_name" />
+										<field name="mobile_number"/>
+										<field name="total" />
+										<field name="approved"/>
+										<field name="status" />
+										<field name="team_name" />
+										<field name="team_lead"/>
+										<field name="income" />
+									</tree>
+							</field>
+		</record>
+		
+		<!-- ================================== TSR Sales Funnel ================================== -->	
+		
+		
+		<!--Test Definition Of View-->
+		
+		<record model="ir.ui.view" id="rb_tsr_funnel_tree">    <!--Custom id -->
+			               <field name="name">rb.tsr.funnel.tree</field>   <!--Custom Name -->
+			               <field name="model">rb.tsr.funnel</field>  <!-- _name from py File -->
+						   <field name="type">tree</field>
+						   <field name="arch" type="xml">
+										<tree string="Sales Funnel Report" create="false">
+														<field name="tsr"/>
+														<field name="period"/>
+														<field name="calls"/>
+														<field name="r1"/>
+														<field name="r2"/>
+														<field name="r3"/>
+														<field name="r4"/>
+														<field name="r5"/>
+														<field name="r6"/>
+														<field name="r7"/>
+														<field name="not_connected_total"/>
+														<field name="contacted"/>
+														<field name="r8"/>
+														<field name="r9"/>
+														<field name="r10"/>
+														<field name="r11"/>
+														<field name="r12"/>
+														<field name="r13"/>
+														<field name="not_eligible_total"/>
+														<field name="eligible"/>
+														<field name="r14"/>
+														<field name="r15"/>
+														<field name="r16"/>
+														<field name="r17"/>
+														<field name="r18"/>
+														<field name="r19"/>
+														<field name="r20"/>
+														<field name="not_interested_total"/>
+														<field name="interested"/>
+														<field name="r21"/>
+														<field name="r22"/>
+														<field name="r23"/>
+														<field name="r24"/>
+														<field name="r25"/>
+														<field name="r26"/>
+														<field name="r27"/>
+														<field name="not_leads_total"/>
+														<field name="leads"/>
+														<field name="r28"/>
+														<field name="r29"/>
+														<field name="appointment"/>
+
+											
+											
+										</tree>
+							</field>
+		</record>
+		
+		
+		<record model="ir.actions.act_window" id="tsr_funnel_window">
+							<field name="name">Sales Funnel Report</field>
+							<field name="type">ir.actions.act_window</field>
+							<field name="res_model">rb.tsr.funnel</field>
+							<field name="view_type">form</field>
+							<field name="view_mode">tree,form</field>
+		</record>
+		<!--Yester Day Sales Funnel-->
+		<record model="ir.ui.view" id="rb_tsr_yesterday_funnel_tree">    <!--Custom id -->
+			               <field name="name">rb.tsr.yesterday.funnel.tree</field>   <!--Custom Name -->
+			               <field name="model">rb.tsr.yesterday.funnel</field>  <!-- _name from py File -->
+						   <field name="type">tree</field>
+						   <field name="arch" type="xml">
+										<tree string="YesterDay Sales Funnel Report" create="false">
+														<field name="tsr"/>
+														<field name="period"/>
+														<field name="calls"/>
+														<field name="r1"/>
+														<field name="r2"/>
+														<field name="r3"/>
+														<field name="r4"/>
+														<field name="r5"/>
+														<field name="r6"/>
+														<field name="r7"/>
+														<field name="not_connected_total"/>
+														<field name="contacted"/>
+														<field name="r8"/>
+														<field name="r9"/>
+														<field name="r10"/>
+														<field name="r11"/>
+														<field name="r12"/>
+														<field name="r13"/>
+														<field name="not_eligible_total"/>
+														<field name="eligible"/>
+														<field name="r14"/>
+														<field name="r15"/>
+														<field name="r16"/>
+														<field name="r17"/>
+														<field name="r18"/>
+														<field name="r19"/>
+														<field name="r20"/>
+														<field name="not_interested_total"/>
+														<field name="interested"/>
+														<field name="r21"/>
+														<field name="r22"/>
+														<field name="r23"/>
+														<field name="r24"/>
+														<field name="r25"/>
+														<field name="r26"/>
+														<field name="r27"/>
+														<field name="not_leads_total"/>
+														<field name="leads"/>
+														<field name="r28"/>
+														<field name="r29"/>
+														<field name="appointment"/>
+
+											
+											
+										</tree>
+							</field>
+		</record>
+		
+		
+		<record model="ir.actions.act_window" id="tsr_funnel_yesterDay_window">
+							<field name="name">YesterDay Sales Funnel Report</field>
+							<field name="type">ir.actions.act_window</field>
+							<field name="res_model">rb.tsr.yesterday.funnel</field>
+							<field name="view_type">form</field>
+							<field name="view_mode">tree,form</field>
+		</record>
+		
+		
+
+
+<!-- ################################### CUSTOMIZATION   ###################################-->
+
+
+
+		 <record model="ir.actions.act_window" id="rb_crm_refer_window">
+                        <field name="name">Lead</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.crm.lead</field>
+                        <field name="view_type">form</field>
+						<field name="domain">[('lead_ref_stat','=',True)]</field>
+                        <field name="view_mode">tree,form</field>
+         </record>
+
+
+
+
+
+<!-- ################################### CUSTOMIZATION   ###################################-->
+
+		
+		
+		
+		
+
+
+
+
+
+
+		
+		
+		
+		
+		
+		<!-- ================================== Menu Defination ================================== -->	
+		
+		
+		<!-- CITI Application Upload  -->
+		<record model="ir.actions.act_window" id="rb_lead_citi_application_window">
+							<field name="name">Application Upload</field>
+							<field name="type">ir.actions.act_window</field>
+							<field name="res_model">rb.lead.citi.application</field>
+							<field name="view_type">form</field>
+							<field name="view_mode">tree,form</field>
+		</record>
+		
+		
+		<!-- Batch Code Windows Actions -->
+		<record model="ir.actions.act_window" id="rb_crm_batch_code_window">
+							<field name="name">Batch Code</field>
+							<field name="type">ir.actions.act_window</field>
+							<field name="res_model">rb.crm.batch.code</field>
+							<field name="view_type">form</field>
+							<field name="view_mode">tree,form</field>
+		</record>
+		
+		
+		
+		<record model="ir.actions.act_window" id="rb_lead_sampling_window">
+                        <field name="name">Sampling Data</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.lead.sampling</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+         </record>
+		
+		
+		
+		
+		<!--View All Lead  action menue-->
+        
+		 <record model="ir.actions.act_window" id="rb_crm_lead_window">
+                        <field name="name">Lead</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.crm.lead</field>
+                        <field name="view_type">form</field>
+						<field name="domain">['&amp;',('campaign_team.active','=',True),('sale_team_name.active','=',True)]</field>
+                        <field name="view_mode">tree,form</field>
+         </record>
+		 
+		 
+		<!--Allocation View All Lead  action menue-->
+		<record model="ir.actions.act_window" id="rb_crm_lead_window1">
+                        <field name="name">Lead</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.crm.lead</field>
+                        <field name="view_type">form</field>
+						<field name="domain">['&amp;',('campaign_team.active','=',True),('sale_team_name.active','=',True)]</field>
+                        <field name="view_mode">tree,form</field>
+         </record>
+		 
+		 <record model="ir.actions.act_window.view" id="rb_crm_lead_tree_view">
+			<field eval="1" name="sequence"/>
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="rb_crm_lead_tree"/>
+			<field name="act_window_id" ref="rb_crm_lead_window"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="rb_crm_lead_form_view">
+			<field eval="2" name="sequence"/>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="rb_crm_lead_form"/>
+			<field name="act_window_id" ref="rb_crm_lead_window"/>
+		</record>
+		
+		 <record model="ir.actions.act_window.view" id="rb_crm_lead_tree_view1">
+			<field eval="1" name="sequence"/>
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="rb_crm_lead_tree1"/>
+			<field name="act_window_id" ref="rb_crm_lead_window1"/>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="rb_crm_lead_form_view1">
+			<field eval="2" name="sequence"/>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="rb_crm_lead_form1"/>
+			<field name="act_window_id" ref="rb_crm_lead_window1"/>
+		</record>
+
+		
+		 <record model="ir.actions.act_window" id="rb_crm_all_follow_up_window">
+                        <field name="name">Lead</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.crm.lead</field>
+                        <field name="view_type">form</field>
+						<field name="domain">[('callback_state','=','followup')]</field>
+                        <field name="view_mode">tree,form</field>
+         </record>
+		 
+		<!--#################################################################################--> 
+		
+		
+		 <!--MTD Leads-->
+		 
+		 <record model="ir.actions.act_window" id="rb_crm_lead_mtd">
+                        <field name="name">MTD Leads</field>
+                       
+                        <field name="res_model">rb.crm.lead</field>
+                       
+						<field name="domain">[('state','=','mtd')]</field>
+                       
+         </record>
+		
+		
+		 <!--Leads Today-->
+		 
+		 <record model="ir.actions.act_window" id="rb_crm_lead_today">
+                        <field name="name">Lead Today</field>
+                       
+                        <field name="res_model">rb.crm.lead</field>
+                       
+						<field name="domain">[('state','=','today')]</field>
+                       
+         </record>
+		 
+		 
+		 <!--Not Contact Today-->
+		 
+		 <record model="ir.actions.act_window" id="rb_crm_lead_not_contact">
+                        <field name="name">Not Connected Today</field>
+                       
+                        <field name="res_model">rb.crm.lead</field>
+                       
+						<field name="domain">[('state','=','notcontact')]</field>
+                       
+         </record>
+		 
+		 
+		  <!--Contact Today-->
+		 
+		 <record model="ir.actions.act_window" id="rb_crm_lead_contact">
+                        <field name="name">Connected Today</field>
+                       
+                        <field name="res_model">rb.crm.lead</field>
+                       
+						<field name="domain">[('state','=','contact')]</field>
+                       
+         </record>
+		 
+		 <!--Leads Yesterday-->
+		 
+		 <record model="ir.actions.act_window" id="rb_crm_lead_yesterday">
+                        <field name="name">Lead Yesterday</field>
+                       
+                        <field name="res_model">rb.crm.lead</field>
+                       
+						<field name="domain">[('state','=','yesterday')]</field>
+                       
+         </record>
+		 
+		 
+		 <!--Not Contact Yesterday-->
+		 
+		 <record model="ir.actions.act_window" id="rb_crm_lead_not_contact_yesterday">
+                        <field name="name">Not Connected Yesterday</field>
+                       
+                        <field name="res_model">rb.crm.lead</field>
+                       
+						<field name="domain">[('state','=','notcontactyesterday')]</field>
+                       
+         </record>
+		 
+		 
+		  <!--Contact Yesterday-->
+		 
+		 <record model="ir.actions.act_window" id="rb_crm_lead_contact_yesterday">
+                        <field name="name">Connected Yesterday</field>
+                       
+                        <field name="res_model">rb.crm.lead</field>
+                       
+						<field name="domain">[('state','=','contactyesterday')]</field>
+                       
+         </record>
+		 
+		 <!--############################Developed by sanjit##################-->
+		 
+		 <!--Call Back Today-->
+		 <record model="ir.actions.act_window" id="rb_crm_lead_call_back_today">
+                        <field name="name">Call back Today</field>
+                       
+                        <field name="res_model">rb.crm.lead</field>
+                       
+						<field name="domain">[('callback_date','&gt;=',((context_today()).strftime('%Y-%m-%d'))),('callback_date','&lt;=', ((context_today()+datetime.timedelta(days=1)).strftime('%Y-%m-%d')))]</field>
+                       
+         </record>
+		 
+		  <!--Appointment Today-->
+		 <record model="ir.actions.act_window" id="rb_crm_lead_appointment_today">
+                        <field name="name">Appointment Today</field>
+                       
+                        <field name="res_model">rb.crm.lead</field>
+                       
+						<field name="domain">[('appo_date','&gt;=',((context_today()).strftime('%Y-%m-%d'))),('appo_date','&lt;=', ((context_today()+datetime.timedelta(days=1)).strftime('%Y-%m-%d')))]</field>
+                       
+         </record>
+		 
+		 
+		 <!--Missed Appointment Today-->
+		 <record model="ir.actions.act_window" id="rb_crm_lead_missed_appointment_today">
+                        <field name="name">Missed Appointment Today</field>
+                       
+                        <field name="res_model">rb.crm.lead</field>
+                       
+						<field name="domain">[('appo_date','&gt;=',((datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S'))),('appo_date','&lt;=', ((context_today()+datetime.timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')))]</field>
+                      
+					    <!--field name="domain">[('appo_date','&gt;=',((datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S'))),('appo_date','&lt;=', (time.strftime('%Y-%m-%d %H:%M:%S',time.gmtime(time.time()+60*60*5+30*60+3600))))]</field-->
+         </record>
+		 
+		  <!--Not called Yet-->
+		 <record model="ir.actions.act_window" id="rb_crm_lead_not_called_yet">
+                        <field name="name">Not called Yet</field>
+                       
+                        <field name="res_model">rb.crm.lead</field>
+                       
+						<field name="domain">[('disposition_status','=','New Lead')]</field>
+						
+                       
+         </record>
+		
+		  
+		 <!--Approved Application Yesterday-->
+		 <record model="ir.actions.act_window" id="rb_crm_lead_approved_application_yesterday">
+                        <field name="name">Approved Application Yesterday</field>
+                       
+                        <field name="res_model">rb.crm.lead</field>
+                       
+						<field name="domain">[('disposition_status','=','Application Document Complete')]</field>
+                       
+         </record>
+		
+		  
+		 <!--Already Applied-->
+		 <record model="ir.actions.act_window" id="rb_crm_lead_already_applied">
+                        <field name="name">Customer in Pipeline</field>
+                       
+                        <field name="res_model">rb.crm.lead</field>
+                       
+						<field name="domain">[('disposition_status','in',['Met - Collected','Appointment-FPC','Application status'])]</field>
+                       
+         </record>
+		 
+		 <!--Balanced Customer-->
+		 <record model="ir.actions.act_window" id="rb_crm_lead_balanced_customer">
+                        <field name="name">Balanced Customer</field>
+                       
+                        <field name="res_model">rb.crm.lead</field>
+                       
+						<field name="domain">[('disposition_status','not in',['Met - Collected','Appointment-FPC','Application status'])]</field>
+                       
+         </record>
+		 
+		 <!--Closed Leads-->
+		 <record model="ir.actions.act_window" id="rb_crm_lead_closed_leads">
+                        <field name="name">Closed Leads</field>
+                       
+                        <field name="res_model">rb.crm.lead</field>
+                       
+						<field name="domain">[('state_change','=','customer')]</field>
+                       
+         </record>
+
+		 
+		 <!--Approved or Rejected Application-->
+		 <record model="ir.actions.act_window" id="rb_crm_lead_approved_or_reject_application">
+                        <field name="name">Approved or Rejected Application</field>
+                       
+                        <field name="res_model">rb.crm.lead</field>
+                       
+						<field name="domain">['|',('state_change','=','Reject'),('state_change','=','qa doc')]</field>
+                       
+         </record>
+		 
+		<!--#################################################################################--> 
+		
+		<!--Customer  action menue-->
+        
+		 <record model="ir.actions.act_window" id="rb_crm_customer_window">
+                        <field name="name">Customer</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.customer.sale</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+         </record>
+		
+		
+
+		<!-- product Catagory -->
+		<record model="ir.actions.act_window" id="product_model_description_window">
+							<field name="name">Product Type</field>
+							<field name="type">ir.actions.act_window</field>
+							<field name="res_model">product.catagories</field>
+							<field name="view_type">form</field>
+							<field name="view_mode">tree,form</field>
+		</record>
+
+		<!-- New product  -->
+		<record model="ir.actions.act_window" id="new_product_registration_window">
+							<field name="name">Product Registration</field>
+							<field name="type">ir.actions.act_window</field>
+							<field name="res_model">new.product.registration</field>
+							<field name="view_type">form</field>
+							<field name="view_mode">tree,form</field>
+		</record>
+
+		<!-- Customer-->
+		<record model="ir.actions.act_window" id="customer_registration_window">
+							<field name="name">Customer Registration</field>
+							<field name="type">ir.actions.act_window</field>
+							<field name="res_model">customer.registration</field>
+							<field name="view_type">form</field>
+							<field name="view_mode">tree,form</field>
+		</record>
+
+<!--
+	
+		<record id="lead_export_sa" model="ir.actions.server">
+			<field name="name">Lead Export</field>
+			<field name="type">ir.actions.server</field>
+			<field name="model_id" ref="model_rb_crm_lead"/>
+			<field name="state">code</field>
+			<field name="code">obj.func_lead_export_sa(context=context)</field>
+			<field name="x_groups_id">rainbow_crm.group_sa</field>
+		</record>
+		<record id="id_of_the_action_value" model="ir.values">
+			<field name="name">Lead export</field>
+			<field name="action_id" ref="lead_export_sa" />
+			<field name="value" eval="'ir.actions.server,' + str(ref('lead_export_sa'))" />
+			<field name="key">action</field>
+			<field name="model_id" ref="model_rb_crm_lead" />
+			<field name="model">rb.crm.lead</field>
+			<field name="key2">client_action_multi</field>
+			
+		</record>
+	-->	
+		
+	<!--Lead Export-->
+		
+		<record id="rb_file_export_form" model="ir.ui.view">
+            <field name="name">rb.file.export.form</field>
+            <field name="model">rb.file.export</field>
+			<field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Export Lead" version="7.0">
+						
+				   <footer>
+						<button string="Export to CSV" name="func_lead_export_sa" type="object" default_focus="1" class="oe_highlight" />
+                  
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>		
+
+
+<act_window id="action_lead_export" multi="True" key2="client_action_multi" name="Lead Export" res_model="rb.file.export" src_model="rb.crm.lead" view_mode="form" target="new" view_type="form" groups="rainbow_crm.group_sa,rainbow_crm.group_sm,rainbow_crm.group_of_fpc"/>			
+		
+	
+
+		 <record model="ir.ui.view" id="crm_delinquency_model_disposition_tree">
+                        <field name="name">rb.crm.delinquency.disposition.tree</field>
+                        <field name="model">rb.crm.delinquency.disposition</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="Delinquency Disposition Codes">
+                                        <field name="name"/>
+										<field name="short_code"/>
+                                        <field name="dis_type"/>
+                                </tree>
+                        </field>
+         </record>
+	
+		
+       
+		 <record model="ir.ui.view" id="crm_delinquency_model_disposition_form">
+                        <field name="name">rb.crm.delinquency.disposition.form</field>
+                        <field name="model">rb.crm.delinquency.disposition</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="Delinquency Disposition Codes">
+                                        <field name="name"/>
+										<field name="short_code"/>
+                                        <field name="dis_type"/>
+                                </form>
+                        </field>
+                </record>	
+
+
+
+		 <record model="ir.actions.act_window" id="crm_delinquency_model_disposition_window">
+                        <field name="name">Delinquency Disposition</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.crm.delinquency.disposition</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+                </record>				
+		
+		
+		
+		
+	          <record model="ir.ui.view" id="crm_delinquency_demodel_subdisposition_tree">
+                        <field name="name">rb.crm.delinquency.sub.disposition.tree</field>
+                        <field name="model">rb.crm.delinquency.sub.disposition</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="Delinquency Sub Disposition Codes">
+                                      
+                                        <field name="name"/>
+										<field name="short_code"/>
+                                        <field name="rank"/>
+										<field name="disposition_status"/>
+										<field name="description"/>
+										<field name="forwardable"/>
+                                </tree>
+                        </field>
+                </record>
+
+				<record model="ir.ui.view" id="crm_delinquency_model_subdisposition_form">
+                        <field name="name">rb.crm.delinquency.sub.disposition.form</field>
+                        <field name="model">rb.crm.delinquency.sub.disposition</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="Delinquency Sub Disposition Codes">
+										
+                                        <field name="name"/>
+										<field name="short_code"/>
+                                        <field name="rank"/>
+										<field name="disposition_status"/>
+										<field name="description"/>
+										<field name="forwardable"/>
+                                </form>
+                        </field>
+                </record>	
+		
+		
+	
+
+                 <record model="ir.ui.view" id="crm_delinquency_save_calldetails_tree">
+                        <field name="name">crm.delinquency.save.calldetails.tree</field>
+                        <field name="model">crm.delinquency.save.calldetails</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="Delinquency Save Call Details">
+										
+                                        <field name="s_call_time"/>
+                                        <field name="differ_time"/>
+										<field name="s_endcall_time"/>
+                                        <field name="s_disposition_id"/>
+										<field name="s_subdisposition_id"/>
+										<field name="mobile"/>
+										<field name="record_url" widget="url"/>
+                                </tree>
+                        </field>
+                </record>
+				<record model="ir.ui.view" id="crm_delinquency_save_calldetails_form">
+                        <field name="name">crm.delinquency.save.calldetails.form</field>
+                        <field name="model">crm.delinquency.save.calldetails</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="Delinquency Save Call Details" >
+										<field name="s_call_time"/>
+										<field name="differ_time"/>
+										<field name="s_endcall_time"/>
+                                        <field name="s_disposition_id"/>
+										<field name="s_subdisposition_id"/>
+										<field name="mobile"/>
+										<field name="record_url" widget="url"/>
+                                </form>
+                        </field>
+                </record>	
+				<record model="ir.ui.view" id="rb_crm_delinquency_stage_history_form">
+                        <field name="name">rb.crm.delinquency.stage.history.form</field>
+                        <field name="model">rb.crm.delinquency.stage.history</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="Delinquency Stage Change Details" >
+										<field name="previous_stage"/>
+										<field name="current_stage"/>
+										<field name="create_date"/>
+										
+                                </tree>
+                        </field>
+                </record>
+		
+		        <record model="ir.actions.act_window" id="crm_delinquency_model_subdisposition_window">
+                        <field name="name">Delinquency Sub Disposition</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.crm.delinquency.sub.disposition</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+                </record>
+		
+		
+		
+		 <record model="ir.ui.view" id="rb_crm_delinquency_lead_tree">
+                        <field name="name">rb.crm.delinquency.lead.tree</field>
+                        <field name="model">rb.crm.delinquency.lead</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+						
+                                <tree string="Delinquency Lead" colors="blue:state_change =='sa';green:state_change == 'customer';black:state_change == 'tsr';gray:state_change == 'qa doc';red:state_change == 'Reject';darkred:state_change=='qa';DarkGoldenRod:state_change=='fpc'">
+										<field name="id"/>
+										<field name="contact_persion" />
+										<!--<field name="name"/>-->
+										
+                                        <field name="create_date" />
+										
+										<field name="remarks"/>
+										<field name="mobile"/>
+										
+										<field name="sale_team_name"/>
+										<field name="sales_team_r"/>
+										<field name="disposition_status"/>
+										<field name="subdisposition_status"/>
+										<field name="state_change"  />
+										<field name="submition_date"  />
+										<field name="fpc_user" domain="[('fpc_team','=',financial_p_conlt)]"/>
+                                </tree>
+                        </field>
+                </record>
+		
+		
+
+		
+		
+	
+
+
+
+
+
+
+
+
+		 <record model="ir.ui.view" id="rb_crm_delinquency_lead_form">
+                        <field name="name">rb.crm.delinquency.lead.form</field>
+                        <field name="model">rb.crm.delinquency.lead</field>
+                        <field name="type">form</field>
+						
+                        <field name="arch" type="xml">
+                                <form string="Delinquency Lead"  version="7.0">
+									
+								    <!--header>
+											<button name="approved_func" string="Approved" type="object" class="oe_highlight" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','qa'),('state','!=','draft')]}" groups="rainbow_crm.group_qa"/>
+											<button name="send_back_func" string="Send Back" type="object" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','qa'),('state','!=','draft')]}" groups="rainbow_crm.group_qa"/>
+											<button name="convert_qa" string="Convert To QA" type="object" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','tsr'),('state','!=','draft')]}" groups="rainbow_crm.group_tsr"/>
+											<button name="approved_func_fpc" string="Send to QA(DOC)" type="object" class="oe_highlight" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','fpc'),('state','!=','draft')]}" groups="rainbow_crm.group_fpc"/>
+											<button name="approved_func_QADoc" string="Send to SA" type="object" class="oe_highlight" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','qa doc'),('state','!=','draft')]}" groups="rainbow_crm.group_qa_doc"/>
+											<button name="reject_func_QADoc" string="Reject" type="object" class="oe_highlight" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':[('state_change','!=','qa doc')]}" groups="rainbow_crm.group_qa_doc"/>
+											<button name="send_back_QADoc" string="Send Back to FPC" type="object" class="oe_highlight" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','qa doc'),('state','!=','draft')]}" groups="rainbow_crm.group_qa_doc"/>
+											<button name="approved_func_sa" string="Convert To Customer" type="object" class="oe_highlight" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','sa'),('state','!=','draft')]}" groups="rainbow_crm.group_sa"/>
+											<button name="reject_func_tl" string="Reject" type="object"  attrs="{'invisible':['|',('state_change','!=','sa'),('state','!=','draft')]}" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" groups="rainbow_crm.group_sa"/>
+											
+											<button name="callback_tsr" string="Call Back To TSR" type="object" class="oe_highlight"  context="{'id':id,'send_user_id':uid}" attrs="{'invisible':['|',('callback_state','=','followup'),('state_change','=','Reject')]}" groups="rainbow_crm.group_qa,rainbow_crm.group_fpc,rainbow_crm.group_qa_doc,rainbow_crm.group_sa"/>
+											<button name="feedback_send" string="Feedback Send" type="object" groups="rainbow_crm.group_tsr" attrs="{'invisible':[('callback_state','=','close')]}"/>
+											
+									</header-->
+									<sheet>
+									
+										<label for="name" class="oe_edit_only"/>
+											
+											<h1><field name="name" placeholder="Describe the lead..."/></h1>
+										<field name="lead_ref_stat" invisible="1"/>
+											
+										<notebook position="inside" colspan="100"> 
+										    <page string="General" position="inside"> 
+												<group>
+													<div>
+														<group>
+															<field name="id"/>
+															
+															<field name="title" placeholder="Title" domain="[('domain', '=', 'contact')]" class="oe_inline" options='{"no_open": True}'/>
+															<label for="contact_persion"/>
+																<div>
+					
+																		<field name="contact_persion" class="oe_inline" required="1"/>
+																		
+																</div>
+															
+															<field name="state_change" invisible="1"/>
+															
+															<field name="state" invisible="1"/>
+															<field name="callback_state" invisible="1"/>
+															
+															
+															
+															<label for="street" string="Address"/>
+																	<div>
+																			<field name="street" placeholder="Street..."/>
+																			<field name="street2" placeholder="Ward"/>
+																			<!--<field name="x_district" placeholder="District" attrs="{'required':[('disposition_status','=',3)]}"/>-->
+																		<div class="address_format">
+																			<field name="city_id" placeholder="City" style="width: 40%%" attrs="{'required':[('disposition_status','=',3)]}"/>
+																			<field name="state_id"  options='{"no_open": True}' placeholder="State" style="width: 24%%"/>
+																			<field name="zip" placeholder="ZIP" style="width: 34%%"/>
+																		</div>
+																			<field name="country_id" placeholder="Country" options='{"no_open": True}'/>
+																			
+																	</div>
+															<field name="birth_date" on_change="calculate_age(birth_date)"/>
+															<field name="age" />
+															<field name="email_id" />
+															<field name="gender"/>
+															
+															<field name="product_desc"/>
+																
+														</group>	
+													</div>
+													<div>
+														<group>
+															
+															
+															<field name="sale_team_name" on_change="onchange_getage_qa(sale_team_name)" domain="['|',('team_member','=',sales_team_r),'|',('financial_conlt_group.fpc_team','=',uid),'|',('fpc_member','=',fpc_user),('quality_doc_group.quality_asur_doc','=',uid)]"/>
+															<group colspan="2" col="8">
+																	
+																	<field name="mobile" widget="mobile" colspan="7" />
+																	<button name="custom_export" string="Dial" type="object" context="{'mobilex':mobile,'id':id,'disposition_status':disposition_status}" attrs="{'invisible':['|',('state','!=','draft'),('mobile','=',False)]}" groups="rainbow_crm.group_tsr"/>
+																	
+																	<field name="phone" widget="phone" colspan="7" />
+																	<button name="custom_export" string="Dial" type="object" context="{'mobilex':phone,'id':id,'disposition_status':disposition_status}" attrs="{'invisible':['|',('state','!=','draft'),('phone','=',False)]}" groups="rainbow_crm.group_tsr"/>
+																	<field name="home_phone" widget="home_phone" colspan="7" />
+																	<button name="custom_export" string="Dial" type="object" context="{'mobilex':home_phone,'id':id,'disposition_status':disposition_status}" attrs="{'invisible':['|',('state','!=','draft'),('home_phone','=',False)]}" groups="rainbow_crm.group_tsr"/>
+																	<button name="end_call" string="HangUp" type="object" class="oe_highlight" context="{'mobilex':phone,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'id':id}" attrs="{'invisible':[('state','!=','Hangup')]}" groups="rainbow_crm.group_tsr"/>
+															</group>
+																													
+															
+																<field name="disposition_status" domain="['|',('dis_type','=',state_change),('dis_type','=',gate)]" required="1" on_change="disposition_onchange()"/>
+															
+															
+															<field name="subdisposition_status" required="1"  on_change="fun_disposition(disposition_status,state_change,gate)" context="{'id':id}"/>
+															<field name="remarks" />
+															
+															<field name="gate" invisible="1"/>
+															
+															
+															<field name="sales_team_r" attrs="{'readonly':['|',('state_change','=','tsr'),'|',('state_change','=','qa'),('state_change','=','sa')]}" required = "1"/>
+															
+															<field name="fpc_user" invisible="1"/>
+															
+														</group>		
+													</div>
+												</group>
+												
+											</page>	
+
+											
+											<page string="History" position="right">
+											<group>	
+												<field name="relation2savecall" readonly="1"/>
+												<field name="relation2disposition" readonly="1">
+													<tree string="Disposition History" editable="bottom" version="7.0" class="my_class">
+													   <field name="user_name"/>
+                                       					<field name="disposition_code"/>
+														<field name="subdisposition_code"/>
+                                        				<field name="remarks"/>
+														<field name="submition_date"/>  
+													</tree>
+												</field>
+											</group>	
+							
+								
+											</page>
+			
+											 	
+										</notebook>  	
+										<notebook  colspan="2">
+											<page string="Internal Notes">
+												<field name="description" />
+											</page>
+										</notebook>
+									</sheet>	
+                                </form>
+                        </field>
+                </record>
+
+
+
+		<record model="ir.actions.act_window" id="rb_crm_delinquency_lead_window">
+                        <field name="name">Delinquency Lead</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.crm.delinquency.lead</field>
+                        <field name="view_type">form</field>
+						<field name="domain">[('sale_team_name.active','=',True)]</field>
+                        <field name="view_mode">tree,form</field>
+         </record>
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<menuitem id="rb_crm_menu" name="CRM" groups="group_tsr,group_qa,group_tl,group_sa,group_fpc,group_qa_doc,group_sm,group_data_entry,group_of_fpc"/> <!-- Main Menu (Parent Module) -->
+		
+		<menuitem id="rb_crm_sales_menu" parent="rb_crm_menu" name="CRM"  sequence="1" groups="group_tsr,group_qa,group_tl,group_sa,group_fpc,group_qa_doc,group_sm,group_data_entry,group_of_fpc"/> <!-- category / Type -->
+		
+		
+		<menuitem id="rb_crm_refer_menu" parent="rb_crm_sales_menu" name="Referred Lead" action="rb_crm_refer_window"  sequence="5" groups="group_tl"/>
+
+		<!--Lead Team menu-->
+		<menuitem id="rb_crm_lead_menu" parent="rb_crm_sales_menu" name="Leads" action="rb_crm_lead_window"  sequence="2" groups="group_tsr,group_qa,group_tl,group_sa,group_fpc,group_qa_doc,group_sm,group_data_entry,group_of_fpc"/>
+		<menuitem id="rb_crm_lead_allocation" parent="rb_crm_sales_menu" name="Allocation" action="rb_crm_lead_window1" groups="group_tsr,group_qa,group_tl,group_sa,group_fpc,group_qa_doc,group_sm,group_data_entry,group_of_fpc"/>
+		
+		<!--Follow up Team menu-->
+		<menuitem id="rb_crm_follow_up_menu" parent="rb_crm_sales_menu" name="Follow up " action="rb_crm_all_follow_up_window"  sequence="3" groups="group_tsr,group_qa,group_tl,group_sa,group_fpc,group_qa_doc,group_sm,group_data_entry,group_of_fpc"/>
+		
+		
+		<!--Bulk Disposition Upload-->
+		<!--menuitem id="rb_crm_sa_approve_menu" parent="rb_crm_sales_menu" name="Application Upload" action="rb_crm_sa_approve_window"   groups="group_sa"/-->
+		
+		
+		
+		<menuitem id="rb_crm_allsales_menu" parent="rb_crm_menu" name="Sales" groups="group_tl,group_sa,group_sm" sequence="4"/> <!-- category / Type -->
+		
+		<menuitem id="rb_crm_configure_menu" parent="rb_crm_menu" name="Configuration" groups="base.group_system,group_tl,group_sa,group_sm" sequence="15"/> <!-- category / Type -->
+		
+		<!--Campaign menu-->
+		<menuitem id="rainbow_crm_menu" parent="rb_crm_configure_menu" name="Campaign" action="rainbow_crm_window"/>
+		
+		<!--Disposition and Sub Disposition menu-->
+		<menuitem id="ccrm_model_dispocodes_menu" parent="rb_crm_configure_menu" name="Disposition" action="crm_model_disposition_window" groups="group_tl,group_sa"/>
+		<menuitem id="ccrm_model_subdisposition_menu" parent="rb_crm_configure_menu" name="Sub Disposition" action="crm_model_subdisposition_window" groups="group_tl,group_sa"/>
+		
+		<!--Sales Team menu-->
+		<menuitem id="sales_team_menu" parent="rb_crm_configure_menu" name="Sales Team" action="sales_team_window"/>
+		
+		
+		
+		<!--Batch menu-->
+		<menuitem id="rb_crm_batch_code_menu" parent="rb_crm_configure_menu" name="Batch Code" action="rb_crm_batch_code_window"/>
+		
+		
+		<!--Product Menu-->
+		<menuitem id="rainbow_product_menu" parent="rb_crm_menu" name="Sales" sequence="11" groups="group_tl,group_sa,group_sm"/>
+		<!-- product Category -->
+        <menuitem id="product_model_description_window_menu" parent="rb_crm_configure_menu" name="Product Type" action="product_model_description_window" sequence="13"/>
+
+		
+        <!-- New product  -->
+		<menuitem id="new_product_registration_window_menu" parent="rb_crm_configure_menu" name="Product Registration" action="new_product_registration_window" sequence="14"/>
+
+		<!-- New Customer  -->
+		<menuitem id="new_customer_registration_window_menu" parent="rb_crm_configure_menu" name="Customer" action="rb_crm_customer_window"/>
+		
+		<!--Sampling menu-->
+		<menuitem id="rb_lead_sampling_menu" parent="rb_crm_configure_menu" name="Data Master" action="rb_lead_sampling_window"/>
+		
+		<!--Bulk Disposition Upload-->
+		<!--menuitem id="rb_crm_sa_approve_menu" parent="rb_crm_sales_menu" name="VPB Application Upload" action="rb_crm_sa_approve_window"   groups="group_sa"/-->
+		
+		<!--Bulk Disposition Upload-->
+		<!--menuitem id="rb_lead_citi_application_menu" parent="rb_crm_sales_menu" name="CITI Application Upload" action="rb_lead_citi_application_window"   groups="group_sa"/-->
+		
+		
+		
+		
+		
+		
+		
+		<!--MTD Leads-->
+		<!--menuitem id="rb_crm_lead_mtd_menu" parent="rb_crm_sales_menu" name="MTD Leads" action="rb_crm_lead_mtd"  groups="group_tsr,group_qa,group_tl,group_sa,group_fpc,group_qa_doc,group_sm,group_data_entry,group_of_fpc"  /-->
+		
+		
+		<!--Lead Today menu-->
+		<!--menuitem id="rb_crm_lead_today_menu" parent="rb_crm_sales_menu" name="Today's Leads" action="rb_crm_lead_today"   /-->
+		
+		<!--Not Contact Today menu
+		<menuitem id="rb_crm_lead_not_contact_menu" parent="rb_crm_sales_menu" name="Not Connect Today" action="rb_crm_lead_not_contact" />
+		-->
+		<!--Contact Today menu
+		<menuitem id="rb_crm_lead_contact_menu" parent="rb_crm_sales_menu" name="Connect Today" action="rb_crm_lead_contact" />
+		-->
+		<!--Lead Yesterday menu-->
+		<!--menuitem id="rb_crm_lead_yesterday_menu" parent="rb_crm_sales_menu" name="Yesterday Leads" action="rb_crm_lead_yesterday"   /-->
+		
+		<!--Not Contact Yesterday menu
+		<menuitem id="rb_crm_lead_not_contact_yesterday_menu" parent="rb_crm_sales_menu" name="Not Connect Yesterday" action="rb_crm_lead_not_contact_yesterday" />
+		-->
+		<!--Contact Yesterday menu
+		<menuitem id="rb_crm_lead_contact_yesterday_menu" parent="rb_crm_sales_menu" name="Connect Yesterday" action="rb_crm_lead_contact_yesterday" />
+		-->
+		<!--menuitem id="my_report_model_menu" parent="rb_crm_sales_menu" name="TSR Sales Funnel" action="tsr_funnel_window"  groups="group_tsr,group_qa,group_tl,group_sa,group_fpc,group_qa_doc,group_sm,group_data_entry,group_of_fpc" /-->
+		
+		<!--menuitem id="my_report__yesterDay_model_menu" parent="rb_crm_sales_menu" name="YesterDay TSR Sales Funnel" action="tsr_funnel_yesterDay_window"  groups="group_tsr,group_qa,group_tl,group_sa,group_fpc,group_qa_doc,group_sm,group_data_entry,group_of_fpc" /-->
+		
+		
+		<!--Developed by sanjit-->
+		
+		<!--Called back today menu -->
+		<menuitem id="rb_crm_lead_call_back_today_menu" parent="rb_crm_sales_menu" name="Call Back Today" action="rb_crm_lead_call_back_today" />
+		
+		<!--Call Appointment today menu -->
+		<menuitem id="rb_crm_lead_appointment_today_menu" parent="rb_crm_sales_menu" name="Appointment Today" action="rb_crm_lead_appointment_today" />
+		
+		<!--Call Missed appointment today menu -->
+		<menuitem id="rb_crm_lead_Missed_appointment_today_menu" parent="rb_crm_sales_menu" name="Missed Appointment Today" action="rb_crm_lead_missed_appointment_today" />
+		
+		<!--Not Called Yet menu -->
+		<menuitem id="rb_crm_lead_not_called_yet_menu" parent="rb_crm_sales_menu" name="Not called Yet" action="rb_crm_lead_not_called_yet" />
+		
+
+		<!--Reject Application menu -->
+		<menuitem id="rb_crm_lead_reject_application_menu" parent="rb_crm_sales_menu" name="Approved Or Rejected Application" action="rb_crm_lead_approved_or_reject_application" />
+		
+		<!--Approved Application menu -->
+		<menuitem id="rb_crm_lead_approved_application_menu" parent="rb_crm_sales_menu" name="Approved Application" action="rb_crm_lead_approved_application_yesterday" />
+		
+		<!--Already applied Application menu -->
+		<menuitem id="rb_crm_lead_already_applied_menu" parent="rb_crm_sales_menu" name="Customer in Pipeline" action="rb_crm_lead_already_applied" />
+		
+		<!--Balanced Customer menu -->
+		<menuitem id="rb_crm_lead_balanced_customer_menu" parent="rb_crm_sales_menu" name="Balanced Customer" action="rb_crm_lead_balanced_customer" />
+		
+		<!--Closed Leads menu -->
+		<menuitem id="rb_crm_lead_closed_leads_menu" parent="rb_crm_sales_menu" name="Closed Leads" action="rb_crm_lead_closed_leads" />
+		
+
+<menuitem id="ccrm_model_delequency_dispocodes_menu" parent="rb_crm_configure_menu" name="Delinquency Disposition" action="crm_delinquency_model_disposition_window" groups="group_tl,group_sa"/>
+		<menuitem id="ccrm_model_delequency_subdisposition_menu" parent="rb_crm_configure_menu" name="Delinquency Sub Disposition" action="crm_delinquency_model_subdisposition_window" groups="group_tl,group_sa"/>	
+		<menuitem id="rb_crm_delequency_lead_menu" parent="rb_crm_sales_menu" name="Delinquency Customers" action="rb_crm_delinquency_lead_window"  sequence="117" groups="group_tsr"/>
+
+
+
+
+	</data>
+</openerp>

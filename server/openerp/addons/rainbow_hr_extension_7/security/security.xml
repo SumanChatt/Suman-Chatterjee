@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<openerp>
+<data noupdate="0">
+
+
+		 <record id="group_first_privilege" model="res.groups">
+			<field name="name">Leave First Approval</field>
+		</record>
+
+</data>
+</openerp>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		
+
+
+
+
+<!-- Inherit Form View to Modify it -->
+<record id="on_demand_inherited_leave_extension" model="ir.ui.view">
+    <field name="name">Leave Application</field>
+    <field name="model">hr.holidays</field>
+    <field name="inherit_id" ref="hr_holidays.edit_holiday_new"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='name']" position="after">
+            <field name = "stat_creator"/>
+        </xpath>
+
+    </field>
+</record>
+
+
+
+<!-- Inherit Form View to Modify it -->
+<record id="on_demand_inherited_contact_view" model="ir.ui.view">
+    <field name="name">Contract Form View</field>
+    <field name="model">hr.contract</field>
+    <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='employee_id']" position="after">
+            <field name = "emp_x_code"/>
+        </xpath>
+
+    </field>
+</record>
+
+
+
+<record id="on_demand_inherited_tree_view" model="ir.ui.view">
+    <field name="name">Contract List View</field>
+    <field name="model">hr.contract</field>
+    <field name="inherit_id" ref="hr_contract.hr_contract_view_tree"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='employee_id']" position="after">
+            <field name = "emp_x_code"/>
+        </xpath>
+
+    </field>
+</record>
+
+
+		<!-- Inherit Search View to Modify it -->
+		<record id="on_demand_inherited_search_contract" model="ir.ui.view">
+		    <field name="name">Search Contract</field>
+		    <field name="model">hr.contract</field>
+		    <field name="inherit_id" ref="hr_contract.hr_contract_view_search"/>
+		    <field name="arch" type="xml">
+
+		        <xpath expr="//field[@name='name']" position="before">
+		            <field name="emp_x_code"/>
+		        </xpath>
+
+		    </field>
+		</record>
+
+
+
+
+
+
+
+	</data>
+</openerp>

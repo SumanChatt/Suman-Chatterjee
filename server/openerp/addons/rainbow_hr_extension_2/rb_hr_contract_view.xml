@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+			<record model="ir.ui.view" id="hr_contract_form_iview">
+			<field name="name">hr.employee.form.iview</field>
+			<field name="model">hr.contract</field>
+			<field name="inherit_id" ref="hr_contract.hr_contract_view_form" />
+			<field name="arch" type="xml">
+					<field name="wage" position="after">
+						<field name="minimum_wage"/>
+						<field name="wages"/>
+						<field name="telephone_allowance"/>
+						<field name="fuel_allowance"/>
+						<field name="conv_allw"/>
+						<field name="city_comp_allow"/>
+						<field name="lta_allow"/>
+						<field name="meda_allow"/>
+						<field name="gross_pay_india"/>
+						<field name="relocation_allowance"/>
+						<field name="housing_free_allowance"/>
+						<field name="wrk_al"/>
+						<field name="lnch_alw"/>
+						<field name="special_allow"/>
+
+					</field>
+					<xpath expr="//group[@string='Duration']" position="replace">
+
+							<group name="duration_group" string="Contract Terms">
+									<field name="on_prob"/>
+									<field name="probation_salary" attrs="{'invisible':[('on_prob','!=',True)]}"/>
+                                    <label for="trial_date_start" string="Probation Date From" attrs="{'invisible':[('on_prob','!=',True)]}"/>
+                                    <div attrs="{'invisible':[('on_prob','!=',True)]}">
+                                        <field name="trial_date_start" class="oe_inline" attrs="{'invisible':[('on_prob','!=',True)]}"/> To <field name="trial_date_end" class="oe_inline" attrs="{'invisible':[('on_prob','!=',True)]}"/>
+                                    </div>
+                                    <label for="date_start" string="Contract Time From"/>
+                                    <div>
+                                        <field name="date_start" class="oe_inline"/> To <field name="date_end" class="oe_inline"/>
+                                    </div>
+                                    <field name="working_hours"/>
+									 <field name="joining_date"/>
+									 <field name="contact_code"/>
+									 
+                           </group>
+
+					</xpath>
+
+					<field name="advantages" position="after">
+							<field name="active"/>
+
+					</field>
+
+					<!--xpath expr="//separator[@string='Notes']" position="before">
+						<group>
+							<field name="contract_history" widget="many2many">
+   								<tree>
+      								<field name="name"/>
+      								<field name="active"/>
+     							</tree>
+
+							</field>
+							<field name="contract_history_line" />
+						</group>
+
+
+					</xpath-->
+
+		
+				</field>
+					
+	
+   	 	</record>
+
+	</data>
+</openerp>

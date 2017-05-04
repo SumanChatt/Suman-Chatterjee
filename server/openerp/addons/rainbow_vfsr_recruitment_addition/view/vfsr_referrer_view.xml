@@ -1,0 +1,108 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+		
+		
+		
+		<record model="ir.ui.view" id="vfsr_referrer_process_tree">
+                        <field name="name">VFSR Referrer Processee</field>
+                        <field name="model">vfsr.referral.process</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="VFSR Referrer Process">
+					<field name="name"/>                                        
+					<field name="reef_name"/>
+                                        <field name="profession"/>
+					<field name="mobile"/>
+                                        <field name="national_id"/>
+				</tree>
+                        </field>
+                </record>
+
+
+
+		<record model="ir.ui.view" id="vfsr_referrer_process_form">
+                        <field name="name">VFSR Referrer Processee</field>
+                        <field name="model">vfsr.referral.process</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="VFSR Referrer Process" version="7.0">
+					
+						<sheet>
+							 <label for="reef_name" class="oe_edit_only"/>
+								<h1><field name="reef_name" required="1"/></h1>
+
+  							<notebook position="inside" colspan="100">
+								<page string="General" position="inside">
+									<group>
+									<group>
+									<field name="name" readonly = "1"/> 
+								<field name="vfsr_inner_mapping" on_change="fun_fetch_details(vfsr_inner_mapping)"/>  
+									<field name="parent"/> 
+									</group>
+									<group>                                  
+									<field name="profession" required="1"/>
+									<field name="mobile" required="1"/>
+				                        		<field name="national_id" required="1"/>
+									<field name="province" required="1"/>
+									</group>
+									</group>
+								</page>
+							</notebook>
+						</sheet>					
+                			
+				</form>
+                        </field>
+                </record>
+		
+
+
+
+
+
+
+
+		   <record id="batch_inherit_extension" model="ir.ui.view">
+            <field name="name">Inherit Batch View</field>
+            <field name="model">rb.crm.batch.code</field>
+            <field name="inherit_id" ref="rainbow_crm.rb_crm_batch_code_form"/>
+            <field name="arch" type="xml">
+
+               <field name="database_name" position="after">
+                    <field name="select_referrer"/>
+            </field>
+
+            </field>
+        </record>
+
+
+
+
+
+
+		   <record id="vfsr_referrer_process_action" model="ir.actions.act_window">
+                    <field name="name">Vfsr Referrer</field>
+                    <field name="type">ir.actions.act_window</field>
+                    <field name="res_model">vfsr.referral.process</field>
+                    <field name="view_mode">tree,form</field>
+                    <field name="help" type="html">
+                      <p class="oe_view_nocontent_create">
+                        <!-- Add Text Here -->
+                      </p><p>
+                        <!-- More details about what a user can do with this object will be OK -->
+                      </p>
+                    </field>
+                </record>
+
+
+		<menuitem id="vfsr_referrer_process_menu" name="VFSR Referral" parent="rainbow_vfsr_recruitment_addition.vfsr_root" sequence="1"/>
+
+		<menuitem id="vfsr_referrer_process_menu_child" name="VFSR" parent="vfsr_referrer_process_menu" 						action="vfsr_referrer_process_action" sequence="1"/>
+
+
+
+
+
+
+	</data>
+</openerp>

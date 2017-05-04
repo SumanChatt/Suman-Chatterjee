@@ -1,0 +1,144 @@
+<?xml version="1.0" ?>
+<openerp>
+
+<data noupdate="0">
+<record id="group_contract_policy_r" model="res.groups">
+				<field name="name"> HR CONTRACT POLICY READ </field>
+</record>
+<record id="group_contract_policy_rw" model="res.groups">
+				<field name="name">HR CONTRACT POLICY WRITE</field>
+</record>
+<record id="group_contract_policy_rwe" model="res.groups">
+				<field name="name">HR CONTRACT POLICY ALL</field>
+</record>
+
+
+<record id="group_contract_details_r" model="res.groups">
+				<field name="name">HR CONTRACT POLICY TYPE READ</field>
+</record>
+<record id="group_contract_details_rw" model="res.groups">
+				<field name="name">HR CONTRACT POLICY TYPE WRITE</field>
+</record>
+<record id="group_contract_details_rwe" model="res.groups">
+				<field name="name">HR CONTRACT POLICY TYPE ALL</field>
+</record>
+
+<record id="group_m2o_emp_conttype_r" model="res.groups">
+				<field name="name">MULTIPLE CONTRACT READ</field>
+</record>
+<record id="group_m2o_emp_conttype_rw" model="res.groups">
+				<field name="name">MULTIPLE CONTRACT WRITE</field>
+</record>
+<record id="group_m2o_emp_conttype_rwe" model="res.groups">
+				<field name="name">MULTIPLE CONTRACT ALL</field>
+</record>
+</data>
+
+
+<data>
+
+	<record model="ir.ui.view" id="contract_policy_form">
+		<field name="name">contract.policy.form</field>
+		<field name="model">contract.policy</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Employee policy" version="7.0">
+				<group>
+					<group>
+						<field name="name"/>
+						<field name="job"/>
+					</group>
+					<group>
+						<field name="probation"/>
+					</group>
+					<group>
+						<field name="contract"/>
+						<field name="work_days"/>
+					</group>
+					<group>
+						<field name="term" attrs="{'invisible':['|',('probation','=',0),('probation','=',False)]}"/>
+						<field name="rate" attrs="{'invisible':['|',('probation','=',0),('probation','=',False)]}"/>
+						<field name="pit" attrs="{'invisible':['|',('probation','=',0),('probation','=',False)]}"/>
+						<field name="prob_working_days" attrs="{'invisible':['|',('probation','=',0),('probation','=',False)]}"/>
+					</group>
+					<group>
+						<field name="note"/>
+					</group>
+				</group>
+			</form>
+		</field>
+   	 </record>
+
+	<record model="ir.ui.view" id="contract_policy_tree">
+		<field name="name">contract.policy.tree</field>
+		<field name="model">contract.policy</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Employee policy" >
+					<field name="name"/>
+					<field name="job"/>
+					<field name="probation"/>
+					<field name="contract"/>
+					<field name="work_days"/>
+			</tree>
+		</field>
+   	 </record>
+	<record model="ir.ui.view" id="contract_details_form">
+		<field name="name">contract.details.form</field>
+		<field name="model">contract.details</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Policy Details" >
+				<group>
+					<field name="name"/>
+					<field name="det"/>
+					<field name="term"/>
+					<field name="rate"/>
+					<field name="pit"/>
+				</group>
+			</form>
+		</field>
+   	 </record>
+	<record model="ir.ui.view" id="hr_contract_form_iview">
+		<field name="name">hr.contract.form.iview</field>
+		<field name="model">hr.contract</field>
+		<field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+		<field name="arch" type="xml">
+                    <field name="type_id" position="after">
+                          <field name="policy_relations"/>
+					</field>
+					<field name="notes" position="before">
+							<field name="contract_history"/>
+							<separator string="Notes"/>
+					</field>
+		</field>
+   	 </record>
+	<record model="ir.ui.view" id="m2o_emp_conttype_tree">
+		<field name="name">m2o.emp.conttype.tree</field>
+		<field name="model">m2o.emp.conttype</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Employee Contract History" editable="bottom">
+					<field name="name"/>
+					<field name="contract_type"/>
+					<field name="contract_from"/>
+					<field name="contract_to"/>
+					<field name="remarks"/>
+			</tree>
+		</field>
+   	 </record>
+
+
+	<record model="ir.actions.act_window" id="contract_policy_window">
+            <field name="name">HR Policy</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">contract.policy</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+
+
+<menuitem id="rainbow_hrm_policy_child" parent="hr.menu_hr_main" name="HR Policy"  action="contract_policy_window"/>
+
+</data>
+</openerp>

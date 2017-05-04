@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+
+        <record id="vfsr_recruitment_team_form" model="ir.ui.view">
+            <field name="name">VFSR Recruitment Team</field>
+            <field name="model">vfsr.recruitment.team</field>
+            <field name="arch" type="xml">
+                <form string="VFSR Team" version="7.0" >
+                    <sheet>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="team_leader" required="1"/>
+                            <field name="description" required="1"/>
+                            <field name="active" required="1"/>
+                            <field name="team_member" required="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="vfsr_recruitment_team_tree" model="ir.ui.view">
+            <field name="name">Recruitment Team List</field>
+            <field name="model">vfsr.recruitment.team</field>
+            <field name="arch" type="xml">
+                <tree string="Team List">
+                            <field name="name" />
+                            <field name="team_leader"/>
+                            <field name="description" />
+                            <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="vfsr_recruitment_form_inherit" model="ir.ui.view">
+            <field name="name">Recruitment Form Inherit</field>
+            <field name="model">vfsr.recruitment.process</field>
+            <field name="inherit_id" ref="rainbow_vfsr_recruitment_addition.rb_vfsr_recruitment_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='status']" position="before">
+                    <field name="recruiters_team"     required = "1"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+
+
+        <record id="vfsr_team_action" model="ir.actions.act_window">
+            <field name="name">Create Team</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vfsr.recruitment.team</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+
+
+
+
+
+
+
+
+
+    <menuitem id="vfsr_team_action_menu" name="Recruitment Team" parent="rainbow_vfsr_recruitment_addition.vfsr_root_drill2" action="vfsr_team_action" sequence="3" groups="rainbow_vfsr_recruitment_addition.group_vfsr_config"/>
+
+
+		</data>
+</openerp>

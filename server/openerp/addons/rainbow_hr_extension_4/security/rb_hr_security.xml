@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="0">
+
+	<record id="group_recruitment_satgewise_summery+r" model="res.groups">
+				<field name="name"> INTERVIEW SUMMARY READ </field>
+	</record>
+	<record id="group_recruitment_satgewise_summery+rw" model="res.groups">
+				<field name="name"> INTERVIEW SUMMARY WRITE </field>
+	</record>
+	<record id="group_recruitment_satgewise_summery+rwe" model="res.groups">
+				<field name="name"> INTERVIEW SUMMARY ALL </field>
+	</record>
+	
+	<record id="group_qualification_details+r" model="res.groups">
+				<field name="name"> SKILL AND SUMMARY READ </field>
+	</record>
+	<record id="group_qualification_details+rw" model="res.groups">
+				<field name="name"> SKILL AND SUMMARY WRITE </field>
+	</record>
+	<record id="group_qualification_details+rwe" model="res.groups">
+				<field name="name"> SKILL AND SUMMARY ALL </field>
+	</record>
+
+
+
+
+
+</data>
+<data noupdate="1">
+</data>
+</openerp>

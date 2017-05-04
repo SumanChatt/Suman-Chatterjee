@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="vfsr_referral_registration_inherit" model="ir.ui.view">
+            <field name="name">VFSR Referral Process Inherit</field>
+            <field name="model">vfsr.referral.process</field>
+            <field name="inherit_id" ref="rainbow_vfsr_recruitment_addition.vfsr_referrer_process_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//page[@string='General']" position="after">
+
+                   <page string="Official Information" position="inside">
+                            <group>
+                                <field name="bank_side_id"/>
+                                <field name="date_updated"/>
+
+                            </group>
+
+
+                            <group>
+                                <field name="sales_team"/>
+                                <field name="team_leader"/>
+                                <field name="product_selection"/>
+                            </group>
+
+                             <group>
+                                <field name="personal_info" style="width:50%%"/>
+                            </group>
+
+                   
+                    </page>
+
+                    <page string="Personal Information" position="inside">
+                        <group>
+                             <field name="reference2education"/>
+                             <field name="reference2job_profile"/>
+                             <field name="reference2address"/>
+                        </group>
+                     </page>
+
+                    <page string="Bank Information" position="inside">
+
+                        <group>
+                            <field name="bank_name"/>
+                            <field name="bank_branch"/>
+                            <field name="bank_address"/>
+                            <field name="bank_acc_number"/>
+                            <field name="bank_ifsc"/>
+                            <field name="bank_micr"/>
+                            <field name="bank_branch_code"/>
+                            <field name="bank_contact"/>
+                         </group>
+
+                    </page>
+
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <record id="vfsr_personal_information" model="ir.ui.view">
+            <field name="name">Personal Information </field>
+            <field name="model">personal.information</field>
+            <field name="arch" type="xml">
+                <tree string="Personal Information" editable="bottom">
+                    <field name="name"/>
+                    <field name="mobile1"/>
+                    <field name="mobile2"/>
+                    <field name="email1"/>
+                    <field name="email2"/>
+                    <field name="dob"/>
+                    <field name="family_book_no" attrs="{'invisible':[('name','not in',['0','5','6','7'])]}"/>
+                    <field name="gender" attrs="{'invisible':[('name','not in',['0','5','6','7'])]}"/>
+                    <field name="married_status" attrs="{'invisible':[('name','not in',['0','5','6','7'])]}"/>
+                    <field name="hobby"/>
+                    <field name="signature"/>
+                    <!--field name="reference_id"/-->
+                </tree>
+            </field>
+        </record>
+
+
+     	<record model="ir.ui.view" id="vfsr_profile_education_tree">
+		<field name="name">vfsr.profile.education.tree</field>
+		<field name="model">vfsr.profile.education</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Education" editable="bottom">
+				<field name="name"/>
+				<field name="board"/>
+				<field name="institute"/>
+				<field name="ins_location"/>
+				<field name="year_from"/>
+				<field name="year_to"/>
+				<field name="reference2subjects"/>
+
+			</tree>
+		</field>
+   	 </record>
+
+   	<record model="ir.ui.view" id="vfsr_profile_education_subject_tree">
+		<field name="name">vfsr.profile.education.subject.tree</field>
+		<field name="model">vfsr.profile.education.subject</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Subject" editable="bottom">
+				<field name="name"/>
+				<field name="total"/>
+				<field name="obtain"/>
+			</tree>
+		</field>
+   	 </record>
+
+	<record model="ir.ui.view" id="vfsr_profile_work_experience_tree">
+		<field name="name">vfsr.profile.work.experience.tree</field>
+		<field name="model">vfsr.profile.work.experience</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Work Experience" editable="bottom">
+				<field name="name"/>
+				<field name="company_name"/>
+				<field name="company_address"/>
+				<field name="company_phone"/>
+				<field name="year_from"/>
+				<field name="year_to"/>
+				<field name="reference_2_ref"/>
+			</tree>
+		</field>
+   	 </record>
+
+
+  	<record model="ir.ui.view" id="vfsr_profile_work_reference_tree">
+		<field name="name">vfsr.profile.work.reference.tree</field>
+		<field name="model">vfsr.profile.work.reference</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Work Reference" editable="bottom">
+				<field name="name"/>
+				<field name="ref_address"/>
+				<field name="ref_cont"/>
+				<field name="ref_work"/>
+				<field name="ref_position"/>
+			</tree>
+		</field>
+   	 </record>
+
+  	<record model="ir.ui.view" id="vfsr_profile_address_tree">
+		<field name="name">vfsr.profile.address.tree</field>
+		<field name="model">vfsr.profile.address</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Address" editable="bottom">
+				<field name="name"/>
+				<field name="address1"/>
+				<field name="address2"/>
+				<field name="address3"/>
+				<field name="ward"/>
+				<field name="district"/>
+				<field name="city"/>
+				<field name="mobile"/>
+			</tree>
+		</field>
+   	 </record>
+
+
+
+
+
+
+
+
+
+    </data>
+</openerp>

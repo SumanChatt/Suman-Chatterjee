@@ -1,0 +1,179 @@
+<openerp>
+<data>
+		<record model="ir.ui.view" id="rb_sale_data_view_form">   
+			               <field name="name">Updated Sale Data</field>  
+			               <field name="model">rb_sale_data</field>  
+						   <field name="type">form</field>
+						   <field name="arch" type="xml">
+									<form string="Sale Data" >
+										<group>
+										<field name="project" />
+										<field name="location" />
+										<field name="unit_head_pm" />
+										<field name="team_name" />
+										<field name="team_leader_code" />
+										<field name="team_leader" />
+										<field name="application_serial" />
+										<field name="status" />
+										<field name="status_date" />
+										<field name="customer_name" />
+										<field name="gender" />
+										<field name="age" />
+										<field name="id_no" />
+										<field name="company_name" />
+										<field name="contact_no" />
+										<field name="email_id" />
+										<field name="monthly_income" />
+										<field name="sale_code_bank_side" />
+										<field name="rainbow_code" />
+										<field name="tsr_vfsr_name" />
+										<field name="fpc_code" />
+										<field name="fpc_name" />
+										<field name="product" />
+										<field name="with_without_insurance" />
+										<field name="credit_card_type" />
+										<field name="loan_amount_fyp" />
+										<field name="mis_date" /> 																					
+										</group>									
+									</form>
+							</field>
+		</record>
+				<record model="ir.ui.view" id="rb_sale_data_eom_view_form">   
+			               <field name="name">End of the Month Sale Data</field>  
+			               <field name="model">rb_sale_data_eom</field>  
+						   <field name="type">form</field>
+						   <field name="arch" type="xml">
+									<form string="Sale Data EOM" >
+										<group>
+										<field name="project" />
+										<field name="location" />
+										<field name="unit_head_pm" />
+										<field name="team_name" />
+										<field name="team_leader_code" />
+										<field name="team_leader" />
+										<field name="application_serial" />
+										<field name="status" />
+										<field name="status_date" />
+										<field name="customer_name" />
+										<field name="gender" />
+										<field name="age" />
+										<field name="id_no" />
+										<field name="company_name" />
+										<field name="contact_no" />
+										<field name="email_id" />
+										<field name="monthly_income" />
+										<field name="sale_code_bank_side" />
+										<field name="rainbow_code" />
+										<field name="tsr_vfsr_name" />
+										<field name="fpc_code" />
+										<field name="fpc_name" />
+										<field name="product" />
+										<field name="with_without_insurance" />
+										<field name="credit_card_type" />
+										<field name="loan_amount_fyp" />
+										<field name="mis_date" />									
+										</group>									
+									</form>
+							</field>
+		</record>
+
+				<record model="ir.ui.view" id="rb_sale_data_view_tree">   
+			               <field name="name">Updated Sale Data</field>  
+			               <field name="model">rb_sale_data</field>  
+						   <field name="type">tree</field>
+						   <field name="arch" type="xml">
+									<tree string="Sale Data" >
+										<field name="project" />
+										<field name="location" />
+										<field name="unit_head_pm" />
+										<field name="team_name" />
+										<field name="team_leader_code" />
+										<field name="team_leader" />
+										<field name="application_serial" />
+										<field name="status" />
+										<field name="status_date" />
+										<field name="customer_name" />
+										<field name="gender" />
+										<field name="age" />
+										<field name="id_no" />
+										<field name="company_name" />
+										<field name="contact_no" />
+										<field name="email_id" />
+										<field name="monthly_income" />
+										<field name="sale_code_bank_side" />
+										<field name="rainbow_code" />
+										<field name="tsr_vfsr_name" />
+										<field name="fpc_code" />
+										<field name="fpc_name" />
+										<field name="product" />
+										<field name="with_without_insurance" />
+										<field name="credit_card_type" />
+										<field name="loan_amount_fyp" />
+										<field name="mis_date" />		
+																										
+									</tree>
+							</field>
+			</record>
+			<record model="ir.ui.view" id="rb_sale_data_eom_view_tree">   
+			               <field name="name">End of the Month Sale Data</field>  
+			               <field name="model">rb_sale_data_eom</field>  
+						   <field name="type">tree</field>
+						   <field name="arch" type="xml">
+									<tree string="Sale Data EOM" >
+										<field name="project" />
+										<field name="location" />
+										<field name="unit_head_pm" />
+										<field name="team_name" />
+										<field name="team_leader_code" />
+										<field name="team_leader" />
+										<field name="application_serial" />
+										<field name="status" />
+										<field name="status_date" />
+										<field name="customer_name" />
+										<field name="gender" />
+										<field name="age" />
+										<field name="id_no" />
+										<field name="company_name" />
+										<field name="contact_no" />
+										<field name="email_id" />
+										<field name="monthly_income" />
+										<field name="sale_code_bank_side" />
+										<field name="rainbow_code" />
+										<field name="tsr_vfsr_name" />
+										<field name="fpc_code" />
+										<field name="fpc_name" />
+										<field name="product" />
+										<field name="with_without_insurance" />
+										<field name="credit_card_type" />
+										<field name="loan_amount_fyp" />
+										<field name="mis_date" />										
+									</tree>
+							</field>
+			</record>
+						
+		<!-- ================================== Menu Defination ================================== -->
+
+
+		<record model="ir.actions.act_window" id="rb_sale_data_view_action">
+							<field name="name">Updated Sale Data Action</field>
+							<field name="type">ir.actions.act_window</field>
+							<field name="res_model">rb_sale_data</field>
+							<field name="view_type">form</field>
+							<field name="view_mode">tree,form</field>
+		</record>
+				<record model="ir.actions.act_window" id="rb_sale_data_eom_view_action">
+							<field name="name">End of the Month Sale Data Action</field>
+							<field name="type">ir.actions.act_window</field>
+							<field name="res_model">rb_sale_data_eom</field>
+							<field name="view_type">form</field>
+							<field name="view_mode">tree,form</field>
+		</record>
+
+		<!-- ================================== Menu Entry ================================== -->
+
+		<!--menuitem id="rb_sale_data_main" name="Sale Data"/>
+		<menuitem id="rb_sale_data_sub" name="Sub Menu" parent="rb_sale_data_main"/-->
+		<menuitem id="daily_sale_data" parent="rainbow_crm.rb_crm_sales_menu" name="Sale Data Updated Status" action="rb_sale_data_view_action" />
+		<menuitem id="eom_sale_data" parent="rainbow_crm.rb_crm_sales_menu" name="Sale Data Monthly " action="rb_sale_data_eom_view_action" />				
+</data>
+</openerp>

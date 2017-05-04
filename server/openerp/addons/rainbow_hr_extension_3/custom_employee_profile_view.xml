@@ -1,0 +1,424 @@
+<?xml version="1.0" ?>
+<openerp>
+
+<data noupdate="1">
+
+<record id="group_employee_profile_sheet_main+r" model="res.groups">
+				<field name="name"> EPS READ </field>
+</record>
+<record id="group_employee_profile_sheet_main+rw" model="res.groups">
+				<field name="name"> EPS WRITE </field>
+</record>
+<record id="group_employee_profile_sheet_main+rwe" model="res.groups">
+				<field name="name"> EPS ALL </field>
+</record>
+
+<record id="group_employee_profile_education+r" model="res.groups">
+				<field name="name"> EPS EDUCATION READ </field>
+</record>
+<record id="group_employee_profile_education+rw" model="res.groups">
+				<field name="name"> EPS EDUCATION WRITE </field>
+</record>
+<record id="group_employee_profile_education+rwe" model="res.groups">
+				<field name="name"> EPS EDUCATION ALL </field>
+</record>
+
+<record id="group_employee_profile_education_subject+r" model="res.groups">
+				<field name="name"> EPS EDUCATION DETAILS READ </field>
+</record>
+<record id="group_employee_profile_education_subject+rw" model="res.groups">
+				<field name="name"> EPS EDUCATION DETAILS WRITE </field>
+</record>
+<record id="group_employee_profile_education_subject+rwe" model="res.groups">
+				<field name="name"> EPS EDUCATION ALL </field>
+</record>
+
+<record id="group_employee_profile_work_experience+r" model="res.groups">
+				<field name="name"> EPS WORK EXPERIENCE READ </field>
+</record>
+<record id="group_employee_profile_work_experience+rw" model="res.groups">
+				<field name="name"> EPS WORK EXPERIENCE WRITE </field>
+</record>
+<record id="group_employee_profile_work_experience+rwe" model="res.groups">
+				<field name="name"> EPS WORK EXPERIENCE ALL </field>
+</record>
+
+<record id="group_employee_profile_work_reference+r" model="res.groups">
+				<field name="name"> EPS COMPANY REFERENCE READ </field>
+</record>
+<record id="group_employee_profile_work_reference+rw" model="res.groups">
+				<field name="name"> EPS COMPANY REFERENCE WRITE </field>
+</record>
+<record id="group_employee_profile_work_reference+rwe" model="res.groups">
+				<field name="name"> EPS WORK REFERENCE ALL </field>
+</record>
+
+<record id="group_employee_profile_address+r" model="res.groups">
+				<field name="name"> EPS ADDRESS READ </field>
+</record>
+<record id="group_employee_profile_address+rw" model="res.groups">
+				<field name="name"> EPS ADDRESS WRITE </field>
+</record>
+<record id="group_employee_profile_address+rwe" model="res.groups">
+				<field name="name"> EPS ADDRESS ALL </field>
+</record>
+
+<record id="group_interview_question_answer+r" model="res.groups">
+				<field name="name"> EPS QA HISTORY READ </field>
+</record>
+<record id="group_interview_question_answer+rw" model="res.groups">
+				<field name="name"> EPS QA HISTORY WRITE </field>
+</record>
+<record id="group_interview_question_answer+rwe" model="res.groups">
+				<field name="name"> EPS QA HISTORY ALL </field>
+</record>
+
+
+
+
+
+
+</data>
+
+
+
+<data>
+
+	<record model="ir.ui.view" id="employee_profile_sheet_main_form">
+		<field name="name">employee.profile.sheet.main.form</field>
+        	<field name="model">employee.profile.sheet.main</field>
+        	<field name="type">form</field>
+        	<field name="arch" type="xml">
+			<form string="Employee Profile" version="7.0">
+				<notebook position="inside" colspan="2"> 
+				<page string="EPS" position="inside"> 
+				<group>
+				<group>
+				<field name="name"/>
+				<field name="employee_group"/>
+				<field name="epsno2"/>
+				<field name="datereceived4"/>
+				<field name="dateupdated5"/>
+				<field name="firstname6"/>
+				<field name="middlename17"/>
+				<field name="middlename28"/>
+				<field name="surname9"/>
+				</group>
+				<!--<group>
+				<field name="gender10"/>
+				<field name="salutation11"/>
+				<field name="location12"/>
+				<field name="branch13"/>
+				<field name="source14"/>
+				<field name="position15"/>
+				<field name="project16"/>
+				<field name="team17"/>
+				</group-->
+				</group>
+				<group>
+				<field name="reference2address"/>
+				</group>
+				<group>
+				<group>
+				<field name="mobile136"/>
+				<field name="mobile237"/>
+				<field name="email138"/>
+				<field name="email239"/>
+				<field name="dob40"/>
+				<field name="maritalstatus41"/>
+				<field name="father42"/>
+				<field name="mother43"/>
+				<field name="familybooknumber44"/>
+				</group>
+				<group>
+				<field name="siblings45"/>
+				<field name="sibling146"/>
+				<field name="sibling247"/>
+				<field name="children48"/>
+				<field name="child149"/>
+				<field name="gender50"/>
+				<field name="child251"/>
+				<field name="gender52"/>
+				</group>
+				</group>
+				<group>
+				<field name="reference2education"/>
+				</group>
+				<group>
+				<field name="reference2job_profile"/>
+				</group>
+				<group>
+				<group>
+				<field name="reference68"/>
+				<field name="mobile70"/>
+				<field name="name71"/>
+				<field name="mobile72"/>
+				</group>
+				<group>
+				<field name="hobby173"/>
+				<field name="hobby274"/>
+				<field name="signature75"/>
+				<field name="date76"/>
+				</group>
+				</group>
+				</page>
+				<page string="Ref Check" position="inside">
+				<group>
+				<group>
+				<field name="ref_chk_date"/>
+				<field name="done_by"/>
+				<field name="type"/>
+				<field name="person_contacted"/>
+				</group>
+				<group>
+				<field name="mobile_tel"/>
+				<field name="reference2questionans"/>
+				<field name="decesion"/>
+				<field name="conclusion"/>
+				</group>
+				<group>
+				<field name="remarks"/>
+				</group>
+				</group>
+				</page> 
+				</notebook>
+			</form>
+        	</field>
+    	</record>
+
+
+
+	<record model="ir.ui.view" id="employee_profile_sheet_main_tree">
+		<field name="name">employee.profile.sheet.main.tree</field>
+		<field name="model">employee.profile.sheet.main</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Employee Profile">
+				<field name="name"/>
+				<field name="employee_group"/>
+				<field name="epsno2"/>
+				<field name="datereceived4"/>
+				<field name="salutation11"/>
+				<field name="location12"/>
+				<field name="branch13"/>
+				<field name="source14"/>
+				<field name="position15"/>
+				<field name="project16"/>
+				<field name="team17"/>
+				<field name="mobile136"/>
+				<field name="email138"/>
+				<field name="dob40"/>
+			</tree>
+		</field>
+   	 </record>
+
+
+	<record model="ir.ui.view" id="employee_profile_education_tree">
+		<field name="name">employee.profile.education.tree</field>
+		<field name="model">employee.profile.education</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Education" editable="bottom">
+				<field name="name"/>
+				<field name="board"/>
+				<field name="institute"/>
+				<field name="ins_location"/>
+				<field name="year_from"/>
+				<field name="year_to"/>
+				<field name="reference2subjects"/>
+				
+			</tree>
+		</field>
+   	 </record>
+	
+
+	<record model="ir.ui.view" id="employee_profile_education_subject_tree">
+		<field name="name">employee.profile.education.subject.tree</field>
+		<field name="model">employee.profile.education.subject</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Subject" editable="bottom">
+				<field name="name"/>
+				<field name="total"/>
+				<field name="obtain"/>
+			</tree>
+		</field>
+   	 </record>
+	
+
+	<record model="ir.ui.view" id="employee_profile_work_experience_tree">
+		<field name="name">employee.profile.work.experience.tree</field>
+		<field name="model">employee.profile.work.experience</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Work Experience" editable="bottom">
+				<field name="name"/>
+				<field name="company_name"/>
+				<field name="company_address"/>
+				<field name="company_phone"/>
+				<field name="year_from"/>
+				<field name="year_to"/>
+				<field name="reference_2_ref"/>
+			</tree>
+		</field>
+   	 </record>
+	
+
+	<record model="ir.ui.view" id="employee_profile_work_reference_tree">
+		<field name="name">employee.profile.work.reference.tree</field>
+		<field name="model">employee.profile.work.reference</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Work Reference" editable="bottom">
+				<field name="name"/>
+				<field name="ref_address"/>
+				<field name="ref_cont"/>
+				<field name="ref_work"/>
+				<field name="ref_position"/>
+			</tree>
+		</field>
+   	 </record>
+	
+
+	<record model="ir.ui.view" id="employee_profile_address_tree">
+		<field name="name">employee.profile.address.tree</field>
+		<field name="model">employee.profile.address</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Address" editable="bottom">
+				<field name="name"/>
+				<field name="address1"/>
+				<field name="address2"/>
+				<field name="address3"/>
+				<field name="ward"/>
+				<field name="district"/>
+				<field name="city"/>
+				<field name="mobile"/>
+			</tree>
+		</field>
+   	 </record>
+
+
+
+	<record model="ir.ui.view" id="interview_question_answer_tree">
+		<field name="name">interview.question.answer.tree</field>
+		<field name="model">interview.question.answer</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Question and Answer" editable="bottom">
+				<field name="answer"/>
+				<field name="name"/>
+			</tree>
+		</field>
+   	 </record>
+
+
+
+
+
+	<record model="ir.ui.view" id="employee_profile_education_form">
+		<field name="name">employee.profile.education.form</field>
+		<field name="model">employee.profile.education</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Education">
+				<field name="name"/>
+				<field name="board"/>
+				<field name="institute"/>
+				<field name="ins_location"/>
+				<field name="year_from"/>
+				<field name="year_to"/>
+				<field name="reference2subjects"/>
+				
+			</form>
+		</field>
+   	 </record>
+	
+
+	<record model="ir.ui.view" id="employee_profile_education_subject_form">
+		<field name="name">employee.profile.education.subject.form</field>
+		<field name="model">employee.profile.education.subject</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Subject">
+				<field name="name"/>
+				<field name="total"/>
+				<field name="obtain"/>
+			</form>
+		</field>
+   	 </record>
+	
+
+	<record model="ir.ui.view" id="employee_profile_work_experience_form">
+		<field name="name">employee.profile.work.experience.form</field>
+		<field name="model">employee.profile.work.experience</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Work Experience">
+				<field name="name"/>
+				<field name="company_name"/>
+				<field name="company_address"/>
+				<field name="company_phone"/>
+				<field name="year_from"/>
+				<field name="year_to"/>
+				<field name="reference_2_ref"/>
+			</form>
+		</field>
+   	 </record>
+	
+
+	<record model="ir.ui.view" id="employee_profile_work_reference_form">
+		<field name="name">employee.profile.work.reference.form</field>
+		<field name="model">employee.profile.work.reference</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Work Reference">
+				<field name="name"/>
+				<field name="ref_address"/>
+				<field name="ref_cont"/>
+				<field name="ref_work"/>
+				<field name="ref_position"/>
+			</form>
+		</field>
+   	 </record>
+	
+
+	<record model="ir.ui.view" id="employee_profile_address_form">
+		<field name="name">employee.profile.address.form</field>
+		<field name="model">employee.profile.address</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Address">
+				<field name="name"/>
+				<field name="address1"/>
+				<field name="address2"/>
+				<field name="address3"/>
+				<field name="ward"/>
+				<field name="district"/>
+				<field name="city"/>
+				<field name="mobile"/>
+			</form>
+		</field>
+   	 </record>
+
+
+
+
+
+
+
+
+	<record model="ir.actions.act_window" id="employee_profile_sheet_main_window">
+            <field name="name">Employee Profile</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">employee.profile.sheet.main</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+    	</record>
+
+	
+	<menuitem id="rainbow_custom_employee_profile_sub_menu" parent="hr.menu_hr_main" name="Employee Profile"  action="employee_profile_sheet_main_window"/>
+
+
+</data>
+</openerp>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+        <openerp>
+            <data noupdate="0">
+                <record id="group_doc_access" model="res.groups">
+				        <field name="name">HR Document Access </field>
+			    </record>
+
+            </data>
+        </openerp>

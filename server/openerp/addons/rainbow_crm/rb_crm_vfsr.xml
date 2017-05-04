@@ -1,0 +1,273 @@
+<?xml version="1.0" ?>
+<openerp>
+<data noupdate="0">
+
+
+		 <record id="group_sales_coordinator" model="res.groups">
+			<field name="name">Sales Coordinator</field>
+			
+		</record>
+
+
+		<record id="group_central_sales_coordinator" model="res.groups">
+			<field name="name">Central Sales Coordinator</field>
+			
+		</record>
+
+
+		<!-- Model Rule Own Leads Only   -->
+		<record model="ir.rule" id="sales_coordenater_only">
+			<field name="name">Sales Coordinator</field>
+			<field name="model_id" ref="model_rb_crm_vfsr"/>
+			<field name="domain_force">[('fsr_assign','=',user.id)]</field>
+			
+			<field name="groups" eval="[(4, ref('group_sales_coordinator'))]"/>
+		</record>	
+		<record model="ir.rule" id="sales_coordena_only">
+			<field name="name">Sales Coordinator</field>
+			<field name="model_id" ref="model_rb_crm_vfsr"/>
+			<field name="domain_force">[('vfsr_team_id.sales_coordenater','=',user.id)]</field>
+			
+			<field name="groups" eval="[(4, ref('group_sales_coordinator'))]"/>
+		</record>	
+
+		 <record id="group_team_supervisor" model="res.groups">
+			<field name="name">Team Supervisor</field>
+			
+		</record>
+		
+		<record model="ir.rule" id="team_supervisor_only">
+			<field name="name">Team Supervisor</field>
+			<field name="model_id" ref="model_rb_crm_vfsr"/>
+			<field name="domain_force">[('vfsr_team_id.team_supervisor','=',user.id)]</field>
+			
+			<field name="groups" eval="[(4, ref('group_team_supervisor'))]"/>
+		</record>	
+		
+		 <record id="group_vfsr_qa" model="res.groups">
+			<field name="name">VFSR QA</field>
+			
+		</record>
+
+		<record model="ir.rule" id="vfsr_qa_only">
+			<field name="name">VFSR QA</field>
+			<field name="model_id" ref="model_rb_crm_vfsr"/>
+			<field name="domain_force">[('vfsr_team_id.vfsr_qa','=',user.id)]</field>
+			
+			<field name="groups" eval="[(4, ref('group_vfsr_qa'))]"/>
+		</record>	
+<!--VFSR TREE-->
+		
+		 <record model="ir.ui.view" id="rb_crm_vfsr_tree">
+                        <field name="name">rb.crm.vfsr.tree</field>
+                        <field name="model">rb.crm.vfsr</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="VFSR">
+                                        <field name="name"/>
+										<field name="mobile"/>
+										<field name="remarks"/>
+										<field name="vfsr_state"/>
+                                </tree>
+                        </field>
+                </record>
+	
+		<!--VFSR form view-->
+       
+		 <record model="ir.ui.view" id="rb_crm_vfsr_form">
+                        <field name="name">rb.crm.vfsr.form</field>
+                        <field name="model">rb.crm.vfsr</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="VFSR" version="7.0">
+								
+
+									<header>
+											<button name="send_function" string="Send To QA" type="object" class="oe_highlight" attrs="{'invisible':[('vfsr_state','=','qa')]}" groups="rainbow_crm.group_sales_coordinator,rainbow_crm.group_team_supervisor"/>
+								</header>
+								<sheet>
+									<notebook position="inside" colspan="100"> 
+								    <page string="General" position="inside"> 
+									<group>
+									<group>
+                                        <field name="name"/>
+										<field name="fsr_assign" readonly="1"/>
+										<field name="vfsr_team_id" domain="['|','|',('sales_coordenater', '=', fsr_assign),('team_supervisor', '=', fsr_assign),('vfsr_qa', '=', fsr_assign)]"/>
+										<field name="vfsr" domain="[('vfsr', '=', vfsr_team_id)]" on_change="onchange_get_phone(vfsr)"/>
+									</group>	
+									<group>
+										<group colspan="2" col="8">
+											<field name="mobile"/>
+											<button name="custom_export" string="Dial" type="object" context="{'mobilex':mobile,'id':id,'remarks':remarks}" attrs="{'invisible':['|',('state','!=','draft'),('mobile','=',False)]}"/>
+											<button name="end_call" string="HangUp" type="object" class="oe_highlight" context="{'mobilex':mobile,'remarks':remarks,'id':id}" attrs="{'invisible':[('state','!=','Hangup')]}"/>
+										</group>		
+										<field name="remarks" attrs="{'required':[('state','==','Hangup')]}"/>
+										<field name="create_date"/>
+										<field name="followup_date"/>
+										<field name="state" invisible="1"/>
+										<field name="vfsr_state" invisible="1"/>
+										
+									</group>
+									<group string="Sales Coordinator" groups="rainbow_crm.group_sales_coordinator,rainbow_crm.group_central_sales_coordinator">
+										<!--<field name="call_date" />-->
+										<field name="correct_person" attrs="{'readonly':[('vfsr_state','==','TS')]}"/>
+										<field name="tl_met" attrs="{'readonly':[('vfsr_state','==','TS')]}"/>
+										<field name="agent_status_app" attrs="{'readonly':[('vfsr_state','==','TS')]}"/>
+										<field name="agent_status_loans" attrs="{'readonly':[('vfsr_state','==','TS')]}"/>
+										<field name="scheme_incentive" attrs="{'readonly':[('vfsr_state','==','TS')]}"/>
+										<field name="scheme_contest" attrs="{'readonly':[('vfsr_state','==','TS')]}"/>
+										<field name="support_tl" attrs="{'readonly':[('vfsr_state','==','TS')]}"/>
+										<field name="case_apps_status" attrs="{'readonly':[('vfsr_state','==','TS')]}"/>
+										<field name="app_till_date" attrs="{'readonly':[('vfsr_state','==','TS')]}"/>
+										<field name="loan_till_date" attrs="{'readonly':[('vfsr_state','==','TS')]}"/>
+										<field name="received_payout" attrs="{'readonly':[('vfsr_state','==','TS')]}"/>
+										<field name="comment" attrs="{'readonly':[('vfsr_state','==','TS')]}"/>
+									</group>
+									
+									<group string="Team Supervisor" groups="rainbow_crm.group_team_supervisor,rainbow_crm.group_central_sales_coordinator">
+										<!--<field name="last_call_date" />-->
+										
+										<field name="purpose_of_call" attrs="{'readonly':[('vfsr_state','==','SC')]}"/>
+										<field name="agent_status_app_ts" attrs="{'readonly':[('vfsr_state','==','SC')]}"/>
+										<field name="agent_status_loans_ts" attrs="{'readonly':[('vfsr_state','==','SC')]}"/>
+										<field name="scheme_incentive_ts" attrs="{'readonly':[('vfsr_state','==','SC')]}"/>
+										<field name="first_loan" attrs="{'readonly':[('vfsr_state','==','SC')]}"/>
+										<field name="training_recomendate" attrs="{'readonly':[('vfsr_state','==','SC')]}"/>
+										<field name="app_till_date_ts" attrs="{'readonly':[('vfsr_state','==','SC')]}"/>
+										<field name="loan_till_date_ts" attrs="{'readonly':[('vfsr_state','==','SC')]}"/>
+										<field name="received_payout_ts" attrs="{'readonly':[('vfsr_state','==','SC')]}"/>
+										<field name="notes_ts" attrs="{'readonly':[('vfsr_state','==','SC')]}"/>
+									</group>
+									<group string="VFSR QA" groups="rainbow_crm.group_vfsr_qa,rainbow_crm.group_central_sales_coordinator">
+										<!--<field name="call_date_qa" />-->
+										<field name="cic_before_login_app" attrs="{'readonly':['|',('vfsr_state','==','TS'),('vfsr_state','==','SC')]}"/>
+										<field name="customer_personally" attrs="{'readonly':['|',('vfsr_state','==','TS'),('vfsr_state','==','SC')]}"/>
+										<field name="originals_documents" attrs="{'readonly':['|',('vfsr_state','==','TS'),('vfsr_state','==','SC')]}"/>
+										<field name="customer_eligibility" attrs="{'readonly':['|',('vfsr_state','==','TS'),('vfsr_state','==','SC')]}"/>
+										<field name="notes_qa" attrs="{'readonly':['|',('vfsr_state','==','TS'),('vfsr_state','==','SC')]}"/>
+									</group>
+
+
+
+								<group string="Central Sales Coordinator" groups="rainbow_crm.group_central_sales_coordinator">
+
+												<field name="bcbtl" />
+												<field name="know_about_rainbow" />
+												<field name="loan_lst_3m" />
+												<field name="app_end_month" />
+												<field name="loan_end_month" />
+												<field name="face_difficult" />
+												<field name="support_from_tl" />
+												<field name="working_on_rainbow" />
+												<field name="notesforsc" />
+									</group>
+
+
+
+
+									</group>	
+									</page>
+									
+									<page string="Calling History">
+												<field name="rela2saveCall" readonly="1">
+													<tree string="History" editable="bottom">
+														
+														<field name="s_call_time"/>
+														<field name="s_endcall_time"/>
+														<field name="differ_time"/>
+														<field name="mobile"/>
+														<field name="remarks"/>
+														
+													</tree>
+												</field>	
+										
+									</page>
+									</notebook>	
+								</sheet>	
+
+
+
+
+
+
+
+                                </form>
+                        </field>
+                </record>
+        
+		
+		<!--VFSR action menue-->
+        
+		 <record model="ir.actions.act_window" id="rb_crm_vfsr_window">
+                        <field name="name">VFSR</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.crm.vfsr</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+         </record>
+		 
+		 <!--VFSR Team-->
+
+
+		<record model="ir.ui.view" id="rb_vfsr_team_tree">
+                        <field name="name">rb.vfsr.team.tree</field>
+                        <field name="model">rb.vfsr.team</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="VFSR Team">
+                                        <field name="name"/>
+										<field name="sales_coordenater"/>
+										<field name="team_supervisor"/>
+										<field name="vfsr_qa"/>
+										
+                                </tree>
+                        </field>
+                </record>
+	
+		<!--VFSR form view-->
+       
+		 <record model="ir.ui.view" id="rb_vfsr_team_form">
+                        <field name="name">rb.vfsr.team.form</field>
+                        <field name="model">rb.vfsr.team</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <form string="VFSR Team">
+								
+										<field name="name"/>
+										<field name="sales_coordenater"/>
+										<field name="team_supervisor"/>
+										<field name="vfsr_qa"/>
+										<field name="vfsr"/>
+										<field name="description"/>
+									
+                                </form>
+                        </field>
+                </record>
+        
+		
+		<!--VFSR action menue-->
+        
+		 <record model="ir.actions.act_window" id="rb_vfsr_team_window">
+                        <field name="name">VFSR Team</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.vfsr.team</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+         </record>	
+		 
+		 
+		 
+		 
+		 
+		 
+
+		 <!--Follow up Team menu-->
+		 
+		 <menuitem id="rb_vfsr_team_menu" parent="rb_crm_configure_menu" name="VFSR Team" action="rb_vfsr_team_window"  />
+		 
+		 
+		<menuitem id="rb_crm_vfsr_menu" parent="rb_crm_sales_menu" name="VFSR" action="rb_crm_vfsr_window"  sequence="5" groups=
+"group_sales_coordinator,group_team_supervisor,group_vfsr_qa"/>
+
+</data>
+</openerp>

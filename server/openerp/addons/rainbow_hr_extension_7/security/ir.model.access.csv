@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+id_leave_approval_manager_custom,Leave Approval By Manager,model_hr_holidays,group_first_privilege,0,0,0,0

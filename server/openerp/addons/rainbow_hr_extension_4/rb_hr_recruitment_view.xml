@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+			<record model="ir.ui.view" id="hr_extended_applicant_form_iview">
+			<field name="name">hr.extended.applicant.form.iview</field>
+			<field name="model">hr.applicant</field>
+			<field name="inherit_id" ref="hr_recruitment.crm_case_form_view_job" />
+			<field name="arch" type="xml">
+					<xpath expr="//separator[@string='Application Summary']" position="before">
+						<separator string="Skill and Qualification"/>
+								<field name="skill_quali_summery"/>
+							<separator string="Interview Summary"/>
+								<field name="app_stage_sum"/>
+
+					</xpath>
+					<field name="type_id" position="after" >
+						
+						<field name="emp_id_bck" />
+					</field>
+					
+			</field>
+			</record>
+
+
+
+   	 		
+	<!-- Application Summary Tree view -->
+	
+	    <record model="ir.ui.view" id="recruitment_satgewise_summery_tree">
+        <field name="name">recruitment.satgewise.summery.tree</field>
+        <field name="model">recruitment.satgewise.summery</field>
+        <field name="arch" type="xml">
+            <tree string="Application Summary" editable="bottom">
+                <field name="name"/>
+				<field name="interviewer" />
+				<field name="next_action_date" />
+				<field name="action_details" />
+				<field name="stagewise_appreciation" />
+				<field name="note" />
+            </tree>
+        </field>
+    </record>
+	
+		<!-- Skill Qualification Tree view -->
+	
+	    <record model="ir.ui.view" id="qualification_details_tree">
+        <field name="name">qualification.details.tree</field>
+        <field name="model">qualification.details</field>
+        <field name="arch" type="xml">
+            <tree string="Skill and Qualification" editable="bottom">
+                <field name="name"/>
+				<field name="degree_type" />
+				<field name="area" />
+				<field name="uvboard" />
+				<field name="address" />
+			</tree>
+        </field>
+    </record>
+
+	</data>
+</openerp>

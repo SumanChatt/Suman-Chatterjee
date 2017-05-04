@@ -1,0 +1,98 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+			<record model="ir.ui.view" id="hr_employee_form_iview">
+			<field name="name">hr.employee.form.iview</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr.view_employee_form"/>
+			<field name="arch" type="xml">
+                    <field name="department_id" position="before">
+                    	<field name="employee_number"/>
+                    	<field name="branch"/>
+                    	<field name="project"/>
+		    </field>
+		    <field name="department_id" position="after">
+                        <field name="team_id" on_change="onchange_team_id(team_id)"/>
+                        <field name="title1" />
+		    </field>
+                    <field name="user_id" position="after">
+                        <field name="rb_group"/>
+                    </field>
+                    <field name="coach_id" position="after">
+                        <field name="p_payroll"/>
+		    </field>
+		    <field name="identification_id" position="after">
+                        <field name="issue_date"/>
+			<field name="issue_place"/>
+			<field name="bank_acc_id"/>
+		    </field>
+		    <field name="birthday" position="after">
+                        <field name="origin"/>
+		    </field>
+		    <field name="marital" position="after">
+                        <field name="no_of_dependent"/>
+		    </field>
+		    <field name="address_home_id" position="after">
+                        <field name="mobile_ct"/>
+                        <field name="mob_oth"/>
+		    </field>
+            
+			<xpath expr="//group[@string='Citizenship &amp; Other Info']" position="after">
+
+					<group string="Official Information">
+
+							            <field name="pf_id" />
+										<field name="identification_sub"/>
+										<field name="accidental_ins"/>
+										<field name="medical_ins"/>
+										<field name="exp_date"/>
+										<field name="pan_number" />
+
+					</group>
+
+                
+            </xpath>
+            <field name="active" position="after">
+                        <field name="resign"/>
+                        <field name="resign_doc" attrs="{'invisible':[('resign','=',False)]}"/>
+                        <field name="resign_date" attrs="{'invisible':[('resign','=',False)]}"/>
+                        <field name="documents_provided" attrs="{'invisible':[('resign','=',False)]}" widget="many2many_tags" />
+            </field>
+
+            <xpath expr="//group[@string='Active']" position="before">
+
+					<group string="Checklist">
+
+							<field name="cv_cover_letter" />
+                            <field name="id_card_no"/>
+                            <field name="house_hold"/>
+							<field name="centificate" />
+                            <field name="health_check"/>
+                            <field name="picture"/>
+							<field name="fraud_prevantion" />
+                            <field name="criminal_background"/>
+                            <field name="offer_letter"/>
+							<field name="probation_appraisal" />
+                            <field name="labour_contract"/>
+                            <field name="services_contract"/>
+							<field name="transfer_form" />
+                            <field name="disciplinary_action_form"/>
+                            <field name="registration_form"/>
+							<field name="hanover_minute" />
+                            <field name="clearance_form"/>
+                            <field name="terminate_dicision"/>
+							<field name="agency_cnt" />
+							<field name="free_cnt" />
+							<field name="seasonal_contract" />
+							<field name="performance_appraisal" />          
+
+					</group>
+			 </xpath>
+		    
+		    
+		</field>
+   	 </record>
+
+	</data>
+</openerp>

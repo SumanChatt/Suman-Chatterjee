@@ -1,0 +1,95 @@
+<?xml version="1.0" ?>
+<openerp>
+
+	<data noupdate="0">
+
+
+				<record model="ir.rule" id="team_supervisor_only_rule">
+					<field name="name">Team Supervisor Rule</field>
+					<field name="model_id" ref="model_rb_tl_vfsr_meeting"/>
+					<field name="domain_force">[('supervisor','=',user.id)]</field>
+					<field name="groups" eval="[(4, ref('group_team_supervisor'))]"/>
+				</record>
+
+
+
+	</data>
+
+
+
+
+	<data>
+		 <record model="ir.ui.view" id="rainbow_tl_vfsr_form">
+                        <field name="name">Rainbow TL VFSR MEETING</field>
+                        <field name="model">rb.tl.vfsr.meeting</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                              <form string="Rainbow TL VFSR Meeting" version="7.0">
+                              	<sheet>
+									
+										<group>
+                                        	
+											<field name="vfsr_line" widget="one2many_list"/>
+										</group>
+										<group>
+											<field name="supervisor" readonly="1"/>
+											<field name="meeting_date"/>
+											<field name="remarks"/>
+										</group>
+										
+									
+								</sheet>
+                             </form>
+                        </field>
+                </record>
+
+
+
+		 <record model="ir.ui.view" id="rainbow_tl_vfsr_tree">
+                        <field name="name">Rainbow TL VFSR MEETING</field>
+                        <field name="model">rb.tl.vfsr.meeting</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                              <tree string="Rainbow TL VFSR Meeting List" >
+								
+                                        <field name="supervisor" />
+										<field name="vfsr_line" />
+										<field name="meeting_date"/>
+										<field name="remarks"/>
+							</tree>
+                        </field>
+                </record>
+
+            		 <record model="ir.ui.view" id="rainbow_tl_vfsr_one2many">
+                        <field name="name">Rainbow TL VFSR Lines</field>
+                        <field name="model">vfsr.apps.promised</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                              <tree string="Rainbow TL VFSR Entries"  editable="bottom">
+										<field name="supervisor" invisible="1"/>
+                                        <field name="vfsr_team_id" domain="[('team_supervisor', '=', supervisor)]"/>
+                                        <field name="vfsr_name" domain="[('vfsr', '=', vfsr_team_id)]"/>
+                                        <field name="aap_promices" />
+										<field name="remarks" />
+										
+							</tree>
+                        </field>
+                </record>
+
+
+
+
+              <record model="ir.actions.act_window" id="rb_crm_vfsr_tl_meeting_window">
+                        <field name="name">VFSR SC MEETING</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.tl.vfsr.meeting</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+         </record>
+
+
+                <menuitem id="rb_crm_vfsr_tl_meeting_menu" parent="rb_crm_sales_menu" name="TL VFSR  MEETING" action="rb_crm_vfsr_tl_meeting_window"  sequence="6" groups="group_team_supervisor"/>
+
+
+	</data>
+</openerp>

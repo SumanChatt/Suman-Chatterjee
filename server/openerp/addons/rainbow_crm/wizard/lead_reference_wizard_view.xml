@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+        <!-- wizard action on rb.crm.lead -->
+        <act_window id="lead_reference_wizard_action"
+            name="Refer Lead"
+            src_model="rb.crm.lead"
+            res_model="reference.lead.wizard"
+            view_type="form" view_mode="form"
+            key2="client_action_multi" target="new"
+            groups="group_tsr,group_tl,group_sa"/>
+
+
+        <act_window id="lead_reference_tsr_wizard_action"
+            name="Assign Tsr"
+            src_model="rb.crm.lead"
+            res_model="reference.lead.tsr.wizard"
+            view_type="form" view_mode="form"
+            key2="client_action_multi" target="new"
+            groups="group_tl"/>
+
+
+
+        <!-- wizard view -->
+        <record id="refer_lead_wizard_view" model="ir.ui.view">
+            <field name="name">Refer lead</field>
+            <field name="model">reference.lead.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Lead Reference" version="7.0">
+                    <field name="lead_ids"/>
+                    <footer>
+                        <button string="Refer" name="change_team_button" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="refer_lead_tsr_wizard_view" model="ir.ui.view">
+            <field name="name">Assign TSR</field>
+            <field name="model">reference.lead.tsr.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Assign Tsr" version="7.0">
+                    <field name="lead_ids"/>
+                    <footer>
+                        <button string="Assign" name="change_tl_campaign_button" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+
+
+
+        <!-- wizard lead list view -->
+        <record id="refer_lead_wizard_tree_view" model="ir.ui.view">
+            <field name="name">Refer lead</field>
+            <field name="model">reference.lead.class</field>
+            <field name="arch" type="xml">
+                <!-- the user list is editable, but one cannot add or delete rows -->
+                <tree string="Leads" editable="bottom" create="false" delete="false">
+                    <field name="lead_subject"/>
+                    <!--field name="new_campaign_id"/-->
+                    <field name ="hidden_tl_id" invisible="1"/>
+                    <field name="new_sales_team" on_change="onchange_sl_team(new_sales_team)"/>
+                    <field name="team_lead_id"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="refer_lead_tsr_wizard_tree_view" model="ir.ui.view">
+            <field name="name">Assign Tsr</field>
+            <field name="model">reference.lead.tsr.class</field>
+            <field name="arch" type="xml">
+                <!-- the user list is editable, but one cannot add or delete rows -->
+                <tree string="Leads" editable="bottom" create="false" delete="false">
+                    <field name="lead_subject"/>
+                    <!--field name="new_campaign_id"/-->
+                    <field name="new_campaign" />
+                    <field name="new_tl"/>
+                    <field name="lead_sale_team"/>
+                    <field name="lead_ref_st" invisible="1"/>
+                    <field name="tsr_cg_flag" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+
+    </data>
+</openerp>

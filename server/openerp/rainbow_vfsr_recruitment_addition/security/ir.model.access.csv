@@ -1,0 +1,7 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_vfsr_applications","Access to VFSR Applications","model_vfsr_recruitment_process","group_vfsr_applicant_access",1,1,1,0
+"access_vfsr_application_disp","Access to VFSR App Disp","model_vfsr_disposition","group_vfsr_applicant_access",1,0,0,0
+"access_vfsr_application_subdisp","Access to VFSR App Sub Disp","model_vfsr_sub_disposition","group_vfsr_applicant_access",1,0,0,0
+"access_vfsr_application_callhistory","Access to VFSR call history","model_vfsr_application_call_history","group_vfsr_applicant_access",1,0,0,0
+"access_vfsr_application_disp_access","Access to VFSR App Disp Access","model_vfsr_disposition","group_vfsr_config",1,1,1,0
+"access_vfsr_application_subdisp_access","Access to VFSR App Sub Disp Access","model_vfsr_sub_disposition","group_vfsr_config",1,1,1,0

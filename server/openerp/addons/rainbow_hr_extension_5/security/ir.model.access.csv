@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+id_contract_policy0,access_contract_policy0,model_contract_policy,group_contract_policy_r,1,0,0,0
+id_contract_policy1,access_contract_policy1,model_contract_policy,group_contract_policy_rw,1,1,0,0
+id_contract_policy2,access_contract_policy2,model_contract_policy,group_contract_policy_rwe,1,1,1,0
+id_contract_details0,access_contract_details0,model_contract_details,group_contract_details_r,1,0,0,0
+id_contract_details1,access_contract_details1,model_contract_details,group_contract_details_rw,1,1,0,0
+id_contract_details2,access_contract_details2,model_contract_details,group_contract_details_rwe,1,1,1,0
+id_m2o_emp_conttype0,access_m2o_emp_conttype0,model_m2o_emp_conttype,group_m2o_emp_conttype_r,1,0,0,0
+id_m2o_emp_conttype1,access_m2o_emp_conttype1,model_m2o_emp_conttype,group_m2o_emp_conttype_rw,1,1,0,0
+id_m2o_emp_conttype2,access_m2o_emp_conttype2,model_m2o_emp_conttype,group_m2o_emp_conttype_rwe,1,1,1,0

@@ -1,0 +1,54 @@
+<openerp>
+<data>
+		<!-- <record id="group_tl" model="res.groups">
+			<field name="name">TL</field>
+		</record> -->
+		<record model="ir.ui.view" id="announcement_view_form">   
+			               <field name="name">Announcement form View</field>  
+			               <field name="model">announcement</field>  
+						   <field name="type">form</field>
+						   <field name="arch" type="xml">
+									<form string="Announcement form view">
+										<group>
+										<field name="subject"/>
+										<field name="start_date" />
+										<field name="end_date" />
+										<field name="messege" />
+										<field name="active" />									
+										</group>									
+									</form>
+							</field>
+		</record>
+				<record model="ir.ui.view" id="announcement_view_tree">   
+			               <field name="name">Announcement Tree View</field>  
+			               <field name="model">announcement</field>  
+						   <field name="type">tree</field>
+						   <field name="arch" type="xml">
+									<tree string="Announcement Tree View" >
+										<field name="subject"/>
+										<field name="start_date" />
+										<field name="end_date" />
+										<field name="active" />								
+									</tree>
+							</field>
+			</record>
+			
+			<!-- ================================== Menu Defination ================================== -->
+
+
+		<record model="ir.actions.act_window" id="announcement_view_action">
+							<field name="name">Announcement Action</field>
+							<field name="type">ir.actions.act_window</field>
+							<field name="res_model">announcement</field>
+							<field name="view_type">form</field>
+							<field name="view_mode">tree,form</field>
+		</record>				  
+		<!-- ================================== Menu Entry ================================== -->
+
+		<!--<menuitem id="parent_notebook" name="Announcement"/>
+		<menuitem id="sub_menu" name="Announcement" parent="parent_notebook"/>
+		<menuitem id="notebook_action" parent="sub_menu" name="Messege" action="announcement_view_action" />-->
+		<menuitem id="announcement" parent="rainbow_crm.rb_crm_sales_menu" name="Announcement" action="announcement_view_action"/>
+		
+</data>
+</openerp>

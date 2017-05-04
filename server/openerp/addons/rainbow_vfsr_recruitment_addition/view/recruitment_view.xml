@@ -1,0 +1,306 @@
+<?xml version="1.0" ?>
+	<openerp>
+			<data>	
+
+
+						<record model="ir.ui.view" id="rb_vfsr_recruitment_view">
+                        	<field name="name">VFSR Recruitment Process</field>
+                        	<field name="model">vfsr.recruitment.process</field>
+                        	<field name="type">form</field>
+                        	<field name="arch" type="xml">
+                                <form string="VFSR Recruitment"  version="7.0">
+                                    <head>
+
+                                    <button name="call" string="Dial" type="object" context="{'mobilex':mobile,'id':id,'disposition_status':disposition}" attrs="{'invisible':['|',('state','!=','draft'),('mobile','=',False)]}" />
+                                    <button name="hangup" string="HangUp" type="object" class="oe_highlight" context="{'mobilex':mobile,'disposition_status':disposition,'subdisposition_status':subdisposition,'id':id}" attrs="{'invisible':[('state','!=','Hangup')]}" />
+
+                                    </head>
+									<sheet>
+                                        <label for="vfsr_name" class="oe_edit_only"/>
+											<h1><field name="vfsr_name" placeholder="VFSR name..." required="1"/></h1>
+
+                                        <notebook position="inside" colspan="100">
+										    <page string="General" position="inside">
+                                                <group>
+                                                    <group>
+                                                        <field name="mobile" required="1"/>
+                                                        <field name="name" />
+                                                        <field name="locaton" required="1"/>
+                                                        <field name="dob" />
+							<field name="source_type"  required="1"/>
+                                                        <field name="source"  required="1"/>
+							<field name ="email" required="1"/>
+							<field name="address" required="1"/>
+							<field name="income" required="1"/>
+                                                    </group>
+                                                    <group>
+                                                        <field name="disposition" required="1"  on_change="disposition_onchange()"/>
+                                                        <field name="subdisposition" required="1" />
+                                                        <field name="profession" />
+                                                        <field name="province" />
+                                                        <field name ="state" invisible="1"/>
+							<field name="recruiter" readonly="1"/>
+                                                    </group>
+                                                </group>
+                                            </page>
+                                            <page string="Questionnaires" position="inside">
+                                                <group>
+
+                                                <group string="I. Các câu hỏi liên quan đến Nhân Thân">
+                                                        <field name="q1"/>
+                                                        <field name="q2"/>
+                                                        <field name="q3"/>
+                                                        <field name="q4"/>
+                                                        <field name="q5"/>
+                                                       
+                                                    </group>
+                                                    <group>
+                                                    </group>
+                                                    <group string="II.Nghiệp vụ">
+                                                         <field name="q6"/>
+                                                        <field name="q7"/>
+                                                        <field name="q8"/>
+                                                        <field name="q9"/>
+                                                        <field name="q10"/>
+                                                        <field name="q11"/>
+                                                        <field name="q12"/>
+                                                      
+                                                    </group>
+                                                    <group>
+                                                    </group>
+                                                    <group string="III. Các câu hỏi về Đạo Đức nghề nghiệp">
+                                                          <field name="q13"/>
+                                                        <field name="q14"/>
+                                                        <field name="q15"/>
+                                                        <field name="q16"/>
+                                                        <field name="q17"/>
+                                                        
+                                                    </group>
+                                                    <group>
+                                                    </group>
+                                                    <group string="IV. Các câu hỏi về quy trình">
+                                                        <field name="q18"/>
+                                                        <field name="q19"/>
+                                                        <field name="q20"/>
+                                                        <field name="q21"/>
+                                                        <field name="q22"/>
+                                                        </group>
+                                                    
+                                                </group>
+                                            </page>
+						<page string="FE Remarks and Team Selection" position="inside" attrs="{'invisible':[('disposition','in',[2,3,5,6])]}">
+
+
+								<group>
+									<group>
+										<field name="coded_by_fe" attrs="{'invisible':[('rejected_by_fe','=',True)]}"/>
+										<field name="fe_code" attrs="{'invisible':[('coded_by_fe','=',False)]}"/>
+										<field name="rejected_by_fe" attrs="{'invisible':[('coded_by_fe','=',True)]}"/>
+
+<field name="fte_coding_rejection_date"  attrs="{'required':['|',('coded_by_fe','=',True),('rejected_by_fe','=',True)]}"/>
+
+
+									</group>
+									<group>
+										<field name="team_leader" />
+										<field name="Project" />
+									</group>
+									
+								</group>
+
+
+
+
+						</page>
+
+
+						<page string="Info" position="inside">
+							<group>
+									<field name ="create_uid" readonly = "1" />
+									<field name ="create_date" readonly = "1" />
+									<field name ="write_date" readonly = "1"/>
+									<field name ="status" readonly = "1"/>
+							</group>
+							
+						</page>
+
+
+                                        </notebook>
+
+                                        <notebook position="inside" colspan="100">
+                                                <page string="Notes" position="inside">
+                                                        <field name="description"/>
+                                                </page>
+                                            <page string="Calling History" position="inside">
+
+                                                      <field name="calling_history"/>
+                                            </page>
+                                        </notebook>
+
+                                    </sheet>
+								</form>
+                        	</field>
+                		</record>
+
+
+                <record id="rb_vfsr_recruitment_view_tree" model="ir.ui.view">
+                    <field name="name"> Recruitment List</field>
+                    <field name="model">vfsr.recruitment.process</field>
+                    <field name="arch" type="xml">
+                        <tree string="">
+                            <field name="name"/>
+                            <field name="vfsr_name" />
+                            <field name="mobile" />
+                            <field name="locaton" />
+                            <field name="team_leader" />
+                            <field name="disposition" />
+                            <field name="subdisposition" />
+                            <field name="Project" />
+                        </tree>
+                    </field>
+                </record>
+
+
+
+                <record id="vfsr_applicant_disposition" model="ir.ui.view">
+                    <field name="name">VFSR Application Disposition</field>
+                    <field name="model">vfsr.disposition</field>
+                    <field name="arch" type="xml">
+                        <form string="VFSR Disposition" version="7.0">
+                            <sheet>
+                                <group>
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                </group>
+                            </sheet>
+                        </form>
+                    </field>
+                </record>
+
+                <record id="vfsr_applicant_sub_disposition" model="ir.ui.view">
+                    <field name="name">VFSR Sub Disposition</field>
+                    <field name="model">vfsr.sub.disposition</field>
+                    <field name="arch" type="xml">
+                        <form string="Sub Disp" version="7.0">
+                            <sheet>
+                                <group>
+                                    <field name="name"/>
+                                    <field name="disposition"/>
+                                    <field name="description"/>
+                                </group>
+                            </sheet>
+                        </form>
+                    </field>
+                </record>
+
+                <record id="vfsr_applicant_disposition_tree" model="ir.ui.view">
+                    <field name="name">Disposition</field>
+                    <field name="model">vfsr.disposition</field>
+                    <field name="arch" type="xml">
+                        <tree string="Disposition">
+                            <field name="name"/>
+                            <field name="description"/>
+                        </tree>
+                    </field>
+                </record>
+
+                <record id="vfsr_applicant_subdisp_tree" model="ir.ui.view">
+                    <field name="name">Sub Disposition</field>
+                    <field name="model">vfsr.sub.disposition</field>
+                    <field name="arch" type="xml">
+                        <tree string="Sub Disposition ">
+                            <field name="name"/>
+                            <field name="disposition"/>
+                            <field name="description"/>
+                        </tree>
+                    </field>
+                </record>
+
+
+
+		<record model="ir.ui.view" id="vfsr_recruitment_disposition_filter">
+		<field name="name">Recruitment Search</field>
+		<field name="model">vfsr.recruitment.process</field>
+		<field name="arch" type="xml">
+			<search string="VFSR Recruitment">
+				<field name="vfsr_name"/>
+				<field name="name"/>
+				<field name="mobile"/>
+				<field name="email"/>
+				<group expand="0" string="Group By...">
+					<filter string="Create Date" domain="[]" context="{'group_by':'create_date'}"/>
+					<filter string="Write Date" domain="[]" context="{'group_by':'write_date'}"/>
+					<filter string="Disposition" domain="[]" context="{'group_by':'disposition'}"/>
+					<filter string="Sub Disposition" domain="[]" context="{'group_by':'subdisposition'}"/>
+				</group>	
+			</search>
+		</field>
+		</record>
+
+
+
+
+
+                <record id="vfsr_applicant_interview" model="ir.actions.act_window">
+                    <field name="name">Telephonic Interview</field>
+                    <field name="type">ir.actions.act_window</field>
+                    <field name="res_model">vfsr.recruitment.process</field>
+                    <field name="view_mode">tree,form</field>
+                    <field name="help" type="html">
+                      <p class="oe_view_nocontent_create">
+                        <!-- Add Text Here -->
+                      </p><p>
+                        <!-- More details about what a user can do with this object will be OK -->
+                      </p>
+                    </field>
+                </record>
+
+                <record id="vfsr_applicant_interview_disp" model="ir.actions.act_window">
+                    <field name="name">Applicant Disposition</field>
+                    <field name="type">ir.actions.act_window</field>
+                    <field name="res_model">vfsr.disposition</field>
+                    <field name="view_mode">tree,form</field>
+                    <field name="help" type="html">
+                      <p class="oe_view_nocontent_create">
+                        <!-- Add Text Here -->
+                      </p><p>
+                        <!-- More details about what a user can do with this object will be OK -->
+                      </p>
+                    </field>
+                </record>
+
+
+                <record id="vfsr_applicant_interview_sub_disp" model="ir.actions.act_window">
+                    <field name="name">Applicant Sub Disposition</field>
+                    <field name="type">ir.actions.act_window</field>
+                    <field name="res_model">vfsr.sub.disposition</field>
+                    <field name="view_mode">tree,form</field>
+                    <field name="help" type="html">
+                      <p class="oe_view_nocontent_create">
+                        <!-- Add Text Here -->
+                      </p><p>
+                        <!-- More details about what a user can do with this object will be OK -->
+                      </p>
+                    </field>
+                </record>
+
+                <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+                <menuitem id="vfsr_root" name="VFSR Recruitment" sequence="2"/>
+                    <!-- This Menu Item Must have a parent -->
+                    <menuitem id="vfsr_root_drill1" name="Recruitment" parent="vfsr_root" sequence="1" groups="group_vfsr_applicant_access,group_vfsr_applicant_access_tl"/>
+                        <!-- This Menu Item must have a parent and an action -->
+                        <menuitem id="vfsr_application_form_access" name="Applicant(s)" parent="vfsr_root_drill1" action="vfsr_applicant_interview" sequence="1" groups="group_vfsr_applicant_access,group_vfsr_applicant_access_tl"/>
+                        <!-- This Menu Item must have a parent and an action -->
+                     <menuitem id="vfsr_root_drill2" name="Configuration" parent="vfsr_root" sequence="2" groups="group_vfsr_config"/>
+                        <menuitem id="vfsr_applicant_disp" name="Disposition" parent="vfsr_root_drill2" action="vfsr_applicant_interview_disp" sequence="2" groups="group_vfsr_config"/>
+                        <!-- This Menu Item must have a parent and an action -->
+                        <menuitem id="vfsr_applicant_sub_disp" name="Sub-disposition" parent="vfsr_root_drill2" action="vfsr_applicant_interview_sub_disp" sequence="3" groups="group_vfsr_config"/>
+
+
+
+
+
+
+
+			</data>
+	</openerp>

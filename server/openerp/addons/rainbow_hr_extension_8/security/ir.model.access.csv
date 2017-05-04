@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+"access_contract","Contract Letter Access","model_rb_hr_labour_contract","group_doc_access",1,1,1,0
+"access_termination","Contract Termination Letter","model_rb_hr_labor_termination","group_doc_access",1,1,1,0
+"access_offer_letter","Offer Letter","model_rb_hr_offer_letter","group_doc_access",1,1,1,0
+"access_agency_contract","Agency Contract","model_rb_hr_agency_contract_cb","group_doc_access",1,1,1,0
+"access_promotion_letter","Promotion Letter","model_rb_hr_promotion_letter","group_doc_access",1,1,1,0
+"access_offer_letter_sales","Offer Letter Sales","model_rb_offer_sales_letter","group_doc_access",1,1,1,0

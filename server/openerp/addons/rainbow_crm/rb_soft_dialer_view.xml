@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<openerp>
+
+    <data noupdate="0">
+
+        <record model="ir.rule" id="tsr_softdial_only">
+            <field name="name">Tsr Softdial Only</field>
+            <field name="model_id" ref="model_anonymous_lead_identity"/>
+            <field name="domain_force">[('create_uid','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_tsr'))]"/>
+        </record>
+
+
+    </data>
+
+
+
+	<data>
+
+	       <record model="ir.ui.view" id="anonymous_lead_identity_tree">
+                        <field name="name">anonymous.lead.identity.tree</field>
+                        <field name="model">anonymous.lead.identity</field>
+                        <field name="type">tree</field>
+                        <field name="arch" type="xml">
+                                <tree string="Identity">
+                                        <field name="id"/>
+					<field name="mobile"/>
+					<field name="name"/>
+					<field name="city"/>
+					<field name="national_id"/>
+                                </tree>
+                        </field>
+                </record>
+	
+               <record model="ir.ui.view" id="anonymous_lead_identity_form">
+                        <field name="name">anonymous.lead.identity.form</field>
+                        <field name="model">anonymous.lead.identity</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                        <form string="Identity"  version="7.0">
+                                <header>
+
+                                    <button name="call" string="Dial" type="object" context="{'mobilex':mobile,'id':id,'disposition_status':disposition}" attrs="{'invisible':['|',('state','!=','draft'),('mobile','=',False)]}" groups="rainbow_crm.group_tsr,rainbow_crm.group_qa_doc,rainbow_crm.group_fpc,rainbow_crm.group_qa,rainbow_crm.group_tl,rainbow_crm.group_sa"/>
+                                    <button name="hangup" string="HangUp" type="object" class="oe_highlight" context="{'mobilex':mobile,'disposition_status':disposition,'subdisposition_status':subdisposition,'id':id}" attrs="{'invisible':[('state','!=','Hangup')]}" groups="rainbow_crm.group_tsr,rainbow_crm.group_qa_doc,rainbow_crm.group_fpc,rainbow_crm.group_qa,rainbow_crm.group_tl,rainbow_crm.group_sa"/>
+                                </header>
+                                <group>
+                                        <field name="id"/>
+                                        <field name="name" attrs="{'required':[('req_stat','=','required')]}"/>
+                                        <field name="mobile"/>
+                                        <!--field name="contact_name" attrs="{'required':[('req_stat','=','required')]}"/-->
+                                        <field name="disposition" attrs="{'required':[('req_stat','=','required')]}"/>
+                                        <field name="subdisposition" attrs="{'required':[('req_stat','=','required')]}"/>
+                                        <field name="city" attrs="{'required':[('req_stat','=','required')]}"/>
+                                        <field name="national_id" />
+                                        <field name="email_id"/>
+                                        <field name="gender"/>
+                                        <field name="user_info"/>
+                                        <field name="remarks"/>
+                                        <field name="state" invisible="1"/>
+                                        <field name="req_stat" invisible="1"/>
+
+                                </group>
+
+
+                                </form>
+                        </field>
+                </record>
+
+                 <record model="ir.actions.act_window" id="soft_dialer_window">
+                        <field name="name">Direct Dialer</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">anonymous.lead.identity</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+                </record>
+                <menuitem id="rb_crm_soft_dialer_menu" parent="rb_crm_sales_menu" name="Soft dial" action="soft_dialer_window"  groups="group_tsr"  />
+	</data>
+</openerp>

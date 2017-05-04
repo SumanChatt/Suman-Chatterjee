@@ -1,0 +1,80 @@
+<?xml version="1.0" ?>
+<openerp>
+<data noupdate="0">
+
+
+		 <record id="group_vfsr_applicant_access" model="res.groups">
+			<field name="name">VFSR Application Access</field>
+		</record>
+
+		<record id="group_vfsr_config" model="res.groups">
+			<field name="name">VFSR Application Configration</field>
+		</record>
+
+		<record id="group_vfsr_reference_access" model="res.groups">
+			<field name="name">VFSR Referrer Configaration</field>
+		</record>
+
+       <record id="group_vfsr_applicant_access_tl" model="res.groups">
+			<field name="name">VFSR TL Access</field>
+		</record>
+
+
+		<record model="ir.rule" id="vsfr_recruitment_privilage">
+			<field name="name">VFSR Recruitment Privilage</field>
+			<field name="model_id" ref="model_vfsr_recruitment_process"/>
+			<field name="domain_force">[('create_uid','=',user.id)]</field>
+			<!--<field name="perm_read" eval="True"/>
+			<field name="perm_write" eval="True"/>
+			<field name="perm_unlink" eval="True"/>
+			<field name="perm_create" eval="True"/>!-->
+			<field name="groups" eval="[(4, ref('group_vfsr_applicant_access'))]"/>
+		</record>
+
+
+    		<record model="ir.rule" id="vsfr_recruitment_privilage_tl">
+			<field name="name">VFSR Recruitment Privilage For TL</field>
+			<field name="model_id" ref="model_vfsr_recruitment_process"/>
+			<field name="domain_force">[('recruiters_team.team_leader','=',user.id)]</field>
+			<!--<field name="perm_read" eval="True"/>
+			<field name="perm_write" eval="True"/>
+			<field name="perm_unlink" eval="True"/>
+			<field name="perm_create" eval="True"/>!-->
+			<field name="groups" eval="[(4, ref('group_vfsr_applicant_access_tl'))]"/>
+		</record>
+
+
+
+
+    		<record model="ir.rule" id="vsfr_recruitment_team_privilage">
+			<field name="name">VFSR Recruitment Team Privilage</field>
+			<field name="model_id" ref="model_vfsr_recruitment_team"/>
+			<field name="domain_force">[('team_member','=',user.id)]</field>
+			<!--<field name="perm_read" eval="True"/>
+			<field name="perm_write" eval="True"/>
+			<field name="perm_unlink" eval="True"/>
+			<field name="perm_create" eval="True"/>!-->
+			<field name="groups" eval="[(4, ref('group_vfsr_applicant_access'))]"/>
+		</record>
+
+
+
+
+
+
+
+    <record model="ir.rule" id="vsfr_reference_privilage">
+			<field name="name">VFSR reference Privilage</field>
+			<field name="model_id" ref="model_vfsr_referral_process"/>
+			<field name="domain_force">[('create_uid','=',user.id)]</field>
+			<!--<field name="perm_read" eval="True"/>
+			<field name="perm_write" eval="True"/>
+			<field name="perm_unlink" eval="True"/>
+			<field name="perm_create" eval="True"/>!-->
+			<field name="groups" eval="[(4, ref('group_vfsr_reference_access'))]"/>
+		</record>
+
+
+
+</data>
+</openerp>

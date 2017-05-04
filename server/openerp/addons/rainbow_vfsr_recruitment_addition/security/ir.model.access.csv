@@ -1,0 +1,24 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_vfsr_applications","Access to VFSR Applications","model_vfsr_recruitment_process","group_vfsr_applicant_access",1,1,1,0
+"access_vfsr_application_disp","Access to VFSR App Disp","model_vfsr_disposition","group_vfsr_applicant_access",1,0,0,0
+"access_vfsr_application_subdisp","Access to VFSR App Sub Disp","model_vfsr_sub_disposition","group_vfsr_applicant_access",1,0,0,0
+"access_vfsr_application_callhistory","Access to VFSR call history","model_vfsr_application_call_history","group_vfsr_applicant_access",1,1,1,0
+"access_vfsr_application_disp_access","Access to VFSR App Disp Access","model_vfsr_disposition","group_vfsr_config",1,1,1,0
+"access_vfsr_application_subdisp_access","Access to VFSR App Sub Disp Access","model_vfsr_sub_disposition","group_vfsr_config",1,1,1,0
+"access_vfsr_referrer_application","Access to VFSR Reference","model_vfsr_referral_process","group_vfsr_reference_access",1,1,1,0
+"access_vfsr_recruitment_read","Access to VFSR Recruitment Read","model_vfsr_recruitment_process","group_vfsr_reference_access",1,0,0,0
+"access_vfsr_ref_disp_read","Access to VFSR Disposition Read","model_vfsr_disposition","group_vfsr_reference_access",1,0,0,0
+"access_vfsr_ref_sub_disp_read","Access to VFSR Sub Disposition Read","model_vfsr_sub_disposition","group_vfsr_reference_access",1,0,0,0
+"access_vfsr_team","Access to VFSR Team","model_vfsr_recruitment_team","group_vfsr_applicant_access",1,0,0,0
+"access_vfsr_team_leader", "VFSR Team Leader Access to VFSR Applications","model_vfsr_recruitment_process","group_vfsr_applicant_access_tl",1,1,1,0
+"access_vfsr_application_disp_tl","Access to VFSR App Disp TL","model_vfsr_disposition","group_vfsr_applicant_access_tl",1,0,0,0
+"access_vfsr_application_subdisp_tl","Access to VFSR App Sub Disp TL","model_vfsr_sub_disposition","group_vfsr_applicant_access_tl",1,0,0,0
+"access_vfsr_application_callhistory_tl","Access to VFSR call history TL","model_vfsr_application_call_history","group_vfsr_applicant_access_tl",1,1,1,0
+"access_vfsr_team_tl","Access to VFSR Team TL","model_vfsr_recruitment_team","group_vfsr_applicant_access_tl",1,0,0,0
+"access_vfsr_profile_personal_info","Access To VFSR Personal Info","model_personal_information","group_vfsr_reference_access",1,1,1,0
+"access_vfsr_profile_education","Access To VFSR Education","model_vfsr_profile_education","group_vfsr_reference_access",1,1,1,0
+"access_vfsr_profile_subject","Access To VFSR Subject","model_vfsr_profile_education_subject","group_vfsr_reference_access",1,1,1,0
+"access_vfsr_profile_experience","Access To VFSR Experience","model_vfsr_profile_work_experience","group_vfsr_reference_access",1,1,1,0
+"access_vfsr_profile_work_reference","Access To VFSR Work Reference ","model_vfsr_profile_work_reference","group_vfsr_reference_access",1,1,1,0
+"access_vfsr_profile_address","Access To VFSR Address ","model_vfsr_profile_address","group_vfsr_reference_access",1,1,1,0
+"access_vfsr_profile_product_access","Access To VFSR Product ","rainbow_crm.model_product_catagories","group_vfsr_reference_access",1,0,0,0

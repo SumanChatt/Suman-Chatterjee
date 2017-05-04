@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="0">
+	<record id="group_hr_team+r" model="res.groups">
+				<field name="name">HR Team Read</field>
+	</record>
+	<record id="group_hr_team+rw" model="res.groups">
+				<field name="name">HR Team Create</field>
+	</record>
+	<record id="group_hr_team+rwe" model="res.groups">
+				<field name="name">HR Team All</field>
+	</record>
+		<record id="group_hr_employee_groups+r" model="res.groups">
+				<field name="name">Employee Group Read</field>
+	</record>
+	<record id="group_hr_employee_groups+rw" model="res.groups">
+				<field name="name">Employee Group Write</field>
+	</record>
+	<record id="group_hr_employee_groups+rwe" model="res.groups">
+				<field name="name">Employee Group All</field>
+	</record>
+	<record id="group_hr_employee_bank_account+r" model="res.groups">
+				<field name="name">Bank Information Read</field>
+	</record>
+	<record id="group_hr_employee_bank_account+rw" model="res.groups">
+				<field name="name">Bank Information Write</field>
+	</record>
+	<record id="group_hr_employee_bank_account+rwe" model="res.groups">
+				<field name="name">Bank Information All</field>
+	</record>
+	<record id="group_cstm_hr_applicant_user" model="res.groups">
+				<field name="name">RECRUITMENT PROCESS ONLY</field>
+	</record>
+
+        <record id="group_branch_user" model="res.groups">
+				<field name="name">Privileged Access (Branch wise)</field>
+        </record>
+</data>
+</openerp>

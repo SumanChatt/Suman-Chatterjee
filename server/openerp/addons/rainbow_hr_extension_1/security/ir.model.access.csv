@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+id_hr_team0,access_hr_team0,model_hr_team,group_hr_team+r,1,0,0,0
+id_hr_team1,access_hr_team1,model_hr_team,group_hr_team+rw,1,1,0,0
+id_hr_team2,access_hr_team2,model_hr_team,group_hr_team+rwe,1,1,1,0
+id_hr_employee_groups0,access_hr_employee_groups0,model_hr_employee_groups,group_hr_employee_groups+r,1,0,0,0
+id_hr_employee_groups1,access_hr_employee_groups1,model_hr_employee_groups,group_hr_employee_groups+rw,1,1,0,0
+id_hr_employee_groups2,access_hr_employee_groups2,model_hr_employee_groups,group_hr_employee_groups+rwe,1,1,1,0
+id_hr_employee_bank_account0,access_hr_employee_bank_account0,model_hr_employee_bank_account,group_hr_employee_bank_account+r,1,0,0,0
+id_hr_employee_bank_account1,access_hr_employee_bank_account1,model_hr_employee_bank_account,group_hr_employee_bank_account+rw,1,1,0,0
+id_hr_employee_bank_account2,access_hr_employee_bank_account2,model_hr_employee_bank_account,group_hr_employee_bank_account+rwe,1,1,1,0
+access_cstm_hr_applicant,hr.applicant.cstm.user,model_hr_employee,group_cstm_hr_applicant_user,0,0,0,0
+access_hr_branch_prev,hr.branch.prev,model_hr_employee_bank_account,group_branch_user,1,0,0,0
