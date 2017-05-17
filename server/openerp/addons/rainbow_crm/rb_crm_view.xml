@@ -410,6 +410,8 @@
 					<field name="national_id" />
 					<field name="resigned_date" />
 					<field name="mobile" />
+					<field name="teamleader_name" />
+					<field name="teamleader_code" />
 			</xpath>
         		<notebook>
             		<page string="Other Settings" position="inside">
@@ -1497,6 +1499,7 @@
 															<field name="remarks" />
 															<field name="callback_date" />
 															<field name="appo_date" />
+															<field name="visit_no" />
 															<field name="gate" invisible="1"/>
 															
 															
@@ -1559,6 +1562,85 @@
 															<field name="no_of_child" />
 															<field name="education_institution" />
 															<field name="degree" />
+														</group>
+													</div>
+												</group>
+							
+								
+											</page>
+											<page string="Client info" position="right">
+							
+							
+												<group>
+													<div>
+														<group>
+															<field name="lead_source" />
+															<field name="new_id_card_number" />
+															<field name="status_f1" />
+															<field name="old_product_name" />
+															<field name="outstanding_amount" />
+															<field name="loan_amount" />
+															<field name="interes_rate"/>
+															<field name="principal"/>
+															<field name="due_date"/>
+															<field name="next_due_date"/>
+															<field name="last_payment_date"/>
+															<field name="product_name_1"/>
+															<field name="product_name_2"/>
+															<field name="product_code_1"/>
+															<field name="product_code_2"/>
+															<field name="min_turn_1"/>
+															<field name="min_turn_2"/>
+															<field name="max_turn_1"/>
+															<field name="max_turn_2"/>
+															<field name="min_loan_amount_1"/>
+															<field name="min_loan_amount_2"/>
+															<field name="max_loan_amount_1"/>
+															<field name="max_loan_amount_2"/>
+															<field name="approved_payment_1"/>
+															<field name="approved_payment_2"/>
+															<field name="max_payment_1"/>
+															<field name="max_payment_2"/>
+															<field name="interest_rate_1"/>
+															<field name="insurance" />
+															<field name="expected_close_date" />
+															<field name="mob"/>
+														</group>
+													</div>
+													<div>
+														<group>
+															
+															<field name="product_name" />
+															<field name="old_product_code" />
+															<field name="loan_turn" />
+															<field name="interest_amounts" />
+															<field name="interest_rate_2"/>
+															<field name="pos_name"/>
+															<field name="cc_code"/>
+															<field name="cc_name_"/>
+															<field name="loan_amout_request"/>
+															<field name="dsa_code"/>
+															<field name="dsa_name"/>
+															<field name="disb_channel"/>
+															<field name="no_agreement_id"/>
+															<field name="date_of_closure"/>
+															<field name="branch_code"/>
+															<field name="loan_term_request"/>
+															<field name="referee_1"/>
+															<field name="related_phone_1"/>
+															<field name="referee_2"/>
+															<field name="related_phone_2"/>
+															<field name="spouse_name"/>
+															<field name="date_of_issue"/>
+															<field name="place_of_issue"/>
+															<field name="actual_address"/>
+															<field name="monthly_costs"/>
+															<field name="monthly_income_family"/>
+															<field name="monthly_costs_family"/>
+															<field name="run_date"/>
+															<field name="description_for_client"/>
+															<field name="region"/>
+															<field name="meeting_city"/>
 														</group>
 													</div>
 												</group>

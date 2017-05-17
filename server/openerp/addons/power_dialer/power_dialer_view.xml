@@ -1,0 +1,81 @@
+<openerp>
+<data>
+<!-- ================================== Fields List ================================== -->
+
+<!-- Get Tsr -->
+<record model="ir.ui.view" id="power_dialer_form">    <!--Custom id -->
+   <field name="name">power.dialer.form</field>   <!--Custom Name -->
+   <field name="model">power.dialer</field>  <!-- _name from py File -->
+   <field name="type">form</field>
+   <field name="arch" type="xml">
+		<form string="Select Tsr" version="7.0">
+			<group>
+				<field name="campaign" on_change="func_get_sales_team(campaign)" />
+				<field name="sale_team" on_change="func_get_tsr(sale_team)"/>
+				<field name="tsr_list" on_change="func_get_lead(campaign,sale_team,tsr_list)"/>
+				<field name="disposition_status" on_change="disposition_onchange()"/>
+				<field name="subdisposition_status" />
+				<field name="state" invisible="1"/>
+				<field name="quantity"/>
+			</group>
+			<notebook>
+				<page string="Lead Assignment">
+					<!-- <field name="state" attrs="{'invisible': [('state', '=', False)]}" > -->
+						<tree string="TSR LEAD ASSIGN" editable="bottom">
+					<!--<field name="name" readonly="1"  />-->
+							<!-- <field name="tsr_list" readonly="1" /> -->
+							<field name="quantity" />
+					<!--<field name="batch_code" readonly="1"/>-->
+						</tree>
+					<!-- </field> -->
+				</page>
+			</notebook>
+			<button name="import_file" attrs="{'invisible': [('state', '=', False)]}" string="Power Dial" type="object" class="oe_highlight"  />
+		</form>
+	</field>
+</record>
+<record model="ir.ui.view" id="power_dialer_tree">    <!--Custom id -->
+	<field name="name">power.dialer.tree</field>   <!--Custom Name -->
+	<field name="model">power.dialer</field>  <!-- _name from py File -->
+	<field name="type">tree</field>
+	<field name="arch" type="xml">
+	   	<tree string="List of Tsr Distributions">
+			<field name="campaign" />
+			<field name="sale_team" />
+			<field name="tsr_list"/>
+			<field name="quantity"/>
+		</tree>
+	</field>
+</record>
+
+
+		
+
+
+
+
+<!-- ================================== Views ================================== -->
+
+	<!-- Select tsr -->
+	<record model="ir.actions.act_window" id="power_dialer_action">
+							<field name="name">Get tsr</field>
+							<field name="type">ir.actions.act_window</field>
+							<field name="res_model">power.dialer</field>
+							<field name="view_type">form</field>
+							<field name="view_mode">tree,form</field>
+	</record>
+	
+	
+
+
+<!-- ================================== Views ================================== -->
+
+
+	
+	<menuitem id="power_dialer" parent="rainbow_crm.rb_crm_configure_menu" name="power_dialer"/>
+		<!-- tsr Selection -->
+	<menuitem id="power_dialer_manu" parent="power_dialer" name="Power Dialer" action="power_dialer_action"/>
+
+
+	</data>
+</openerp>

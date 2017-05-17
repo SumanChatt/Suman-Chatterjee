@@ -1353,10 +1353,14 @@ class rb_crm_lead(osv.osv):
                 except ValueError:
                         birthday = born.replace(year=today.year, day=born.day-1)
                 if birthday > today:
-                        val = {'age':today.year - born.year - 1}
+                        val = today.year - born.year - 1
                 else:
-                        val = {'age':today.year - born.year}
-                return {'value': val}
+                        val = today.year - born.year
+                if val<0:
+                	raise osv.except_osv(('Warning'),('You are not Eligible.'))
+                else:
+                	age = {'age': val}
+                return {'value': age}
 
         def create(self, cr, uid, values, context=None):
                     state_change_date = datetime.now().strftime('%Y-%m-%d 00:00:00')
@@ -2304,6 +2308,71 @@ class rb_crm_lead(osv.osv):
 				'dis_type':fields.char('State'),
 				'description': fields.text('Notes'),
 				'gate':fields.char('GATE'),
+				#For client info
+				'lead_source':fields.char('Lead Source'),
+				'new_id_card_number':fields.char('New ID Card Number'),
+				'insurance':fields.char('Insurance'),
+				'expected_close_date':fields.date('Expected Close Date'),
+				'status_f1':fields.char('Status F1'),
+				'old_product_name':fields.char('Old Product Name'),
+				'product_name':fields.char('Product Name'),
+				'old_product_code':fields.char('Old Product Code'),
+				'outstanding_amount':fields.char('Outstanding Amount'),
+				'loan_amount':fields.char('Loan Amount'),
+				'loan_turn':fields.char('Loan Turn'),
+				'interest_amounts':fields.char('Interest Amounts'),
+				'interes_rate':fields.char('Interes Rate'),
+				'principal':fields.char('Principal'),
+				'due_date':fields.date('Due Date'),
+				'next_due_date':fields.date('Next Due Date'),
+				'last_payment_date':fields.date('Last Payment Date'),
+				'product_name_1':fields.char('Product Name 1'),
+				'product_name_2':fields.char('Product Name 2'),
+				'product_code_1':fields.char('Product Code 1'),
+				'product_code_2':fields.char('Product Code 2'),
+				'min_turn_1':fields.char('Min Turn 1'),
+				'min_turn_2':fields.char('Min Turn 2'),
+				'max_turn_1':fields.char('Max Turn 1'),
+				'max_turn_2':fields.char('Max Turn 2'),
+				'min_loan_amount_1':fields.char('Min Loan Amount 1'),
+				'min_loan_amount_2':fields.char('Min Loan Amount 2'),
+				'max_loan_amount_1':fields.char('Max Loan Amount 1'),
+				'max_loan_amount_2':fields.char('Max Loan Amount 2'),
+				'approved_payment_1':fields.char('Approved Payment 1'),
+				'approved_payment_2':fields.char('Approved Payment 2'),
+				'max_payment_1':fields.char('Max Payment 1'),
+				'max_payment_2':fields.char('Max Payment 2'),
+				'interest_rate_1':fields.char('Interest Rate 1'),
+				'interest_rate_2':fields.char('Interest Rate 2'),
+				'pos_name':fields.char('POS Name'),
+				'cc_code':fields.char('CC Code'),
+				'cc_name_':fields.char('CC Name '),
+				'loan_amout_request':fields.char('Loan Amout Request'),
+				'dsa_code':fields.char('DSA Code'),
+				'dsa_name':fields.char('DSA Name'),
+				'disb_channel':fields.char('DISB_Channel'),
+				'no_agreement_id':fields.char('No. Agreement ID'),
+				'date_of_closure':fields.char('Date of Closure'),
+				'branch_code':fields.char('Branch Code'),
+				'loan_term_request':fields.char('Loan Term Request'),
+				'referee_1':fields.char('Referee_1'),
+				'referee_2':fields.char('Referee_2'),
+				'spouse_name':fields.char('Spouse Name'),
+				'date_of_issue':fields.date('Date of Issue'),
+				'place_of_issue':fields.char('Place of Issue'),
+				'actual_address':fields.char('Actual Address'),
+				'monthly_costs':fields.char('Monthly Costs'),
+				'monthly_income_family':fields.char('Monthly Income Family'),
+				'monthly_costs_family':fields.char('Monthly Costs Family'),
+				'run_date':fields.date('RUN DATE'),
+				'mob':fields.char('MOB'),
+				'visit_no':fields.selection([('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),('6','6'),('7','7'),('8','8')],'No. of Visit'),
+				'description_for_client': fields.char('Description'),
+				'region': fields.char('Region'),
+				'meeting_city': fields.char('Meeting City'),
+				'related_phone_1': fields.char('Related Phone 1'),
+				'related_phone_2': fields.char('Related Phone 2'),
+
                                 'remarks':fields.char('Remarks'),
                                 'relation2disposition':fields.one2many('rb.crm.disposition.history', 'related_lead', 'Disposition History'),
                                 'relation2statechange':fields.one2many('rb.crm.stage.history', 'related_lead', 'Stage History'),
@@ -4299,7 +4368,9 @@ class ihrit_res_users(osv.osv):
 	_columns = {
 
 				
-			'password':fields.char('Password',required=False),		
+			'password':fields.char('Password',required=False),
+			'teamleader_name':fields.many2one('res.users',"Teamleader Name"),
+			'teamleader_code':fields.char('Teamleader Code'),		
 
 
 	}
