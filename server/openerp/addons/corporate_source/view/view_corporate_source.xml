@@ -1,0 +1,205 @@
+<openerp>
+<data>
+	<record model="ir.ui.view" id="Corporate_view_form">   
+       <field name="name">Corporate form View</field>  
+       <field name="model">corporate.source</field>  
+	   <field name="type">form</field>
+	   <field name="arch" type="xml">
+	   <form string="Application Form View" version="7.0">
+	   		<header>
+				<button name="set_inprogress" string="In Progress" class="oe_highlight" type="object"  attrs="{'invisible':[('state','in',['inprogress','close','reject'])]}" groups="base.group_user"/>
+            	<button name="set_reject" string="Reject" class="oe_highlight" type="object" attrs="{'invisible':[('state','in',['close','reject','inprogress'])]}"/>
+            	<button name="set_close" string="Close" type="object" attrs="{'invisible':[('state','in',['reject','new'])]}"/>
+            	<field name="state" widget="statusbar" readonly="1"/>
+			</header>
+	   		<sheet>
+                <label for="name_of_the_company" class="oe_edit_only"/>
+                <h1><field name="name_of_the_company"/></h1>
+                    <notebook position="inside" colspan="100">
+                        <page string="Company Info" position="inside">
+                            <group>
+                                <group>
+									<field name="type"/>
+									<field name="sourcing_status"/>
+									<field name="estd_year"/>
+									<field name="industry_type" />	
+									<field name="business_registration_no"/>
+									<field name="date_of_biz_registration"/>
+									<field name="tax_registration_no"/>
+									<field name="ho_addr1"/>
+									<field name="ho_addr2"/>
+								</group>
+								<group>
+									<field name="telephone_number"/>
+									<field name="ward"/>
+									<field name="city"/>
+									<field name="province"/>
+									<field name="region"/>
+									<field name="fax_number"/>
+									<field name="general_email_id"/>
+									<field name="website_address"/>
+								</group>
+							</group>
+						</page>
+						<page string="Company Emp Details" position="inside">
+							<group>	
+								<group string="Contact Person Information" colspan="4" col="2">
+									<field name="key_contact_person_info"/>
+								</group>
+								<group string="Employee Profile Information" colspan="4" col="2">
+									<field name="emp_profile_details"/>
+								</group>
+							</group>
+						</page>
+						<page string="Company Account Details" position="inside">
+							<group>
+								<group  string="Account Information" colspan="4" col="2" >
+									<field name="account_info"/>
+								</group>
+								<group  string="Balance Sheet Information" colspan="4" col="2" >
+									<field name="balance_sheet_info"/>
+								</group>
+							</group>
+						</page>
+						<page string="Company Branch Details" position="inside">
+							<group>
+								<group  string="Branch Information" colspan="4" col="2" >
+									<field name="branch_info"/>
+								</group>
+								<group  string="Facility Information" colspan="4" col="2" >
+									<field name="facility_info"/>
+								</group>
+								<group  string="Share Holder" colspan="4" col="2" >
+									<field name="share_holding_info"/>
+								</group>
+							</group>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record model="ir.ui.view" id="key_contact_person_tree">
+	    <field name="name">key.contact.person.tree</field>
+	    <field name="model">key.contact.person</field>
+	    <field name="arch" type="xml">
+	        <tree string="Key Contact Person" editable="bottom">
+	            <field name="name"/>
+				<field name="designation"/>
+				<field name="contact_number"/>
+				<field name="email_id"/>
+			</tree>
+	    </field>
+	</record>
+
+	<record model="ir.ui.view" id="branch_details_tree">
+	    <field name="name">branch.details.tree</field>
+	    <field name="model">branch.details</field>
+	    <field name="arch" type="xml">
+	        <tree string="Branch Details" editable="bottom">
+	            <field name="branch_province"/>
+				<field name="branch_address"/>
+				<field name="branch_employees"/>
+			</tree>
+	    </field>
+	</record>
+
+	<record model="ir.ui.view" id="facility_details_tree">
+	    <field name="name">facility.details.tree</field>
+	    <field name="model">facility.details</field>
+	    <field name="arch" type="xml">
+	        <tree string="Facility Details" editable="bottom">
+	            <field name="cic_max_group"/>
+				<field name="facility"/>
+				<field name="year"/>
+				<field name="bank"/>
+				<field name="amount"/>
+				<field name="type"/>
+				<field name="status"/>
+			</tree>
+	    </field>
+	</record>
+
+	<record model="ir.ui.view" id="account_details_tree">
+	    <field name="name">account.details.tree</field>
+	    <field name="model">account.details</field>
+	    <field name="arch" type="xml">
+	        <tree string="Account Details" editable="bottom">
+	            <field name="financial"/>
+	            <field name="amount"/>
+				<field name="year"/>
+			</tree>
+	    </field>
+	</record>
+
+	<record model="ir.ui.view" id="balance_sheet_details_tree">
+	    <field name="name">balance.sheet.details.tree</field>
+	    <field name="model">balance.sheet.details</field>
+	    <field name="arch" type="xml">
+	        <tree string="Balance sheet Details" editable="bottom">
+	            <field name="balance_sheet"/>
+	            <field name="amount"/>
+				<field name="year"/>
+			</tree>
+	    </field>
+	</record>
+
+	
+	<record model="ir.ui.view" id="emp_profile_info_tree">
+        <field name="name">emp.profile.info.tree</field>
+        <field name="model">emp.profile.info</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Profile" editable="bottom">
+                <field name="emp_profile"/>
+				<field name="no_of_emp"/>
+				<field name="avg_salary"/>
+			</tree>
+        </field>
+    </record>
+	
+	<record model="ir.ui.view" id="share_holding_tree">
+        <field name="name">share.holding.tree</field>
+        <field name="model">share.holding</field>
+        <field name="arch" type="xml">
+            <tree string="Share Holding" editable="bottom">
+            	 <field name="type_key_mngt_personnel"/>
+                <field name="name_of_the_share_holding"/>
+				<field name="no_of_share_holding"/>
+			</tree>
+        </field>
+    </record>
+	
+		
+	<record model="ir.ui.view" id="Corporate_view_tree">   
+		<field name="name">Corporate Tree View</field>  
+		<field name="model">corporate.source</field>  
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Corporate Tree View" >
+				<field name="type"/>
+				<field name="estd_year"/>
+				<field name="name_of_the_company"/>
+				<field name="industry_type"/>									
+			</tree>
+		</field>
+	</record>
+
+			<!-- ================================== Menu Defination ================================== -->
+
+
+	<record model="ir.actions.act_window" id="Corporate_view_action">
+		<field name="name">Corporate Action</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">corporate.source</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+		
+		<!-- ================================== Menu Entry ================================== -->
+
+	<menuitem id="parent_corporate" name="Corporate"/>
+	<menuitem id="sub_menu_corporate" name="Corporate Source" parent="parent_corporate"/>
+	<menuitem id="corporate_action" parent="sub_menu_corporate" name="List" action="Corporate_view_action" />
+		
+</data>
+</openerp>

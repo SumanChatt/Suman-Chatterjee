@@ -13,6 +13,7 @@
                 'rb_crm_vfsr.xml',
                 'vfsr_tl_entry_view.xml',
                 'wizard/lead_reference_wizard_view.xml',
+                'wizard/power_dialer_wizard_view.xml',
                 'rb_soft_dialer_view.xml',
 		'ir.model.access.csv'
     ],

@@ -1376,7 +1376,7 @@
                         <field name="arch" type="xml">
 						
                                 <tree string="Lead" colors="blue:state_change =='sa';green:state_change == 'customer';black:state_change == 'tsr';gray:state_change == 'qa doc';red:state_change == 'Reject';darkred:state_change=='qa';DarkGoldenRod:state_change=='fpc'">
-										<field name="id"/>
+										<field name="id" invisible="1"/>
 										<field name="contact_persion" />
 										<!--<field name="name"/>-->
 										<field name="city_id" />
@@ -1411,7 +1411,9 @@
 											<button name="approved_func" string="Approved" type="object" class="oe_highlight" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','qa'),('state','!=','draft')]}" groups="rainbow_crm.group_qa"/>
 											<button name="send_back_func" string="Send Back" type="object" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','qa'),('state','!=','draft')]}" groups="rainbow_crm.group_qa"/>
 											<!--<button name="reject_func" string="Reject" type="object" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','qa'),('state','!=','draft')]}" groups="rainbow_crm.group_qa"/>-->
-											<button name="convert_qa" string="Convert To QA" type="object" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','tsr'),('state','!=','draft')]}" groups="rainbow_crm.group_tsr"/>
+											<button string="Call Barging" name="call_barging" type="object" class="oe_highlight" context="{'sale_team_name':sale_team_name}" attrs="{'invisible':[('state_change','!=','qa')]}"/>
+
+											<button name="convert_qa" string="Convert To QA" type="object" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change,'city_id':city_id}" attrs="{'invisible':['|',('state_change','!=','tsr'),('state','!=','draft')]}" groups="rainbow_crm.group_tsr"/>
 											<button name="approved_func_fpc" string="Send to QA(DOC)" type="object" class="oe_highlight" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','fpc'),('state','!=','draft')]}" groups="rainbow_crm.group_fpc"/>
 											<button name="approved_func_QADoc" string="Send to SA" type="object" class="oe_highlight" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':['|',('state_change','!=','qa doc'),('state','!=','draft')]}" groups="rainbow_crm.group_qa_doc"/>
 											<button name="reject_func_QADoc" string="Reject" type="object" class="oe_highlight" context="{'id':id,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'state_change':state_change}" attrs="{'invisible':[('state_change','!=','qa doc')]}" groups="rainbow_crm.group_qa_doc"/>
@@ -1436,7 +1438,8 @@
 													<div>
 														<group>
 															<field name="id"/>
-															
+															<field name="ml_id" attrs="{'readonly':[('state_change','!=','qa')]}"/>
+															<field name="ml_id_old"/>
 															<field name="title" placeholder="Title" domain="[('domain', '=', 'contact')]" class="oe_inline" options='{"no_open": True}'/>
 															<label for="contact_persion"/>
 																<div>
@@ -1562,6 +1565,24 @@
 															<field name="no_of_child" />
 															<field name="education_institution" />
 															<field name="degree" />
+														</group>
+													</div>
+													<div>
+														<group>
+															<field name="type" />
+															<field name="cust_type" />
+															<field name="doc1" />
+															<field name="doc2" />
+															<field name="campaign_source" />
+															<field name="campaign_medium" />
+															<field name="campaign_name" />
+															<field name="campaign_term" />
+															<field name="campaign_content" />
+															<field name="created" />
+															<field name="insurance_type" />
+															<field name="amount" />
+															<field name="smoke" />
+															<field name="tenor" />
 														</group>
 													</div>
 												</group>
@@ -2675,6 +2696,13 @@
 						<field name="domain">[('callback_state','=','followup')]</field>
                         <field name="view_mode">tree,form</field>
          </record>
+           <record model="ir.actions.act_window" id="call_monitor_window">
+                        <field name="name">Lead</field>
+                        <field name="type">ir.actions.act_window</field>
+                        <field name="res_model">rb.crm.lead</field>
+                        <field name="view_type">form</field>
+                        <field name="view_mode">tree,form</field>
+         </record>
 		 
 		<!--#################################################################################--> 
 		
@@ -3292,11 +3320,11 @@
 
 		<!--Lead Team menu-->
 		<menuitem id="rb_crm_lead_menu" parent="rb_crm_sales_menu" name="Leads" action="rb_crm_lead_window"  sequence="2" groups="group_tsr,group_qa,group_tl,group_sa,group_fpc,group_qa_doc,group_sm,group_data_entry,group_of_fpc"/>
-		<menuitem id="rb_crm_lead_allocation" parent="rb_crm_sales_menu" name="Allocation" action="rb_crm_lead_window1" groups="group_tsr,group_qa,group_tl,group_sa,group_fpc,group_qa_doc,group_sm,group_data_entry,group_of_fpc"/>
+		<menuitem id="rb_crm_lead_allocation" parent="rb_crm_sales_menu" name="Allocation" action="rb_crm_lead_window1" groups="group_tsr,group_tl,group_sa,group_fpc,group_qa_doc,group_sm,group_data_entry,group_of_fpc"/>
 		
 		<!--Follow up Team menu-->
 		<menuitem id="rb_crm_follow_up_menu" parent="rb_crm_sales_menu" name="Follow up " action="rb_crm_all_follow_up_window"  sequence="3" groups="group_tsr,group_qa,group_tl,group_sa,group_fpc,group_qa_doc,group_sm,group_data_entry,group_of_fpc"/>
-		
+		<menuitem id="rb_crm_call_monitor_menu" parent="rb_crm_sales_menu" name="Call Monitoring" action="call_monitor_window"  sequence="3" groups="group_tsr,group_qa,group_tl,group_sa,group_fpc,group_qa_doc,group_sm,group_data_entry,group_of_fpc"/>
 		
 		<!--Bulk Disposition Upload-->
 		<!--menuitem id="rb_crm_sa_approve_menu" parent="rb_crm_sales_menu" name="Application Upload" action="rb_crm_sa_approve_window"   groups="group_sa"/-->

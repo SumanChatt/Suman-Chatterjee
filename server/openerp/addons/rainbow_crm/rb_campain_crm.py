@@ -39,7 +39,11 @@ class rb_city(osv.osv):
 	_name = "rb.city"		
 	
 	_columns = {
-			'name':fields.char("City Name",required=True)
+			'name':fields.char("City Name",required=True),
+            'code':fields.char("Code",required=True),
+            'description':fields.char("Description"),
+            'monthyear':fields.char("Current Month Year",invisible="1"),
+            'last_id':fields.integer("Last Id",invisible="1")
 			   }
 rb_city()
   
@@ -442,7 +446,7 @@ class rb_file_export(osv.osv):
                 m_lst = []
                 t_id = []
                 fiel_name = datetime.now().strftime('%Y-%m-%d-%H:%M:%S')+'.csv'
-                file_path = '/var/www/report/reportdaily'+fiel_name
+                file_path = '/var/www/html/Report/dump/reportdaily'+fiel_name
                 #raise osv.except_osv(('warning'),(file_path))
                 file_obj = self.pool.get('rb.crm.lead')
                 resultFile = open(file_path,'wb')
@@ -576,8 +580,8 @@ class rb_file_export(osv.osv):
                             #m_lst.append('False')
                         wr.writerow(m_lst)
                         m_lst = []
-                webbrowser.open_new_tab('http://10.0.0.1/report/report83473785.csv')
-                url = 'http://10.0.0.1/report/reportdaily'+fiel_name
+                webbrowser.open_new_tab('http://192.168.1.22/Report/dump/report83473785.csv')
+                url = 'http://192.168.1.22/Report/dump/reportdaily'+fiel_name
                 if url:
                         return { 'type': 'ir.actions.act_url', 'url': url, 'nodestroy': True, 'target': 'new' }
                 else:
@@ -1631,7 +1635,15 @@ class rb_crm_lead(osv.osv):
 
                 return {'value': val}
 
-
+        def call_barging(self, cr, uid, ids, context=None):
+            sale_team_name=context['sale_team_name']
+            #raise osv.except_osv(('Warning!'),(uid))
+            return {
+                'type': 'ir.actions.act_url',
+                'url': 'http://192.168.1.22:80/call_barging/call_barging.php?id=%s&team_id=%s' % (uid,sale_team_name), 
+                'nodestroy': False, 
+                'target': 'current'
+            }
 
         def fun_disposition(self,cr,uid,ids,dispo_stat,state_change,gate,context=None):
                 val = {'remarks':False}                                
@@ -1823,10 +1835,11 @@ class rb_crm_lead(osv.osv):
 		obj_state_change_history = self.pool.get('rb.crm.stage.history')
                 obj_state_change_history.create(cr, uid,{'related_lead':context['id'],'previous_stage':state,'current_stage':'Reject','concatination_field':str(state_change_date)+'Reject'}, context = context)
 		return True
-
-        
 	def convert_qa(self, cr, uid, ids, context=None):
                 # raise osv.except_osv(('Warning!'),(ids))
+                city = context['city_id']
+                if not city:
+                    raise osv.except_osv(('Warning!'),('Please enter city.'))
                 customer_product_obj = self.pool.get('rb.crm.customer.product')
                 customer_product_search = customer_product_obj.search(cr, uid, [('related_lead','=',ids[0])])
                 
@@ -1838,6 +1851,16 @@ class rb_crm_lead(osv.osv):
                     if customer_product_data[0].values()[1] == 0:
                         raise osv.except_osv(('Warning!'),('Expected/Premium amount must be greater than 0.'))
                 state_change_date = datetime.now().strftime('%Y-%m-%d 00:00:00')
+                #for ML ID
+                ml_id=''
+                cr.execute("select code,monthyear,last_id,case when monthyear<>to_char(now(),'yymm')||'0000' or monthyear is null THEN to_char(now(),'yymm')||'0000' ELSE monthyear END monthyear_new,case when monthyear<>to_char(now(),'yymm')||'0000' or last_id is null THEN 1 ELSE last_id+1 END last_id_new from rb_city where code is not null and id=%s",(city,))
+                tsr_id = cr.fetchall()
+                for row in tsr_id:
+                    ml_id=str(row[0])+str(row[3])+str(row[4])
+                #ml_id = datetime.now().strftime('%y%m')
+                
+                #raise osv.except_osv(('warning'),(ml_id))
+
                 disposition = context['disposition_status']
                 subdisposition = context['subdisposition_status']
                 lead_id = context['id']
@@ -1859,7 +1882,8 @@ class rb_crm_lead(osv.osv):
                 for subdispo_stat in obj_subdisposition_read:
                         if subdispo_stat['forwardable'] is False:
                                 raise osv.except_osv(('warning'),("Please Choose Correct Disposition For Forwarding"))
-                self.write(cr, uid, context['id'], {'state_change': 'qa'})
+                self.write(cr, uid, context['id'], {'state_change': 'qa','ml_id':ml_id,'ml_id_old':ml_id})
+                cr.execute("update rb_city as v set monthyear = s.monthyear_new,last_id=s.last_id_new from ( select id,monthyear,last_id,case when  monthyear<>to_char(now(),'yymm')||'0000' or monthyear is null THEN to_char(now(),'yymm')||'0000' ELSE monthyear END monthyear_new,case when  monthyear<>to_char(now(),'yymm')||'0000' or last_id is null THEN 1 ELSE last_id+1 END last_id_new from rb_city where code is not null and id=%s) as s WHERE v.id = s.id",(city,))
 		obj_state_change_history.create(cr, uid,{'related_lead':lead_id,'previous_stage':state,'current_stage':'qa','concatination_field':str(state_change_date)+'qa'}, context = context)
 		return True
 
@@ -2308,6 +2332,23 @@ class rb_crm_lead(osv.osv):
 				'dis_type':fields.char('State'),
 				'description': fields.text('Notes'),
 				'gate':fields.char('GATE'),
+                'type':fields.char('Type'), 
+                'cust_type':fields.char('Customer Type'),
+                'doc1':fields.char('Doc1'),
+                'doc2':fields.char('Doc2'),
+                'campaign_source':fields.char('Campaign Source'),
+                'campaign_medium':fields.char('Campaign Medium'),
+                'campaign_name':fields.char('Campaign Name'),
+                'campaign_term':fields.char('Campaign Term'),
+                'campaign_content':fields.char('Campaign Content'),
+                'created':fields.char('Created'),
+                'insurance_type':fields.char('InsuranceType'),
+                'amount':fields.char('Amount'),
+                'smoke':fields.char('Smoke'),
+                'tenor':fields.char('Tenor'),
+
+
+
 				#For client info
 				'lead_source':fields.char('Lead Source'),
 				'new_id_card_number':fields.char('New ID Card Number'),
@@ -2372,6 +2413,8 @@ class rb_crm_lead(osv.osv):
 				'meeting_city': fields.char('Meeting City'),
 				'related_phone_1': fields.char('Related Phone 1'),
 				'related_phone_2': fields.char('Related Phone 2'),
+                'ml_id': fields.char('ML ID'),
+                'ml_id_old': fields.char('ML ID OLD'),
 
                                 'remarks':fields.char('Remarks'),
                                 'relation2disposition':fields.one2many('rb.crm.disposition.history', 'related_lead', 'Disposition History'),
@@ -3131,6 +3174,8 @@ class lead_referral_tsr_log(osv.osv):
 
 					}
 lead_referral_tsr_log()
+
+
 
 
 

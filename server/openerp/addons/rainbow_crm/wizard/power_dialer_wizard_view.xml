@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+         <!-- wizard action on rb.crm.lead -->
+        <act_window id="power_dialer_wizard_action"
+            name="Power Dialer"
+            src_model="rb.crm.lead"
+            res_model="power.dialer.wizard"
+            view_type="form" view_mode="form"
+            key2="client_action_multi" target="new"
+            groups="group_tsr"/>
+
+
+
+       
+        <!-- wizard view -->
+        <record id="power_dialer_wizard_reference_view" model="ir.ui.view">
+            <field name="name">Power Dialer</field>
+            <field name="model">power.dialer.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Power Dialer" version="7.0">
+                    
+                        <header>
+                              <button string="Start Power Dialer" name="start_power_dialer" type="object" class="oe_highlight"/>
+                        </header>
+                        <field name="lead_ids"/>
+                        <footer>
+                            <button string="Pause" name="change_team_button" type="object" class="oe_highlight"/>
+                            or
+                            <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- wizard lead list view -->
+        <record id="power_dialer_wizard_reference_tree_view" model="ir.ui.view">
+            <field name="name">Power Dialer</field>
+            <field name="model">power.dialer.wizard.reference</field>
+            <field name="arch" type="xml">
+                <!-- the user list is editable, but one cannot add or delete rows -->
+                <tree string="Leads">
+                    <field name="lead_id" readonly="1"/>
+                    <field name="name" readonly="1"/>
+                    <field name="mobile" readonly="1"/>
+                    <field name="disposition_status" required="1"/>
+                    <field name="subdisposition_status" required="1"/>
+                    <field name="state"/>
+                    <button name="start_call" string="Dial" type="object" class="oe_highlight" context="{'mobilex':mobile,'id':lead_id,'disposition_status':disposition_status}" attrs="{'invisible':['|',('state','!=','draft'),('mobile','=',False)]}" groups="rainbow_crm.group_tsr"/>
+                    <button name="end_call" string="HangUp" type="object" class="oe_highlight" context="{'mobilex':mobile,'disposition_status':disposition_status,'subdisposition_status':subdisposition_status,'id':lead_id}" attrs="{'invisible':[('state','!=','Hangup')]}" groups="rainbow_crm.group_tsr"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</openerp>

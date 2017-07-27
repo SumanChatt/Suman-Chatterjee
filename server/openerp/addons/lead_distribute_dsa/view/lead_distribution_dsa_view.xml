@@ -1,0 +1,93 @@
+<openerp>
+<data>
+<!-- ================================== Fields List ================================== -->
+
+<!-- Get dsa -->
+		<record model="ir.ui.view" id="get_dsa_list_form">    <!--Custom id -->
+			               <field name="name">get.dsa.list.form</field>   <!--Custom Name -->
+			               <field name="model">get.dsa.list</field>  <!-- _name from py File -->
+						   <field name="type">form</field>
+						   <field name="arch" type="xml">
+									<form string="Select dsa" version="7.0">
+										<group>
+										<field name="select_campaign" on_change="func_get_sales_team(select_campaign)" />
+										<field name="select_sales_team" on_change="func_get_dsa(select_sales_team)"/>
+										<field name="select_dsa" invisible="1" />
+										<field name="state" invisible="1"/>
+										<field name="data" />
+										<field name="auto_distribute"/>
+										<field name="quantity"/>
+										<field name="s_batch_code" on_change="func_get_batch_details(s_batch_code)"/>
+										<field name="batch_id" invisible="1"/>
+										<field name="database_name" invisible="1"/>
+										</group>
+										<notebook>
+										<page string="Lead Assignment">
+										<field name="relation_with_leadmap" attrs="{'invisible': [('state', '=', False)]}" >
+										
+											<tree string="dsa LEAD ASSIGN" editable="bottom">
+												<!--<field name="name" readonly="1"  />-->
+												<field name="dsa_name" readonly="1" />
+												<field name="no_of_lead" />
+												<!--<field name="batch_code" readonly="1"/>-->
+											</tree>
+											
+										</field>
+										</page>
+											</notebook>
+										
+										<button name="import_file" context="{'id':id,'select_sales_team':select_sales_team,'select_campaign':select_campaign,'auto_distribute':auto_distribute,'quantity':quantity}" attrs="{'invisible': [('state', '=', False)]}" string="Upload Lead" type="object" class="oe_highlight"  />
+									</form>
+							</field>
+		</record>
+
+        <record model="ir.ui.view" id="get_dsa_list_tree">    <!--Custom id -->
+			               <field name="name">get.dsa.list.tree</field>   <!--Custom Name -->
+			               <field name="model">get.dsa.list</field>  <!-- _name from py File -->
+						   <field name="type">tree</field>
+						   <field name="arch" type="xml">
+									<tree string="List of dsa Distributions">
+										<field name="select_campaign" />
+										<field name="select_sales_team" />
+										<!--<field name="select_dsa" />-->
+										<field name="data"/>
+										<field name="s_batch_code"/>
+										<field name="upload_date"/>
+										<field name="quantity"/>
+										<field name="database_name"/>
+										<field name="batch_id"/>
+									</tree>
+							</field>
+		</record>
+
+
+		
+
+
+
+
+<!-- ================================== Views ================================== -->
+
+	<!-- Select dsa -->
+	<record model="ir.actions.act_window" id="get_dsa_list_window">
+							<field name="name">Get dsa</field>
+							<field name="type">ir.actions.act_window</field>
+							<field name="res_model">get.dsa.list</field>
+							<field name="view_type">form</field>
+							<field name="view_mode">tree,form</field>
+	</record>
+	
+	
+
+
+<!-- ================================== Views ================================== -->
+
+
+	
+	<menuitem id="lead_distribution_dsa" parent="rainbow_crm.rb_crm_configure_menu" name="Distribution of Lead for DSA"/>
+		<!-- dsa Selection -->
+	<menuitem id="lead_number_distribution_dsa" parent="lead_distribution_dsa" name="Distribute DSA" action="get_dsa_list_window"/>
+
+
+	</data>
+</openerp>
